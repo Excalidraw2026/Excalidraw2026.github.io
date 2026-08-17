@@ -10,9 +10,9 @@
   --yellow: #E3B341;
   --yellow-soft: #FFF3CD;
   --red: #C4624D;
-  /* 暖色底 + 墨色文字 */
-  --cream: #fefcf6;
-  --cream-dark: #faf6eb;
+  /* 暖色底 + 墨色文字（主背景参考站酷设计周暖米灰 #E3DED0） */
+  --cream: #E3DED0;
+  --cream-dark: #D8D1C0;
   --ink: #1A1A2E;
   --ink-light: #4A4A5A;
   --ink-faint: #8A8A9A;
@@ -50,7 +50,7 @@ a:hover { color: var(--blue-deep); }
 /* ---------- 顶部导航（亮色毛玻璃） ---------- */
 .topbar {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(254, 252, 246, .85);
+  background: rgba(227, 222, 208, .85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(26, 26, 46, .07);
