@@ -117,7 +117,7 @@ a { text-decoration: none; }
    ============================================================ */
 .desktop {
   position: fixed; inset: 0;
-  background: url("assets/images/handdrawn-wallpaper.jpg") center / cover no-repeat;
+  background: url("assets/images/room-wallpaper.jpg") center / cover no-repeat;
   opacity: 0; visibility: hidden;
   transition: opacity .8s ease;
   display: flex; flex-direction: column;
@@ -154,15 +154,50 @@ a { text-decoration: none; }
   overflow-y: auto;
   overflow-x: hidden;
 }
-.desk-icons {
+/* 左侧书架（拟物化：图标像物品摆在架子上） */
+.shelf {
   position: absolute;
-  top: 56px;
-  left: 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
+  left: 2.5%;
+  top: 60px;
+  width: 218px;
+  background: linear-gradient(180deg, #fdfbf5, #f2ecdf);
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(26,26,38,.2);
+  padding: 12px 10px 2px;
 }
+.shelf-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 3px 2px 9px;
+  margin-bottom: 9px;
+  border-bottom: 7px solid #e6dfcf;
+  border-radius: 2px;
+}
+.shelf-row:last-child { margin-bottom: 0; }
+.shelf .dicon { gap: 3px; padding: 2px; }
+.shelf .dicon-img { width: 44px; height: 44px; font-size: 1.3rem; border-radius: 12px; }
+.shelf .dicon-label { font-size: .64rem; padding: 1px 5px; max-width: 88px; }
+
+/* 右侧软木板（灵感碎片等钉在板上） */
+.corkboard {
+  position: absolute;
+  right: 2.5%;
+  top: 60px;
+  width: 216px;
+  background: linear-gradient(150deg, #d5b487, #c09b64);
+  border: 10px solid #46321d;
+  border-radius: 5px;
+  box-shadow: 0 12px 28px rgba(26,26,38,.24);
+  padding: 18px 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 8px;
+}
+.corkboard .dicon { gap: 3px; padding: 2px; }
+.corkboard .dicon-img { width: 42px; height: 42px; font-size: 1.25rem; border-radius: 12px; }
+.corkboard .dicon-label { font-size: .6rem; padding: 1px 4px; max-width: 78px; }
 .dicon {
   display: flex; flex-direction: column; align-items: center; gap: 4px;
   padding: 6px 6px;
@@ -199,14 +234,15 @@ a { text-decoration: none; }
 /* 桌面便签（随机金句） */
 .sticky-note {
   position: absolute;
-  top: 24px; right: 26px;
+  bottom: 130px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2.2deg);
   background: rgba(255, 243, 205, .92);
   backdrop-filter: blur(4px);
   border-radius: 6px;
   padding: 18px 20px 14px;
   max-width: 260px;
   box-shadow: 0 10px 30px rgba(26,26,38,.22);
-  transform: rotate(2.2deg);
   font-family: var(--hand);
   color: #4a3c14;
   font-size: 1.15rem;
@@ -324,15 +360,19 @@ a { text-decoration: none; }
 
 /* 响应式 */
 @media (max-width: 900px) {
-  .desk-icons { left: 12px; gap: 5px; }
-  .dicon-img { width: 50px; height: 50px; font-size: 1.5rem; }
+  .shelf { left: 2%; width: 170px; }
+  .shelf .dicon-img { width: 38px; height: 38px; font-size: 1.15rem; }
+  .shelf .dicon-label { font-size: .58rem; max-width: 74px; }
+  .corkboard { right: 2%; width: 168px; padding: 12px 8px; }
+  .corkboard .dicon-img { width: 38px; height: 38px; font-size: 1.15rem; }
+  .corkboard .dicon-label { font-size: .56rem; max-width: 70px; }
   .sticky-note { display: none; }
   .mb-menu { display: none; }
 }
 @media (max-width: 600px) {
-  .desk-icons { left: 8px; top: 50px; gap: 4px; }
-  .dicon-img { width: 44px; height: 44px; font-size: 1.3rem; }
-  .dicon-label { font-size: .66rem; padding: 2px 5px; max-width: 92px; }
+  .shelf { left: 50%; transform: translateX(-50%); width: 176px; top: 52px; }
+  .corkboard { display: none; }
+  .shelf-row { margin-bottom: 6px; }
   .dock-item { width: 44px; height: 44px; font-size: 1.3rem; }
 }
 
@@ -379,42 +419,33 @@ a { text-decoration: none; }
 
   <!-- 桌面图标 -->
   <div class="desk-area">
-    <div class="sticky-note" id="sticky">看见框架，然后真实地活。</div>
-    <div class="desk-icons">
-      <a class="dicon" style="--g:#4E7A5C" href="about.html">
-        <span class="dicon-img">🌱</span><span class="dicon-label">关于我</span>
-      </a>
-      <a class="dicon" style="--g:#C4624D" href="blog.html">
-        <span class="dicon-img">📖</span><span class="dicon-label">博客 / 随笔</span>
-      </a>
-      <a class="dicon" style="--g:#E3B341" href="works.html">
-        <span class="dicon-img">🎨</span><span class="dicon-label">作品集</span>
-      </a>
-      <a class="dicon" style="--g:#4E7A5C" href="shelf.html">
-        <span class="dicon-img">📚</span><span class="dicon-label">书架</span>
-      </a>
-      <a class="dicon" style="--g:#C4624D" href="projects.html">
-        <span class="dicon-img">🚀</span><span class="dicon-label">正在折腾的项目</span>
-      </a>
-      <a class="dicon" style="--g:#E3B341" href="timeline.html">
-        <span class="dicon-img">🗺️</span><span class="dicon-label">我的成长路径</span>
-      </a>
-      <a class="dicon" style="--g:#C4624D" href="javascript:void(0)" role="button" tabindex="0" onclick="openFrags()" onkeydown="if(event.key==='Enter')openFrags()">
-        <span class="dicon-img">💡</span><span class="dicon-label">灵感碎片</span>
-      </a>
-      <a class="dicon" style="--g:#4E7A5C" href="contact.html">
-        <span class="dicon-img">📮</span><span class="dicon-label">订阅 / 关注我</span>
-      </a>
-      <a class="dicon" style="--g:#E3B341" href="coming.html">
-        <span class="dicon-img">⭐</span><span class="dicon-label">推荐清单</span>
-      </a>
-      <a class="dicon" style="--g:#4E7A5C" href="contact.html">
-        <span class="dicon-img">✉️</span><span class="dicon-label">联系我</span>
-      </a>
-      <a class="dicon" style="--g:#C4624D" href="about-site.html">
-        <span class="dicon-img">🧱</span><span class="dicon-label">这个站是怎么做的</span>
-      </a>
+    <!-- 左侧书架 -->
+    <div class="shelf">
+      <div class="shelf-row">
+        <a class="dicon" style="--g:#4E7A5C" href="about.html"><span class="dicon-img">🌱</span><span class="dicon-label">关于我</span></a>
+        <a class="dicon" style="--g:#C4624D" href="blog.html"><span class="dicon-img">📖</span><span class="dicon-label">博客 / 随笔</span></a>
+      </div>
+      <div class="shelf-row">
+        <a class="dicon" style="--g:#E3B341" href="works.html"><span class="dicon-img">🎨</span><span class="dicon-label">作品集</span></a>
+        <a class="dicon" style="--g:#4E7A5C" href="shelf.html"><span class="dicon-img">📚</span><span class="dicon-label">书架</span></a>
+      </div>
+      <div class="shelf-row">
+        <a class="dicon" style="--g:#C4624D" href="projects.html"><span class="dicon-img">🚀</span><span class="dicon-label">正在折腾的项目</span></a>
+        <a class="dicon" style="--g:#E3B341" href="timeline.html"><span class="dicon-img">🗺️</span><span class="dicon-label">我的成长路径</span></a>
+      </div>
+      <div class="shelf-row">
+        <a class="dicon" style="--g:#4E7A5C" href="contact.html"><span class="dicon-img">📮</span><span class="dicon-label">订阅 / 关注我</span></a>
+        <a class="dicon" style="--g:#E3B341" href="coming.html"><span class="dicon-img">⭐</span><span class="dicon-label">推荐清单</span></a>
+      </div>
     </div>
+    <!-- 右侧软木板 -->
+    <div class="corkboard">
+      <a class="dicon" style="--g:#C4624D" href="javascript:void(0)" role="button" tabindex="0" onclick="openFrags()" onkeydown="if(event.key==='Enter')openFrags()"><span class="dicon-img">💡</span><span class="dicon-label">灵感碎片</span></a>
+      <a class="dicon" style="--g:#4E7A5C" href="contact.html"><span class="dicon-img">✉️</span><span class="dicon-label">联系我</span></a>
+      <a class="dicon" style="--g:#C4624D" href="about-site.html"><span class="dicon-img">🧱</span><span class="dicon-label">这个站是怎么做的</span></a>
+    </div>
+    <!-- 便签 -->
+    <div class="sticky-note" id="sticky">看见框架，然后真实地活。</div>
   </div>
 
   <!-- Dock -->
