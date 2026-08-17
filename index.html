@@ -316,6 +316,13 @@ a { text-decoration: none; }
   border-left: 3px solid var(--gold);
 }
 .frag-item-text { flex: 1; font-size: .92rem; line-height: 1.6; word-break: break-word; white-space: pre-wrap; }
+.frag-tag {
+  flex-shrink: 0; align-self: flex-start;
+  background: var(--green); color: #fff;
+  font-size: .72rem; font-weight: 600;
+  padding: 2px 10px; border-radius: 999px;
+  margin-top: 3px;
+}
 .frag-item-del { cursor: pointer; color: #b0a99a; font-size: .85rem; padding: 2px 6px; border-radius: 6px; flex-shrink: 0; }
 .frag-item-del:hover { color: #c0392b; background: rgba(192,57,43,.08); }
 .frag-add { display: flex; gap: 10px; margin-top: 14px; }
@@ -438,34 +445,18 @@ a { text-decoration: none; }
     </div>
     <div class="frag-body">
       <div id="fragLock">
-        <div id="fragSetup" style="display:none">
-          <div class="frag-lock">
-            <div class="frag-lock-icon">🔒</div>
-            <p class="frag-tip">第一次使用：设置一个密码<br>（记牢它，忘了就永远打不开了）</p>
-            <input type="password" id="fragPass1" class="frag-input" placeholder="设置密码（至少 4 位）" autocomplete="new-password">
-            <input type="password" id="fragPass2" class="frag-input" placeholder="再输一遍确认" autocomplete="new-password">
-            <button class="frag-btn" onclick="setupFrags()">设置并进入</button>
-            <p class="frag-err" id="fragErrSetup"></p>
-          </div>
-        </div>
-        <div id="fragUnlock" style="display:none">
-          <div class="frag-lock">
-            <div class="frag-lock-icon">🔒</div>
-            <p class="frag-tip">输入密码查看你的灵感碎片</p>
-            <input type="password" id="fragPass" class="frag-input" placeholder="密码" autocomplete="current-password">
-            <button class="frag-btn" onclick="unlockFrags()">解锁</button>
-            <p class="frag-err" id="fragErrUnlock"></p>
-          </div>
+        <div class="frag-lock">
+          <div class="frag-lock-icon">🔒</div>
+          <p class="frag-tip">输入密码查看你的灵感碎片</p>
+          <input type="password" id="fragPass" class="frag-input" placeholder="密码" autocomplete="current-password">
+          <button class="frag-btn" onclick="unlockFrags()">解锁</button>
+          <p class="frag-err" id="fragErrUnlock"></p>
         </div>
       </div>
       <div id="fragContent" style="display:none">
         <ul class="frag-list" id="fragList"></ul>
-        <p class="frag-empty" id="fragEmpty">还没有碎片，记下第一个想法吧 ✨</p>
-        <div class="frag-add">
-          <input type="text" id="fragNew" class="frag-input" placeholder="记下此刻的想法…" maxlength="500">
-          <button class="frag-btn" onclick="addFrag()">存下</button>
-        </div>
-        <p class="frag-note">🔒 碎片加密保存在本机浏览器，别人访问你的网站看不到。</p>
+        <p class="frag-empty" id="fragEmpty">还没有碎片 ✨</p>
+        <p class="frag-note">🔒 碎片内容已加密，只有你能看到。</p>
       </div>
     </div>
   </div>
@@ -575,9 +566,9 @@ setInterval(tick, 30000);
    密码哈希 + 碎片密文均存在本机浏览器 localStorage：
    别人访问网站时根本不会有你的数据；同机偷看需密码。
    ============================================================ */
-const FRAG_PW_KEY = "aiexplorer_frag_pw_v1";
-const FRAG_DATA_KEY = "aiexplorer_frag_data_v1";
-const FRAG_UNLOCKED = "aiexplorer_frag_unlocked_v1";
+const FRAG_PASS_HASH = "97be3896f4f12c061f8784d690253553b865cb50bf7a6e372e6bf0c35648126f";
+const FRAG_BUNDLE = "0npDy4d95bWhmzxj.HzFBOBNHxfbcxuSya5V7uHjCXGhI2p0lU3l2LixIN8E2wXzIARCq8KHBdQPUdI6Kig75bRFiWUvJO1s0rQa6d51m5FiVcqJttMhsz9BfxZCTfgTDrS28wpnXXCPVgURa82jTp/KlWEMNG/hGgtt/BUcrYLDbmTkLYGwY99j1IQWBHnwjrSElpTRr0qDUQB/lR3NVl6lOB0axRfkaqK6jHQNva0rQPhOdNqk/oBHgP9OD5zywtjkUj6cI0yFHJcmHCQKpy3R4VaYAVU20qYfjAN1RQ193qgtCm9j7ZXMsBc/iX92+zlic/HEDp5aPIIL7EVzhvka3eKF+TEz1Xz7Q1GVHhbZ+JiiKdGVt0G0sz2FH2yq9LNF+2Y21xDIUs+HxahZkyyqoMHrSiw+fn/wL+P4Prrb3/qNrYWeHECnWj1pYmMLtKJP8bfX3BgDuS9mxgyB2chBHfkrZ1Txiea0PgRc8qo8vpURfOGFEuYf3C9SOWSotie/PqPF8jneknc8KlB/Avu/mff+XUBML8RvJz5Pq36kQ++Jmtb6hVaSkKEGKAgFDkqrOIv7oT6K6Q/w+0nDNuXq8l7VeMRkN/IgF366o/ctzl4PLIPfnFaqVNBbIN/AnOVDhjK1Ie/iwpnn1zXJNNhUjbxhQJKqhWHhXEq2+LM6lkAgz9UsPlXkVMHz8a1CVLZvp8A3U3c0sKa1/nFtTDiEpJhnfqzEEz5DGILtUPvds8hCDYyqhG5eLLnGM2ZgK4I4CzDya9YpX3Rze3KyjNWKFKXV7H58tSKfS+ACurVbbKj6x8Ufy7DzIfrMHA1bymWKjGc2rBmwo5G5/NZbxm1PibMySms24vuP0BHPkl1CMS5xciIGsVCcafOEbFyLv3r5DW/utEzyNCa03QagLarcQrs1BU9ZlYO0gs8E4hrC3O0JH2X4lZH0FavcYRJOeIGYNcC/4XbmGHiE5ZdquNF7llCc3YV304kZraAng70UvJbKdr5lYbDmI+oy7wTQROLwLQHWXbT+rTAEGFahTZMC0RjF39ukzFN6lsQt3j7XirEqHDxLj1FxeW0sm7cIyxHzpp/uc/WOXyFO8LewHNOw1s5SXNg5KJz/cjB0pl1/8aKbyIodk7uTv/SV0D5iVRX7E2fYprBNkPuauTI7hiGiyPSzyN6E86RSVEPEtibD+hj70H5x5+WfwKsVZEcsyXyQjjYfFmuL5jm6ypRaSvOOZqqNVbV38OVHoHbpFBBjFPoaWZKCpBibaohFUT8xJTVg22Iy0YAoYLy0J+BEwrCLHvQFhvaZRl5/EgE1L1e42BaYpJ5o=";
+const FRAG_OPEN_KEY = "aiexplorer_frag_open_v1";
 const FRAG_SALT = new Uint8Array([0x4E,0x7A,0x5C,0xE3,0xB3,0x41,0xC4,0x62,0x4D,0x1A,0x1A,0x2E,0xE3,0xDE,0xD0,0x88]);
 
 const fragWin = document.getElementById("fragWin");
@@ -608,65 +599,37 @@ async function fragDecrypt(data, pass) {
 
 let fragPass = "";
 let fragList = [];
-let fragBusy = false;
 
 function openFrags() {
   fragWin.classList.add("show");
-  document.getElementById("fragErrSetup").textContent = "";
   document.getElementById("fragErrUnlock").textContent = "";
-  if (sessionStorage.getItem(FRAG_UNLOCKED)) { showFrags(); return; }
-  if (localStorage.getItem(FRAG_PW_KEY)) {
-    document.getElementById("fragSetup").style.display = "none";
-    document.getElementById("fragUnlock").style.display = "block";
-  } else {
-    document.getElementById("fragSetup").style.display = "block";
-    document.getElementById("fragUnlock").style.display = "none";
-  }
+  if (sessionStorage.getItem(FRAG_OPEN_KEY)) { showFrags(); return; }
+  document.getElementById("fragLock").style.display = "block";
+  document.getElementById("fragContent").style.display = "none";
 }
 function closeFrags() { fragWin.classList.remove("show"); }
 
-async function setupFrags() {
-  const p1 = document.getElementById("fragPass1").value;
-  const p2 = document.getElementById("fragPass2").value;
-  const err = document.getElementById("fragErrSetup");
-  if (p1.length < 4) { err.textContent = "密码至少 4 位"; return; }
-  if (p1 !== p2) { err.textContent = "两次输入的密码不一致"; return; }
-  fragPass = p1;
-  localStorage.setItem(FRAG_PW_KEY, await sha256hex(p1));
-  localStorage.setItem(FRAG_DATA_KEY, await fragEncrypt([], p1));
-  sessionStorage.setItem(FRAG_UNLOCKED, "1");
-  document.getElementById("fragPass1").value = "";
-  document.getElementById("fragPass2").value = "";
-  await showFrags();
-}
 async function unlockFrags() {
   const pass = document.getElementById("fragPass").value;
   const err = document.getElementById("fragErrUnlock");
   if (!pass) { err.textContent = "请输入密码"; return; }
-  if ((await sha256hex(pass)) !== localStorage.getItem(FRAG_PW_KEY)) { err.textContent = "密码不对，再试试"; return; }
+  if ((await sha256hex(pass)) !== FRAG_PASS_HASH) { err.textContent = "密码不对，再试试"; return; }
   fragPass = pass;
-  sessionStorage.setItem(FRAG_UNLOCKED, "1");
+  sessionStorage.setItem(FRAG_OPEN_KEY, "1");
   document.getElementById("fragPass").value = "";
   await showFrags();
 }
 
 async function showFrags() {
-  const data = localStorage.getItem(FRAG_DATA_KEY);
-  if (!data) {
-    fragList = [];
-  } else {
-    try { fragList = await fragDecrypt(data, fragPass); }
-    catch (e) {
-      /* 密码丢失/无效（如刷新后）→ 回到锁界面重新解锁 */
-      sessionStorage.removeItem(FRAG_UNLOCKED);
-      fragPass = "";
-      document.getElementById("fragLock").style.display = "block";
-      document.getElementById("fragContent").style.display = "none";
-      document.getElementById("fragSetup").style.display = "none";
-      document.getElementById("fragUnlock").style.display = "block";
-      document.getElementById("fragErrUnlock").textContent = "会话已过期，请重新输入密码";
-      return;
-    }
+  try { fragList = await fragDecrypt(FRAG_BUNDLE, fragPass); }
+  catch (e) {
+    /* 密码丢失/无效（如刷新后）→ 回到锁界面重新解锁 */
+    sessionStorage.removeItem(FRAG_OPEN_KEY);
+    fragPass = "";
+    document.getElementById("fragLock").style.display = "block";
+    document.getElementById("fragContent").style.display = "none";
+    document.getElementById("fragErrUnlock").textContent = "会话已过期，请重新输入密码";
+    return;
   }
   document.getElementById("fragLock").style.display = "none";
   document.getElementById("fragContent").style.display = "block";
@@ -678,45 +641,18 @@ function renderFrags() {
   ul.innerHTML = "";
   if (!fragList.length) { empty.style.display = "block"; return; }
   empty.style.display = "none";
-  fragList.forEach((t, i) => {
+  fragList.forEach(item => {
     const li = document.createElement("li");
     li.className = "frag-item";
-    li.innerHTML = '<span class="frag-item-text"></span><span class="frag-item-del" title="删除">✕</span>';
-    li.querySelector(".frag-item-text").textContent = t;
-    li.querySelector(".frag-item-del").addEventListener("click", () => delFrag(i));
+    li.innerHTML = (item.tag ? '<span class="frag-tag"></span>' : "") + '<span class="frag-item-text"></span>';
+    if (item.tag) li.querySelector(".frag-tag").textContent = item.tag;
+    li.querySelector(".frag-item-text").textContent = item.text || item;
     ul.appendChild(li);
   });
 }
-async function addFrag() {
-  if (fragBusy) return;
-  fragBusy = true;
-  try {
-    const inp = document.getElementById("fragNew");
-    const t = inp.value.trim();
-    if (!t) return;
-    fragList.unshift(t);
-    localStorage.setItem(FRAG_DATA_KEY, await fragEncrypt(fragList, fragPass));
-    inp.value = "";
-    renderFrags();
-  } finally { fragBusy = false; }
-}
-async function delFrag(i) {
-  if (fragBusy) return;
-  fragBusy = true;
-  try {
-    fragList.splice(i, 1);
-    localStorage.setItem(FRAG_DATA_KEY, await fragEncrypt(fragList, fragPass));
-    renderFrags();
-  } finally { fragBusy = false; }
-}
 
-["fragPass", "fragPass1", "fragPass2", "fragNew"].forEach(id => {
-  document.getElementById(id).addEventListener("keydown", e => {
-    if (e.key !== "Enter") return;
-    if (id === "fragPass") unlockFrags();
-    else if (id === "fragPass1" || id === "fragPass2") setupFrags();
-    else addFrag();
-  });
+document.getElementById("fragPass").addEventListener("keydown", e => {
+  if (e.key === "Enter") unlockFrags();
 });
 document.addEventListener("keydown", e => {
   if (e.key === "Escape" && fragWin.classList.contains("show")) closeFrags();
