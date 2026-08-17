@@ -146,69 +146,63 @@ a { text-decoration: none; }
 .mb-menu a:hover { color: #fff; }
 .menubar-right { display: flex; align-items: center; gap: 16px; font-size: .82rem; color: rgba(255,255,255,.9); }
 
-/* 桌面图标区 */
+/* 桌面图标区：Windows 风格，靠右从上到下依次排列 */
 .desk-area {
   flex: 1;
   position: relative;
-  padding: 28px 40px 120px;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .desk-icons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 34px 20px;
-  max-width: 900px;
-  margin: 0 auto;
+  position: absolute;
+  top: 56px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  direction: rtl;
+  align-content: flex-end;
+  gap: 6px;
+  height: calc(100vh - 175px);
 }
 .dicon {
-  display: flex; flex-direction: column; align-items: center; gap: 9px;
-  padding: 14px 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 6px 6px;
   border-radius: 14px;
   transition: transform .22s ease, background .22s ease;
 }
 .dicon:hover { transform: scale(1.08); background: rgba(255,255,255,.16); }
 .dicon:active { transform: scale(.95); }
 .dicon-img {
-  width: 74px; height: 74px;
-  border-radius: 19px;
+  width: 56px; height: 56px;
+  border-radius: 15px;
   display: grid; place-items: center;
-  font-size: 2.1rem;
+  font-size: 1.6rem;
   background: linear-gradient(145deg, color-mix(in srgb, var(--g, var(--green)) 82%, #fff), var(--g, var(--green)));
-  box-shadow: 0 10px 24px rgba(26,26,38,.28), inset 0 1px 0 rgba(255,255,255,.35);
+  box-shadow: 0 8px 18px rgba(26,26,38,.28), inset 0 1px 0 rgba(255,255,255,.35);
   transition: transform .22s ease;
 }
 .dicon:hover .dicon-img { transform: translateY(-2px); }
 .dicon-label {
   color: #fff;
-  font-size: .8rem;
+  font-size: .72rem;
   font-weight: 600;
   background: rgba(26, 26, 38, .38);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   border: 1px solid rgba(255,255,255,.14);
   border-radius: 8px;
-  padding: 3px 9px;
-  max-width: 130px;
+  padding: 2px 7px;
+  max-width: 112px;
   text-align: center;
-  line-height: 1.35;
+  line-height: 1.3;
   text-shadow: 0 1px 2px rgba(0,0,0,.6);
 }
-/* 错落摆放：模拟真实桌面 */
-.dicon:nth-child(2) { transform: translateY(18px); }
-.dicon:nth-child(3) { transform: translateY(6px); }
-.dicon:nth-child(4) { transform: translateY(26px); }
-.dicon:nth-child(5) { transform: translateY(10px); }
-.dicon:nth-child(6) { transform: translateY(30px); }
-.dicon:nth-child(7) { transform: translateY(14px); }
-.dicon:nth-child(8) { transform: translateY(34px); }
-.dicon:nth-child(9) { transform: translateY(22px); }
-.dicon:nth-child(10) { transform: translateY(40px); }
-.dicon:nth-child(11) { transform: translateY(28px); }
-.dicon:hover { transform: scale(1.08) translateY(0); }
-
 /* 桌面便签（随机金句） */
 .sticky-note {
   position: absolute;
-  top: 24px; right: 34px;
+  top: 24px; left: 26px;
   background: rgba(255, 243, 205, .92);
   backdrop-filter: blur(4px);
   border-radius: 6px;
@@ -333,16 +327,16 @@ a { text-decoration: none; }
 
 /* 响应式 */
 @media (max-width: 900px) {
-  .desk-icons { grid-template-columns: repeat(3, 1fr); gap: 26px 14px; }
-  .dicon-img { width: 64px; height: 64px; font-size: 1.8rem; }
+  .desk-icons { right: 12px; gap: 5px; }
+  .dicon-img { width: 50px; height: 50px; font-size: 1.5rem; }
   .sticky-note { display: none; }
   .mb-menu { display: none; }
 }
 @media (max-width: 600px) {
-  .desk-icons { grid-template-columns: repeat(2, 1fr); }
-  .dicon:nth-child(n) { transform: none; }
+  .desk-icons { right: 8px; top: 50px; gap: 4px; }
+  .dicon-img { width: 44px; height: 44px; font-size: 1.3rem; }
+  .dicon-label { font-size: .66rem; padding: 2px 5px; max-width: 92px; }
   .dock-item { width: 44px; height: 44px; font-size: 1.3rem; }
-  .desk-area { padding: 20px 18px 110px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
