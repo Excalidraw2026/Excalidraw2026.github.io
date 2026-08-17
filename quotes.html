@@ -6,18 +6,123 @@
 <title>抄录 · 遥远的救世主 · AI探索者</title>
 <link rel="stylesheet" href="assets/style.css">
 <style>
-/* ============ 抄录页：书摘式引用排版 ============ */
+/* ============================================================
+   抄录页 v2 —— Kindle 纸书风格（参考 kindle-knowledge-card 配色体系）
+   外背景 #e8e0d5 / 纸面 #f5f0eb / 页眉 #3c3a37 / 强调 #b8a088
+   点缀：品牌苔藓绿 #4E7A5C · 暖金 #E3B341
+   ============================================================ */
+:root {
+  --paper-out: #e8e0d5;
+  --paper: #f5f0eb;
+  --head: #3c3a37;
+  --accent: #b8a088;
+  --rule: #e0d5c8;
+  --body-ink: #3c3a37;
+  --text-soft: #7a7062;
+  --text-faint: #8a8072;
+  --foot: #b0a898;
+  --head-title: #f0ebe4;
+  --head-en: #a09888;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(184,160,136,.08), transparent 60%),
+    radial-gradient(1000px 500px at 85% 110%, rgba(184,160,136,.07), transparent 60%),
+    var(--paper-out);
+}
+
+/* ---------- 纸书页眉 ---------- */
+.kindle-bar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--head);
+  border-bottom: 2px solid var(--accent);
+  font-family: var(--mono);
+}
+.kindle-bar-inner {
+  max-width: 880px; margin: 0 auto; padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.kindle-bar .k-tag {
+  color: var(--accent); font-size: .72rem; letter-spacing: 3px; font-weight: 600;
+}
+.kindle-bar .k-title {
+  color: var(--head-title); font-size: .9rem; font-weight: 700; letter-spacing: 1px;
+  font-family: var(--serif);
+}
+.kindle-bar .k-en { color: var(--head-en); font-size: .68rem; letter-spacing: 2px; margin-top: 2px; }
+.kindle-bar .back {
+  color: var(--head-title);
+  font-size: .78rem;
+  padding: 6px 14px;
+  border: 1px solid rgba(240,235,228,.35);
+  border-radius: 18px;
+  transition: background .2s, border-color .2s;
+}
+.kindle-bar .back:hover { background: var(--accent); border-color: var(--accent); color: #fff; text-decoration: none; }
+
+/* ---------- 纸书正文 ---------- */
+.kindle-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vh, 64px) 24px clamp(60px, 8vh, 90px);
+}
+.k-h1 {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+  font-weight: 900;
+  color: var(--head);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.k-sub {
+  text-align: center;
+  color: var(--text-faint);
+  font-size: .86rem;
+  font-family: var(--mono);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.k-rule {
+  width: 56px; height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 26px auto 54px;
+}
+.k-src-note {
+  max-width: 560px;
+  margin: 0 auto 60px;
+  text-align: center;
+  color: var(--text-soft);
+  font-size: .9rem;
+  line-height: 1.9;
+  padding: 18px 22px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.k-src-note b { color: var(--head); font-family: var(--serif); font-weight: 900; }
+
+/* 引用段：Kindle 纸书排印 */
 .quote {
-  max-width: 660px;
-  margin: 0 auto 72px;
-  padding: 4px 0 4px 26px;
-  border-left: 3px solid var(--gold);
+  max-width: 600px;
+  margin: 0 auto 58px;
+  padding: 0 0 0 24px;
+  border-left: 2px solid var(--accent);
+}
+.quote .q-num {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #6e6458;
+  margin-bottom: 12px;
 }
 .quote p {
   font-family: var(--serif);
-  font-size: clamp(1.05rem, 2.3vw, 1.28rem);
-  line-height: 2.1;
-  color: var(--ink);
+  font-size: clamp(1.02rem, 2.2vw, 1.22rem);
+  line-height: 2.15;
+  color: var(--body-ink);
   white-space: pre-line;
   letter-spacing: .5px;
   text-align: justify;
@@ -26,55 +131,67 @@
   display: block;
   font-family: var(--mono);
   font-size: .72rem;
-  font-weight: 500;
-  color: var(--ink-faint);
+  color: var(--text-faint);
   letter-spacing: 1px;
   margin-top: 16px;
   text-align: right;
 }
-.book-note {
-  max-width: 660px;
-  margin: 0 auto 72px;
-  background: #fff;
-  border: 1px solid rgba(26,26,46,.06);
-  border-radius: 14px;
-  padding: 18px 24px;
-  color: var(--ink-light);
-  font-size: .9rem;
-  line-height: 1.9;
-  box-shadow: 0 2px 10px rgba(0,0,0,.03);
+/* 金句（第3段：神即道）用纸书金句样式 */
+.quote.golden {
+  border-left-color: var(--gold);
+  margin-top: 0;
 }
-.book-note b { color: var(--blue); font-family: var(--serif); }
-.q-end {
+.quote.golden p {
+  font-weight: 700;
+  color: var(--head);
+}
+
+/* ---------- 纸书页脚 ---------- */
+.kindle-foot {
   text-align: center;
   font-family: var(--mono);
-  color: var(--ink-faint);
-  font-size: .8rem;
+  color: var(--foot);
+  font-size: .78rem;
   letter-spacing: 2px;
-  padding-top: 4px;
+  padding: 34px 0 60px;
+}
+.kindle-foot .k-page {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 5px 16px;
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  color: var(--text-faint);
 }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <span class="path"><b>~/AI探索者</b>/quotes</span>
+<div class="kindle-bar">
+  <div class="kindle-bar-inner">
+    <div>
+      <div class="k-tag">QUOTES · NO.001</div>
+      <div class="k-title">抄录 · 遥远的救世主</div>
+      <div class="k-en">REMOTE SAVIOR — SELECTED PASSAGES</div>
+    </div>
     <a class="back" href="index.html">← 返回主页</a>
   </div>
 </div>
 
-<main class="page">
-  <div class="container">
-    <div class="cmd-head">cat 遥远的救世主.md</div>
-    <h1 class="title">抄录 · 遥远的救世主</h1>
-    <p class="sub">豆豆《遥远的救世主》——电视剧《天道》原著。抄下喜欢的段落，不为评说，只为记住那个"觉"。</p>
+<main>
+  <div class="kindle-page">
+    <h1 class="k-h1">遥远的救世主</h1>
+    <p class="k-sub">—— 豆豆 · 电视剧《天道》原著 ——</p>
+    <div class="k-rule"></div>
 
-    <div class="book-note">
-      <b>《遥远的救世主》</b>· 豆豆。书里没有救世主，只有"文化属性"这面镜子——强势文化造就强者，弱势文化期待救主。丁元英说：神即道，道法自然，如来。按规律办事的人，就是神。
-    </div>
+    <p class="k-src-note">
+      书里没有救世主，只有 <b>文化属性</b> 这面镜子——强势文化造就强者，弱势文化期待救主。
+      丁元英说：<b>神即道，道法自然，如来</b>。按规律办事的人，就是神。
+      抄下喜欢的段落，不为评说，只为记住那个"觉"。
+    </p>
 
     <blockquote class="quote">
+      <span class="q-num">01 · 生存与价值</span>
       <p>人从根本上是面对两个问题：
 一，生存，要活下来；
 二是要回答生命价值的问题，
@@ -83,6 +200,7 @@
     </blockquote>
 
     <blockquote class="quote">
+      <span class="q-num">02 · 觉与悟</span>
       <p>只要不是我觉到、悟到的，
 你给不了我，给了我也拿不住，
 叶晓明他们就是个例子。
@@ -92,7 +210,8 @@
       <span class="q-src">—— 摘自《遥远的救世主》</span>
     </blockquote>
 
-    <blockquote class="quote">
+    <blockquote class="quote golden">
+      <span class="q-num">03 · 神即道</span>
       <p>神就是道，道就是规律，
 规律如来，容不得你思议，
 按规律办事的人，就是神。</p>
@@ -100,6 +219,7 @@
     </blockquote>
 
     <blockquote class="quote">
+      <span class="q-num">04 · 天眼</span>
       <p>你需要的也是这双天眼。
 是一双剥离了政治、文化、传统、
 道德、宗教之分别的眼睛，
@@ -113,6 +233,7 @@
     </blockquote>
 
     <blockquote class="quote">
+      <span class="q-num">05 · 有道无术</span>
       <p>不管是文化艺术还是生存艺术，
 有道无术，术尚可求也；
 有术无道，止于术。
@@ -123,6 +244,7 @@
     </blockquote>
 
     <blockquote class="quote">
+      <span class="q-num">06 · 文化属性</span>
       <p>在中国，有人动不动就拿民主指责共产党，
 但是他们根本就不知道，
 中国的政治文化也是传统文化的牺牲品。
@@ -132,18 +254,18 @@
       <span class="q-src">—— 摘自《遥远的救世主》</span>
     </blockquote>
 
-    <blockquote class="quote">
+    <blockquote class="quote golden">
+      <span class="q-num">07 · 碰一杯</span>
       <p>来，为你的这个觉碰一杯。</p>
       <span class="q-src">—— 摘自《遥远的救世主》</span>
     </blockquote>
-
-    <p class="q-end">—— 抄于 2026·08·18 深夜</p>
   </div>
 </main>
 
-<footer>
-  <p>© 2026 长野 · <a href="index.html">返回主页</a></p>
-</footer>
+<div class="kindle-foot">
+  <div>END OF QUOTES · 抄于 2026·08·18 深夜</div>
+  <span class="k-page">长野 藏書</span>
+</div>
 
 </body>
 </html>
