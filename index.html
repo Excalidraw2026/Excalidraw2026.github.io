@@ -17,11 +17,11 @@
    · 参考 esther-design-system (CC BY-NC-SA 4.0)
    ============================================================ */
 :root {
-  --blue: #2B7FD8;
-  --blue-deep: #1E5BA8;
-  --yellow: #F4D758;
+  --blue: #4E7A5C;
+  --blue-deep: #3D6048;
+  --yellow: #E3B341;
   --yellow-soft: #FFF3CD;
-  --red: #E84A5F;
+  --red: #C4624D;
   --cream: #fefcf6;
   --cream-dark: #faf6eb;
   --ink: #1A1A2E;
@@ -187,7 +187,7 @@ section { padding: clamp(80px, 12vh, 140px) 0; }
 }
 .card::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0;
-  height: 4px;
+  height: 3px;
   background: var(--accent, var(--blue));
 }
 .card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(26, 26, 46, .1); border-color: color-mix(in srgb, var(--accent, var(--blue)) 35%, transparent); }
@@ -257,7 +257,7 @@ section { padding: clamp(80px, 12vh, 140px) 0; }
 .work-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 .tag {
   font-family: var(--mono); font-size: .7rem;
-  color: var(--blue); background: rgba(43, 127, 216, .08);
+  color: var(--blue); background: rgba(78, 122, 92, .08);
   padding: 3px 12px; border-radius: 20px;
 }
 .work-arrow { font-family: var(--fancy); color: var(--ink-faint); font-size: 1.4rem; transition: color .2s, transform .2s; }
@@ -378,77 +378,77 @@ footer a:hover { color: var(--blue); text-decoration: none; }
 
     <div class="mosaic">
       <!-- 卡片1：关于我 -->
-      <a class="card" style="--accent:#2B7FD8" href="about.html">
+      <a class="card" style="--accent:#4E7A5C" href="about.html">
         <span class="card-icon">🌱</span>
         <span class="card-title">关于我</span>
         <span class="card-desc">AI时代的认真生活的男生。相信 AI 和物理世界的结合，边学边用边分享。</span>
         <span class="card-link">cd about <span class="arrow">→</span></span>
       </a>
       <!-- 卡片2：博客 -->
-      <a class="card" style="--accent:#E84A5F" href="blog.html">
+      <a class="card" style="--accent:#C4624D" href="blog.html">
         <span class="card-icon">📖</span>
         <span class="card-title">博客 / 随笔</span>
         <span class="card-desc">记录 AI 落地真实场景的踩坑与日常思考。</span>
         <span class="card-link">open blog <span class="arrow">→</span></span>
       </a>
       <!-- 卡片3：作品集 -->
-      <a class="card" style="--accent:#F4D758" href="works.html">
+      <a class="card" style="--accent:#E3B341" href="works.html">
         <span class="card-icon">🎨</span>
         <span class="card-title">作品集</span>
         <span class="card-desc">精选项目与作品，往下翻就能看到。</span>
         <span class="card-link">ls works <span class="arrow">→</span></span>
       </a>
       <!-- 卡片5：书架 -->
-      <a class="card w3" style="--accent:#2B7FD8" href="shelf.html">
+      <a class="card w3" style="--accent:#4E7A5C" href="shelf.html">
         <span class="card-icon">📚</span>
         <span class="card-title">书架</span>
         <span class="card-desc">读过的书，和它们如何改变我看世界的方式。</span>
         <span class="card-link">open shelf <span class="arrow">→</span></span>
       </a>
       <!-- 卡片6：项目 -->
-      <a class="card w3" style="--accent:#E84A5F" href="projects.html">
+      <a class="card w3" style="--accent:#C4624D" href="projects.html">
         <span class="card-icon">🚀</span>
         <span class="card-title">正在折腾的项目</span>
         <span class="card-desc">把 AI 用进真实的工作与生活场景。</span>
         <span class="card-link">git status <span class="arrow">→</span></span>
       </a>
       <!-- 卡片7：时间线 -->
-      <a class="card" style="--accent:#F4D758" href="timeline.html">
+      <a class="card" style="--accent:#E3B341" href="timeline.html">
         <span class="card-icon">🗺️</span>
         <span class="card-title">我的成长路径</span>
         <span class="card-desc">从看见框架，到真实地活。</span>
         <span class="card-link">git log <span class="arrow">→</span></span>
       </a>
       <!-- 卡片8：灵感碎片 -->
-      <a class="card" style="--accent:#E84A5F" href="notes.html">
+      <a class="card" style="--accent:#C4624D" href="notes.html">
         <span class="card-icon">💡</span>
         <span class="card-title">灵感碎片</span>
         <span class="card-desc">随手记下的想法、摘抄、金句。</span>
         <span class="card-link">cat notes <span class="arrow">→</span></span>
       </a>
       <!-- 卡片9：订阅 -->
-      <a class="card" style="--accent:#2B7FD8" href="contact.html">
+      <a class="card" style="--accent:#4E7A5C" href="contact.html">
         <span class="card-icon">📮</span>
         <span class="card-title">订阅 / 关注我</span>
         <span class="card-desc">公众号、抖音……我的账号都在这。</span>
         <span class="card-link">follow me <span class="arrow">→</span></span>
       </a>
       <!-- 卡片10：资源推荐 -->
-      <a class="card" style="--accent:#F4D758" href="coming.html">
+      <a class="card" style="--accent:#E3B341" href="coming.html">
         <span class="card-icon">⭐</span>
         <span class="card-title">推荐清单</span>
         <span class="card-desc">值得一看的网站、工具、课程。</span>
         <span class="card-link">open list <span class="arrow">→</span></span>
       </a>
       <!-- 卡片11：联系我 -->
-      <a class="card w4" style="--accent:#2B7FD8" href="contact.html">
+      <a class="card w4" style="--accent:#4E7A5C" href="contact.html">
         <span class="card-icon">✉️</span>
         <span class="card-title">联系我</span>
         <span class="card-desc">想合作、想交流，或者只是打个招呼？</span>
         <span class="card-link">mail me <span class="arrow">→</span></span>
       </a>
       <!-- 卡片12：关于这个站 -->
-      <a class="card w6" style="--accent:#E84A5F" href="about-site.html">
+      <a class="card w6" style="--accent:#C4624D" href="about-site.html">
         <span class="card-icon">🧱</span>
         <span class="card-title">这个站是怎么做的</span>
         <span class="card-desc">纯静态页面，一个人 + AI 搭出来的。</span>

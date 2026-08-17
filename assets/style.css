@@ -5,11 +5,11 @@
    ============================================================ */
 :root {
   /* esther 品牌三色 */
-  --blue: #2B7FD8;
-  --blue-deep: #1E5BA8;
-  --yellow: #F4D758;
+  --blue: #4E7A5C;
+  --blue-deep: #3D6048;
+  --yellow: #E3B341;
   --yellow-soft: #FFF3CD;
-  --red: #E84A5F;
+  --red: #C4624D;
   /* 暖色底 + 墨色文字 */
   --cream: #fefcf6;
   --cream-dark: #faf6eb;
@@ -66,7 +66,7 @@ a:hover { color: var(--blue-deep); }
 .topbar .back {
   color: var(--ink-light);
   padding: 5px 14px;
-  border: 1px solid rgba(43, 127, 216, .25);
+  border: 1px solid rgba(78, 122, 92, .25);
   border-radius: 20px;
   transition: background .2s, color .2s, border-color .2s;
 }
