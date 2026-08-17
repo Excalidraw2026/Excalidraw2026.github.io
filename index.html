@@ -260,6 +260,70 @@ a { text-decoration: none; }
   margin: 0 4px;
 }
 
+/* ============================================================
+   灵感碎片弹窗（macOS 窗口风格，仅自己可见）
+   ============================================================ */
+.frag-window {
+  position: fixed; left: 50%; top: 50%;
+  transform: translate(-50%, -50%) scale(.96);
+  width: min(560px, 92vw);
+  max-height: 72vh;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(26,26,38,.45);
+  z-index: 90;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s ease, transform .25s ease;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.frag-window.show { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
+.frag-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 16px;
+  background: #f2ede2;
+  border-bottom: 1px solid rgba(26,26,46,.08);
+  flex-shrink: 0;
+}
+.frag-title { flex: 1; font-size: .85rem; font-weight: 600; color: var(--ink); margin-left: 6px; }
+.frag-close { cursor: pointer; color: #8a8a9a; font-size: .9rem; padding: 2px 6px; border-radius: 6px; }
+.frag-close:hover { background: rgba(26,26,46,.08); color: var(--ink); }
+.frag-body { padding: 22px 24px; overflow-y: auto; color: var(--ink); }
+.frag-lock { text-align: center; padding: 20px 0 10px; }
+.frag-lock-icon { font-size: 2.6rem; margin-bottom: 10px; }
+.frag-tip { font-size: .9rem; color: #4A4A5A; margin-bottom: 16px; line-height: 1.7; }
+.frag-input {
+  width: 100%; padding: 10px 14px; border-radius: 10px;
+  border: 1.5px solid rgba(26,26,46,.15); font-size: .95rem;
+  font-family: var(--sans); outline: none; margin-bottom: 10px;
+  background: #fff; color: var(--ink);
+}
+.frag-input:focus { border-color: var(--terracotta); }
+.frag-btn {
+  width: 100%; padding: 10px; border: none; border-radius: 10px;
+  background: var(--terracotta); color: #fff; font-size: .95rem; font-weight: 600;
+  cursor: pointer; font-family: var(--sans);
+}
+.frag-btn:hover { filter: brightness(1.06); }
+.frag-err { color: #c0392b; font-size: .82rem; margin-top: 8px; min-height: 1.2em; }
+.frag-list { list-style: none; }
+.frag-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px 14px; margin-bottom: 10px;
+  background: #faf6eb; border-radius: 10px;
+  border-left: 3px solid var(--gold);
+}
+.frag-item-text { flex: 1; font-size: .92rem; line-height: 1.6; word-break: break-word; white-space: pre-wrap; }
+.frag-item-del { cursor: pointer; color: #b0a99a; font-size: .85rem; padding: 2px 6px; border-radius: 6px; flex-shrink: 0; }
+.frag-item-del:hover { color: #c0392b; background: rgba(192,57,43,.08); }
+.frag-add { display: flex; gap: 10px; margin-top: 14px; }
+.frag-add .frag-input { margin-bottom: 0; }
+.frag-add .frag-btn { width: auto; padding: 10px 18px; flex-shrink: 0; }
+.frag-empty { text-align: center; color: #b0a99a; font-size: .88rem; padding: 26px 0; }
+.frag-note { font-size: .75rem; color: #b0a99a; margin-top: 14px; text-align: center; }
+
 /* 响应式 */
 @media (max-width: 900px) {
   .desk-icons { grid-template-columns: repeat(3, 1fr); gap: 26px 14px; }
@@ -337,7 +401,7 @@ a { text-decoration: none; }
       <a class="dicon" style="--g:#E3B341" href="timeline.html">
         <span class="dicon-img">🗺️</span><span class="dicon-label">我的成长路径</span>
       </a>
-      <a class="dicon" style="--g:#C4624D" href="notes.html">
+      <a class="dicon" style="--g:#C4624D" href="javascript:void(0)" role="button" tabindex="0" onclick="openFrags()" onkeydown="if(event.key==='Enter')openFrags()">
         <span class="dicon-img">💡</span><span class="dicon-label">灵感碎片</span>
       </a>
       <a class="dicon" style="--g:#4E7A5C" href="contact.html">
@@ -363,6 +427,47 @@ a { text-decoration: none; }
     <a class="dock-item" href="contact.html" title="联系我">✉️</a>
     <span class="dock-sep"></span>
     <a class="dock-item" href="coming.html" title="建设中">🗑️</a>
+  </div>
+
+  <!-- 灵感碎片弹窗（仅自己可见） -->
+  <div class="frag-window" id="fragWin" role="dialog" aria-label="灵感碎片">
+    <div class="frag-bar">
+      <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+      <span class="frag-title">💡 灵感碎片 · 仅自己可见</span>
+      <span class="frag-close" onclick="closeFrags()" title="关闭">✕</span>
+    </div>
+    <div class="frag-body">
+      <div id="fragLock">
+        <div id="fragSetup" style="display:none">
+          <div class="frag-lock">
+            <div class="frag-lock-icon">🔒</div>
+            <p class="frag-tip">第一次使用：设置一个密码<br>（记牢它，忘了就永远打不开了）</p>
+            <input type="password" id="fragPass1" class="frag-input" placeholder="设置密码（至少 4 位）" autocomplete="new-password">
+            <input type="password" id="fragPass2" class="frag-input" placeholder="再输一遍确认" autocomplete="new-password">
+            <button class="frag-btn" onclick="setupFrags()">设置并进入</button>
+            <p class="frag-err" id="fragErrSetup"></p>
+          </div>
+        </div>
+        <div id="fragUnlock" style="display:none">
+          <div class="frag-lock">
+            <div class="frag-lock-icon">🔒</div>
+            <p class="frag-tip">输入密码查看你的灵感碎片</p>
+            <input type="password" id="fragPass" class="frag-input" placeholder="密码" autocomplete="current-password">
+            <button class="frag-btn" onclick="unlockFrags()">解锁</button>
+            <p class="frag-err" id="fragErrUnlock"></p>
+          </div>
+        </div>
+      </div>
+      <div id="fragContent" style="display:none">
+        <ul class="frag-list" id="fragList"></ul>
+        <p class="frag-empty" id="fragEmpty">还没有碎片，记下第一个想法吧 ✨</p>
+        <div class="frag-add">
+          <input type="text" id="fragNew" class="frag-input" placeholder="记下此刻的想法…" maxlength="500">
+          <button class="frag-btn" onclick="addFrag()">存下</button>
+        </div>
+        <p class="frag-note">🔒 碎片加密保存在本机浏览器，别人访问你的网站看不到。</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -464,6 +569,158 @@ function tick() {
 }
 tick();
 setInterval(tick, 30000);
+
+/* ============================================================
+   灵感碎片（仅自己可见）
+   密码哈希 + 碎片密文均存在本机浏览器 localStorage：
+   别人访问网站时根本不会有你的数据；同机偷看需密码。
+   ============================================================ */
+const FRAG_PW_KEY = "aiexplorer_frag_pw_v1";
+const FRAG_DATA_KEY = "aiexplorer_frag_data_v1";
+const FRAG_UNLOCKED = "aiexplorer_frag_unlocked_v1";
+const FRAG_SALT = new Uint8Array([0x4E,0x7A,0x5C,0xE3,0xB3,0x41,0xC4,0x62,0x4D,0x1A,0x1A,0x2E,0xE3,0xDE,0xD0,0x88]);
+
+const fragWin = document.getElementById("fragWin");
+function b64(u8) { let s = ""; for (const b of u8) s += String.fromCharCode(b); return btoa(s); }
+function unb64(s) { const bin = atob(s); const u8 = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i); return u8; }
+async function sha256hex(str) {
+  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+async function fragKey(pass) {
+  const km = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt: FRAG_SALT, iterations: 120000, hash: "SHA-256" },
+    km, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+}
+async function fragEncrypt(list, pass) {
+  const key = await fragKey(pass);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(JSON.stringify(list)));
+  return b64(iv) + "." + b64(new Uint8Array(ct));
+}
+async function fragDecrypt(data, pass) {
+  const [ivS, ctS] = data.split(".");
+  const key = await fragKey(pass);
+  const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: unb64(ivS) }, key, unb64(ctS));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+let fragPass = "";
+let fragList = [];
+let fragBusy = false;
+
+function openFrags() {
+  fragWin.classList.add("show");
+  document.getElementById("fragErrSetup").textContent = "";
+  document.getElementById("fragErrUnlock").textContent = "";
+  if (sessionStorage.getItem(FRAG_UNLOCKED)) { showFrags(); return; }
+  if (localStorage.getItem(FRAG_PW_KEY)) {
+    document.getElementById("fragSetup").style.display = "none";
+    document.getElementById("fragUnlock").style.display = "block";
+  } else {
+    document.getElementById("fragSetup").style.display = "block";
+    document.getElementById("fragUnlock").style.display = "none";
+  }
+}
+function closeFrags() { fragWin.classList.remove("show"); }
+
+async function setupFrags() {
+  const p1 = document.getElementById("fragPass1").value;
+  const p2 = document.getElementById("fragPass2").value;
+  const err = document.getElementById("fragErrSetup");
+  if (p1.length < 4) { err.textContent = "密码至少 4 位"; return; }
+  if (p1 !== p2) { err.textContent = "两次输入的密码不一致"; return; }
+  fragPass = p1;
+  localStorage.setItem(FRAG_PW_KEY, await sha256hex(p1));
+  localStorage.setItem(FRAG_DATA_KEY, await fragEncrypt([], p1));
+  sessionStorage.setItem(FRAG_UNLOCKED, "1");
+  document.getElementById("fragPass1").value = "";
+  document.getElementById("fragPass2").value = "";
+  await showFrags();
+}
+async function unlockFrags() {
+  const pass = document.getElementById("fragPass").value;
+  const err = document.getElementById("fragErrUnlock");
+  if (!pass) { err.textContent = "请输入密码"; return; }
+  if ((await sha256hex(pass)) !== localStorage.getItem(FRAG_PW_KEY)) { err.textContent = "密码不对，再试试"; return; }
+  fragPass = pass;
+  sessionStorage.setItem(FRAG_UNLOCKED, "1");
+  document.getElementById("fragPass").value = "";
+  await showFrags();
+}
+
+async function showFrags() {
+  const data = localStorage.getItem(FRAG_DATA_KEY);
+  if (!data) {
+    fragList = [];
+  } else {
+    try { fragList = await fragDecrypt(data, fragPass); }
+    catch (e) {
+      /* 密码丢失/无效（如刷新后）→ 回到锁界面重新解锁 */
+      sessionStorage.removeItem(FRAG_UNLOCKED);
+      fragPass = "";
+      document.getElementById("fragLock").style.display = "block";
+      document.getElementById("fragContent").style.display = "none";
+      document.getElementById("fragSetup").style.display = "none";
+      document.getElementById("fragUnlock").style.display = "block";
+      document.getElementById("fragErrUnlock").textContent = "会话已过期，请重新输入密码";
+      return;
+    }
+  }
+  document.getElementById("fragLock").style.display = "none";
+  document.getElementById("fragContent").style.display = "block";
+  renderFrags();
+}
+function renderFrags() {
+  const ul = document.getElementById("fragList");
+  const empty = document.getElementById("fragEmpty");
+  ul.innerHTML = "";
+  if (!fragList.length) { empty.style.display = "block"; return; }
+  empty.style.display = "none";
+  fragList.forEach((t, i) => {
+    const li = document.createElement("li");
+    li.className = "frag-item";
+    li.innerHTML = '<span class="frag-item-text"></span><span class="frag-item-del" title="删除">✕</span>';
+    li.querySelector(".frag-item-text").textContent = t;
+    li.querySelector(".frag-item-del").addEventListener("click", () => delFrag(i));
+    ul.appendChild(li);
+  });
+}
+async function addFrag() {
+  if (fragBusy) return;
+  fragBusy = true;
+  try {
+    const inp = document.getElementById("fragNew");
+    const t = inp.value.trim();
+    if (!t) return;
+    fragList.unshift(t);
+    localStorage.setItem(FRAG_DATA_KEY, await fragEncrypt(fragList, fragPass));
+    inp.value = "";
+    renderFrags();
+  } finally { fragBusy = false; }
+}
+async function delFrag(i) {
+  if (fragBusy) return;
+  fragBusy = true;
+  try {
+    fragList.splice(i, 1);
+    localStorage.setItem(FRAG_DATA_KEY, await fragEncrypt(fragList, fragPass));
+    renderFrags();
+  } finally { fragBusy = false; }
+}
+
+["fragPass", "fragPass1", "fragPass2", "fragNew"].forEach(id => {
+  document.getElementById(id).addEventListener("keydown", e => {
+    if (e.key !== "Enter") return;
+    if (id === "fragPass") unlockFrags();
+    else if (id === "fragPass1" || id === "fragPass2") setupFrags();
+    else addFrag();
+  });
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && fragWin.classList.contains("show")) closeFrags();
+});
 </script>
 </body>
 </html>
