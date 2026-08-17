@@ -559,7 +559,8 @@ function enterDesktop() {
 }
 
 /* 已开机过（从子页面返回/刷新）→ 直接显示桌面，不再开机 */
-if (sessionStorage.getItem("aiexplorer_booted")) {
+const directDesktop = new URLSearchParams(location.search).get("direct") === "1";
+if (directDesktop || sessionStorage.getItem("aiexplorer_booted")) {
   document.getElementById("boot").style.display = "none";
   document.getElementById("desktop").classList.add("show");
 } else {
