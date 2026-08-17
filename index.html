@@ -433,9 +433,18 @@ function enterDesktop() {
   const bootEl = document.getElementById("boot");
   const desk = document.getElementById("desktop");
   if (bootEl.classList.contains("leaving")) return;
+  sessionStorage.setItem("aiexplorer_booted", "1");
   bootEl.classList.add("leaving");
   desk.classList.add("show");
   setTimeout(() => bootEl.style.display = "none", 600);
+}
+
+/* 已开机过（从子页面返回/刷新）→ 直接显示桌面，不再开机 */
+if (sessionStorage.getItem("aiexplorer_booted")) {
+  document.getElementById("boot").style.display = "none";
+  document.getElementById("desktop").classList.add("show");
+} else {
+  boot();
 }
 
 document.addEventListener("keydown", e => {
@@ -455,8 +464,6 @@ function tick() {
 }
 tick();
 setInterval(tick, 30000);
-
-boot();
 </script>
 </body>
 </html>
