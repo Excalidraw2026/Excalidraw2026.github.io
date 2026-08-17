@@ -124,6 +124,23 @@ p.body-text.dim { color: var(--ink-light); }
 .term-quote .a { color: var(--yellow); }
 .term-quote .b { color: #7aa2f7; }
 
+/* 文章配图（长野 IP 系列） */
+.article-fig { margin: 26px 0 28px; }
+.article-fig img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(26, 26, 46, .16);
+  display: block;
+}
+.article-fig figcaption {
+  font-family: var(--mono);
+  font-size: .76rem;
+  color: var(--ink-faint);
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
 /* 列表（esther 白底卡片列表） */
 ul.list { list-style: none; margin: 16px 0 24px; }
 ul.list li {
