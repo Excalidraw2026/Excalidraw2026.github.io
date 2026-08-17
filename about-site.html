@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>这个站是怎么做的 · AI探索者</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="path"><b>~/AI探索者</b>/about-site</span>
+    <a class="back" href="index.html">← 返回主页</a>
+  </div>
+</div>
+
+<main class="page">
+  <div class="container">
+    <div class="cmd-head">cat readme.md</div>
+    <h1 class="title">这个站是怎么做的</h1>
+    <p class="sub">一个人 + AI = 一个团队。</p>
+
+    <div class="sec">
+      <div class="sec-tag">为什么建站</div>
+      <p class="body-text">因为一句话："必须边长新能力，边让他人看见。"做了东西，就要有一个地方让别人看见。于是有了这个站。</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-tag">技术方案</div>
+      <ul class="list">
+        <li><div><b>纯静态</b><span>HTML + CSS + JS，零依赖、零后端，双击就能打开，任何免费托管都能跑。</span></div></li>
+        <li><div><b>终端开场</b><span>whoami / cat about.md / ls —— 用命令行讲自我介绍，是整站的签名。</span></div></li>
+        <li><div><b>门户结构</b><span>主页是入口，每张卡片一个子页面：作品、文章、灵感、联系。</span></div></li>
+        <li><div><b>设计规范</b><span>参考 esther-design-system（CC BY-NC-SA 4.0），已署名。</span></div></li>
+      </ul>
+    </div>
+
+    <div class="sec">
+      <div class="sec-tag">过程</div>
+      <div class="term-quote">$ whoami        → 我是谁
+$ cat about.md  → 我信什么
+$ ls ~/works    → 我做过什么
+$ ./launch.sh   → 上线，让别人看见</div>
+      <p class="body-text">从提需求到成型，全程和 AI 搭档：我定方向、给素材，AI 写代码、调样式、跑验证。一天之内，从想法变成了能打开的站。</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-tag">成本</div>
+      <p class="body-text dim">域名 0 元（GitHub Pages 免费托管），服务器 0 元，工具 0 元。唯一投入的是认真。</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 长野 · <a href="index.html">返回主页</a></p>
+</footer>
+
+</body>
+</html>

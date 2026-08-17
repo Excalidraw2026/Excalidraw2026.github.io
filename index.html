@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI探索者 · 长野的个人主页</title>
+<meta name="description" content="长野（AI探索者）的个人主页 —— AI时代的认真生活的男生 · AI 与物理世界的结合。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+<style>
+/* ============================================================
+   设计基调：深色终端风个人主页
+   · 灵感参考 esther-design-system (CC BY-NC-SA 4.0)
+   · 所有内容占位符用【】标出，替换成你自己的即可
+   ============================================================ */
+:root {
+  --bg: #0d1117;
+  --bg-2: #151821;
+  --panel: #161b22;
+  --panel-2: #1c2128;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-dim: #8b949e;
+  --green: #4ade80;
+  --amber: #f4d758;
+  --blue: #7aa2f7;
+  --pink: #e84a5f;
+  --mono: ui-monospace, "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", monospace;
+  --serif: Georgia, "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --sans: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--green); color: #0d1117; }
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- 顶部导航 ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(13, 17, 23, .85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--mono); font-size: .9rem;
+}
+.nav-logo { color: var(--green); font-weight: 700; }
+.nav-logo .tilde { color: var(--text-dim); }
+.nav-links { display: flex; gap: 22px; }
+.nav-links a { color: var(--text-dim); transition: color .2s; }
+.nav-links a:hover { color: var(--amber); text-decoration: none; }
+
+/* ---------- Hero 终端 ---------- */
+.hero {
+  min-height: calc(100vh - 55px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 48px 24px;
+}
+.terminal {
+  width: 100%; max-width: 860px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.5);
+  overflow: hidden;
+}
+.term-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 16px;
+  background: var(--panel-2);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono); font-size: .8rem; color: var(--text-dim);
+}
+.term-dot { width: 12px; height: 12px; border-radius: 50%; }
+.term-dot.r { background: #ff5f57; }
+.term-dot.y { background: #febc2e; }
+.term-dot.g { background: #28c840; }
+.term-title { margin-left: 8px; letter-spacing: .5px; }
+.term-body {
+  padding: 28px 28px 34px;
+  font-family: var(--mono);
+  font-size: clamp(.85rem, 1.6vw, 1rem);
+  line-height: 1.9;
+  min-height: 380px;
+}
+.term-line { white-space: pre-wrap; word-break: break-word; }
+.prompt { color: var(--green); }
+.prompt::before { content: "➜ "; }
+.cmd { color: var(--text); }
+.out { color: var(--text-dim); }
+.out .hl { color: var(--amber); }
+.out .hlg { color: var(--green); }
+.out .hlb { color: var(--blue); }
+.out .hlp { color: var(--pink); }
+.cursor {
+  display: inline-block; width: .6em; height: 1.05em;
+  background: var(--green); vertical-align: text-bottom;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.launch-line {
+  margin-top: 26px;
+  font-family: var(--mono);
+  color: var(--amber);
+  font-size: clamp(.9rem, 2vw, 1.05rem);
+  animation: pulse 1.6s ease-in-out infinite;
+  cursor: pointer;
+  user-select: none;
+}
+.launch-line:hover { text-decoration: underline; }
+@keyframes pulse { 50% { opacity: .45; } }
+
+.hero.launched .terminal { animation: upOut .5s ease forwards; }
+@keyframes upOut {
+  to { transform: translateY(-30px); opacity: 0; }
+}
+
+/* ---------- 章节通用 ---------- */
+section { padding: clamp(72px, 10vh, 130px) 0; }
+.sec-head { margin-bottom: clamp(36px, 5vw, 60px); }
+.sec-tag {
+  font-family: var(--mono); font-size: .8rem;
+  color: var(--green); letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.sec-title {
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+  margin: 10px 0 8px; font-weight: 700;
+}
+.sec-sub { color: var(--text-dim); max-width: 640px; }
+
+/* ---------- 卡片墙（马赛克） ---------- */
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+.card {
+  grid-column: span 2;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform .2s, border-color .2s, background .2s;
+  position: relative; overflow: hidden;
+}
+.card:hover { transform: translateY(-3px); border-color: var(--accent, var(--green)); }
+.card::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(400px circle at var(--mx, 80%) var(--my, 0%), color-mix(in srgb, var(--accent, var(--green)) 12%, transparent), transparent 60%);
+  opacity: 0; transition: opacity .25s;
+  pointer-events: none;
+}
+.card:hover::after { opacity: 1; }
+.card.w3 { grid-column: span 3; }
+.card.w4 { grid-column: span 4; }
+.card.w6 { grid-column: span 6; }
+.card.w2 { grid-column: span 2; }
+.card-icon {
+  width: 42px; height: 42px; border-radius: 8px;
+  display: grid; place-items: center; font-size: 1.25rem;
+  background: color-mix(in srgb, var(--accent, var(--green)) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent, var(--green)) 35%, transparent);
+}
+.card-title { font-size: 1.05rem; font-weight: 700; font-family: var(--serif); }
+.card-desc { color: var(--text-dim); font-size: .88rem; flex: 1; }
+.card-link {
+  font-family: var(--mono); font-size: .8rem; color: var(--accent, var(--green));
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.card-link .arrow { transition: transform .2s; }
+.card:hover .card-link .arrow { transform: translateX(4px); }
+
+/* ---------- 能力三栏 ---------- */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.pillar {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 30px 26px;
+  transition: transform .2s, border-color .2s;
+}
+.pillar:hover { transform: translateY(-3px); border-color: var(--pc, var(--green)); }
+.pillar:nth-child(1) { --pc: var(--blue); }
+.pillar:nth-child(2) { --pc: var(--amber); }
+.pillar:nth-child(3) { --pc: var(--green); }
+.pillar h3 { font-family: var(--serif); font-size: 1.3rem; margin: 14px 0 6px; }
+.pillar .en { font-family: var(--mono); font-size: .72rem; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; }
+.pillar ul { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 14px; }
+.pillar li { display: flex; gap: 10px; align-items: flex-start; font-size: .92rem; }
+.pillar li::before { content: "▹"; color: var(--pc, var(--green)); flex-shrink: 0; }
+.pillar li b { display: block; font-weight: 600; }
+.pillar li span { color: var(--text-dim); font-size: .84rem; }
+
+/* ---------- 作品集 ---------- */
+.works { display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+.work {
+  display: grid; grid-template-columns: 90px 1fr auto;
+  gap: 20px; align-items: center;
+  padding: 26px 18px;
+  border-bottom: 1px solid var(--border);
+  transition: background .2s, padding .2s;
+}
+.work:hover { background: var(--panel); padding-left: 26px; }
+.work-num { font-family: var(--mono); color: var(--text-dim); font-size: .85rem; }
+.work-info h3 { font-size: 1.1rem; font-family: var(--serif); }
+.work-info p { color: var(--text-dim); font-size: .88rem; margin-top: 4px; }
+.work-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--mono); font-size: .72rem;
+  color: var(--green); border: 1px solid color-mix(in srgb, var(--green) 40%, transparent);
+  padding: 2px 10px; border-radius: 20px;
+}
+.work-arrow { font-family: var(--mono); color: var(--text-dim); font-size: 1.2rem; transition: color .2s, transform .2s; }
+.work:hover .work-arrow { color: var(--amber); transform: translateX(4px); }
+
+/* ---------- 联系 CTA ---------- */
+.cta {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-align: center;
+  padding: clamp(48px, 7vw, 80px) 28px;
+  position: relative; overflow: hidden;
+}
+.cta::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(600px circle at 50% -20%, color-mix(in srgb, var(--blue) 18%, transparent), transparent 65%);
+  pointer-events: none;
+}
+.cta h2 { font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.4rem); position: relative; }
+.cta p { color: var(--text-dim); margin: 14px 0 30px; position: relative; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 30px; border-radius: 10px;
+  font-weight: 600; font-size: .95rem;
+  transition: transform .2s, box-shadow .2s;
+  font-family: var(--sans);
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-green { background: var(--green); color: #0d1117; }
+.btn-green:hover { box-shadow: 0 8px 24px rgba(74,222,128,.3); }
+.btn-ghost { border: 1px solid var(--border); color: var(--text); background: transparent; }
+.btn-ghost:hover { border-color: var(--text-dim); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
+/* ---------- 终端收尾 ---------- */
+.exit { margin-top: clamp(72px, 10vh, 130px); }
+.exit .terminal { max-width: 720px; margin: 0 auto; }
+.exit .term-body { min-height: 0; }
+.exit-quote {
+  color: var(--amber); font-family: var(--serif); font-style: italic;
+  font-size: clamp(1rem, 2.2vw, 1.2rem); text-align: center;
+  margin-top: 36px; padding: 0 24px;
+}
+
+/* ---------- 页脚 ---------- */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 36px 24px 44px;
+  text-align: center;
+  color: var(--text-dim); font-size: .8rem;
+  font-family: var(--mono);
+}
+footer a { color: var(--text-dim); }
+footer a:hover { color: var(--amber); text-decoration: none; }
+
+/* ---------- 滚动显现 ---------- */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 900px) {
+  .pillars { grid-template-columns: 1fr; }
+  .mosaic { grid-template-columns: repeat(2, 1fr); }
+  .card, .card.w2, .card.w3, .card.w4 { grid-column: span 1; }
+  .work { grid-template-columns: 60px 1fr; }
+  .work-arrow { display: none; }
+}
+@media (max-width: 600px) {
+  .mosaic { grid-template-columns: 1fr; }
+  .nav-links { gap: 14px; font-size: .8rem; }
+  .term-body { padding: 20px 18px 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 顶部导航 ================= -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top"><span class="tilde">~/</span>AI探索者</a>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#works">作品</a>
+      <a href="#contact">联系</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= Hero 终端 ================= -->
+<header class="hero" id="top">
+  <div class="terminal" role="img" aria-label="终端风格自我介绍">
+    <div class="term-bar">
+      <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+      <span class="term-title">长野@localhost: ~</span>
+    </div>
+    <div class="term-body" id="termBody">
+      <!-- 终端内容由 JS 逐行打字生成 -->
+      <noscript><p class="out">请启用 JavaScript 查看终端动画，或直接向下滚动浏览内容。</p></noscript>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 卡片墙 ================= -->
+<section id="about">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-tag">$ ls ~/explore</div>
+      <h2 class="sec-title">从这里认识我</h2>
+      <p class="sec-sub">每张卡片是一个入口。栏目还在长，先放这些。</p>
+    </div>
+
+    <div class="mosaic">
+      <!-- 卡片1：关于我 -->
+      <a class="card" style="--accent:#4ade80" href="about.html">
+        <span class="card-icon">🌱</span>
+        <span class="card-title">关于我</span>
+        <span class="card-desc">AI时代的认真生活的男生。相信 AI 和物理世界的结合，边学边用边分享。</span>
+        <span class="card-link">cd about <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片2：博客 -->
+      <a class="card" style="--accent:#7aa2f7" href="blog.html">
+        <span class="card-icon">📖</span>
+        <span class="card-title">博客 / 随笔</span>
+        <span class="card-desc">记录 AI 落地真实场景的踩坑与日常思考。</span>
+        <span class="card-link">open blog <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片3：作品集 -->
+      <a class="card" style="--accent:#f4d758" href="works.html">
+        <span class="card-icon">🎨</span>
+        <span class="card-title">作品集</span>
+        <span class="card-desc">精选项目与作品，往下翻就能看到。</span>
+        <span class="card-link">ls works <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片5：书架 -->
+      <a class="card w3" style="--accent:#4ade80" href="shelf.html">
+        <span class="card-icon">📚</span>
+        <span class="card-title">书架</span>
+        <span class="card-desc">读过的书，和它们如何改变我看世界的方式。</span>
+        <span class="card-link">open shelf <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片6：项目 -->
+      <a class="card w3" style="--accent:#7aa2f7" href="projects.html">
+        <span class="card-icon">🚀</span>
+        <span class="card-title">正在折腾的项目</span>
+        <span class="card-desc">把 AI 用进真实的工作与生活场景。</span>
+        <span class="card-link">git status <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片7：时间线 -->
+      <a class="card" style="--accent:#f4d758" href="timeline.html">
+        <span class="card-icon">🗺️</span>
+        <span class="card-title">我的成长路径</span>
+        <span class="card-desc">从看见框架，到真实地活。</span>
+        <span class="card-link">git log <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片8：灵感碎片 -->
+      <a class="card" style="--accent:#e84a5f" href="notes.html">
+        <span class="card-icon">💡</span>
+        <span class="card-title">灵感碎片</span>
+        <span class="card-desc">随手记下的想法、摘抄、金句。</span>
+        <span class="card-link">cat notes <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片9：订阅 -->
+      <a class="card" style="--accent:#4ade80" href="contact.html">
+        <span class="card-icon">📮</span>
+        <span class="card-title">订阅 / 关注我</span>
+        <span class="card-desc">公众号、抖音……我的账号都在这。</span>
+        <span class="card-link">follow me <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片10：资源推荐 -->
+      <a class="card" style="--accent:#7aa2f7" href="coming.html">
+        <span class="card-icon">⭐</span>
+        <span class="card-title">推荐清单</span>
+        <span class="card-desc">值得一看的网站、工具、课程。</span>
+        <span class="card-link">open list <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片11：联系我 -->
+      <a class="card w4" style="--accent:#f4d758" href="contact.html">
+        <span class="card-icon">✉️</span>
+        <span class="card-title">联系我</span>
+        <span class="card-desc">想合作、想交流，或者只是打个招呼？</span>
+        <span class="card-link">mail me <span class="arrow">→</span></span>
+      </a>
+      <!-- 卡片12：关于这个站 -->
+      <a class="card w6" style="--accent:#e84a5f" href="about-site.html">
+        <span class="card-icon">🧱</span>
+        <span class="card-title">这个站是怎么做的</span>
+        <span class="card-desc">纯静态页面，一个人 + AI 搭出来的。</span>
+        <span class="card-link">cat readme <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 能力三栏 ================= -->
+<section id="skills" style="background:var(--bg-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-tag">$ tree ~/skills</div>
+      <h2 class="sec-title">我擅长什么</h2>
+      <p class="sec-sub">一边在物理世界里认真生活，一边用 AI 长出新的能力。</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div style="font-size:1.6rem">🔍</div>
+        <h3>研究与思考</h3>
+        <div class="en">Research & Think</div>
+        <ul>
+          <li><div><b>AI 行业观察</b><span>跟踪 AI 工具与趋势，想清楚怎么用进真实生意。</span></div></li>
+          <li><div><b>一线场景观察</b><span>从真实的工作现场看需求、看变化。</span></div></li>
+          <li><div><b>框架沉淀</b><span>把经验整理成可复用的方法。</span></div></li>
+        </ul>
+      </div>
+      <div class="pillar reveal" style="transition-delay:.1s">
+        <div style="font-size:1.6rem">🎨</div>
+        <h3>创作与表达</h3>
+        <div class="en">Create & Write</div>
+        <ul>
+          <li><div><b>内容创作</b><span>抖音、公众号记录 AI 落地真实场景的实践。</span></div></li>
+          <li><div><b>视觉设计</b><span>品牌物料、知识可视化，AI 出稿我出审美。</span></div></li>
+          <li><div><b>教程输出</b><span>把踩过的坑写成教程，一鱼多吃。</span></div></li>
+        </ul>
+      </div>
+      <div class="pillar reveal" style="transition-delay:.2s">
+        <div style="font-size:1.6rem">🛠️</div>
+        <h3>构建与落地</h3>
+        <div class="en">Build & Ship</div>
+        <ul>
+          <li><div><b>AI 工具落地</b><span>把 AI 用进工作、内容、生活的真实场景。</span></div></li>
+          <li><div><b>自动化工作流</b><span>让重复的事自动跑起来。</span></div></li>
+          <li><div><b>个人系统</b><span>知识库、复盘、项目档案，一体化经营自己。</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 作品集 ================= -->
+<section id="works">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-tag">$ ls works/</div>
+      <h2 class="sec-title">作品集</h2>
+      <p class="sec-sub">作品整理中，很快补上。</p>
+    </div>
+
+    <div class="works">
+      <a class="work reveal" href="crm.html">
+        <span class="work-num">dim_01</span>
+        <div class="work-info">
+          <h3>家装 CRM 管理系统</h3>
+          <p>为家装销售自研的客户管理系统——客户档案、量房/定金/签约节点跟踪、销售看板，一个人 + AI 从零搭起来。</p>
+          <div class="work-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span></div>
+        </div>
+        <span class="work-arrow">→</span>
+      </a>
+      <a class="work reveal" href="#">
+        <span class="work-num">dim_02</span>
+        <div class="work-info">
+          <h3>【项目二：作品名称】</h3>
+          <p>【一句话描述这个项目做了什么、解决了什么问题。】</p>
+          <div class="work-tags"><span class="tag">【标签A】</span><span class="tag">【标签B】</span></div>
+        </div>
+        <span class="work-arrow">→</span>
+      </a>
+      <a class="work reveal" href="#">
+        <span class="work-num">dim_03</span>
+        <div class="work-info">
+          <h3>【项目三：作品名称】</h3>
+          <p>【一句话描述这个项目做了什么、解决了什么问题。】</p>
+          <div class="work-tags"><span class="tag">【标签A】</span><span class="tag">【标签B】</span></div>
+        </div>
+        <span class="work-arrow">→</span>
+      </a>
+      <a class="work reveal" href="#">
+        <span class="work-num">dim_04</span>
+        <div class="work-info">
+          <h3>【更多作品整理中…】</h3>
+          <p>【持续更新。】</p>
+          <div class="work-tags"><span class="tag">WIP</span></div>
+        </div>
+        <span class="work-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 联系 CTA ================= -->
+<section id="contact">
+  <div class="container">
+    <div class="cta reveal">
+      <h2>想和我聊聊？</h2>
+      <p>无论是想聊 AI、想交流，还是随便打个招呼，都欢迎。</p>
+      <div class="cta-btns">
+        <a class="btn btn-green" href="mailto:2564786746@qq.com">📮 发邮件</a>
+        <a class="btn btn-ghost" href="#">💬 微信：w33v55</a>
+        <a class="btn btn-ghost" href="#">📢 公众号：第一性原理生活</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 终端收尾 ================= -->
+<section class="exit" id="exit">
+  <div class="container">
+    <div class="terminal">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">长野@localhost: ~</span>
+      </div>
+      <div class="term-body">
+        <div class="term-line"><span class="prompt"></span><span class="cmd">$ exit</span></div>
+        <div class="term-line out" style="margin-top:6px">See you next time.</div>
+        <div class="term-line out" style="margin-top:6px">Process completed.</div>
+      </div>
+    </div>
+    <p class="exit-quote" id="fortune">看见框架，然后真实地活。</p>
+  </div>
+</section>
+
+<!-- ================= 页脚 ================= -->
+<footer>
+  <p>© 2026 长野 · 用 ❤️ 和 HTML 手写</p>
+  <p style="margin-top:6px">设计灵感参考 <a href="https://github.com/esthersjw/esther-design-system" target="_blank" rel="noopener">esther-design-system</a>（CC BY-NC-SA 4.0）· 由 <a href="#" target="_blank" rel="noopener">Cola</a> 协助搭建</p>
+</footer>
+
+<script>
+/* ============================================================
+   可编辑内容区 —— 只需改这里，不用碰其他代码
+   ============================================================ */
+
+// 1) 终端开场动画：每行 = {cmd: 命令文字, out: [输出行数组]}
+const BOOT_LINES = [
+  { cmd: "whoami", out: ["<span class='hlg'>长野</span> · AI时代的认真生活的男生"] },
+  { cmd: "cat about.md", out: [
+      "> 在物理世界里认真生活，也用 AI 重新长出自己。",
+      "> 相信 AI 和物理世界不是两回事——认真生活，就是最好的落地。"
+  ]},
+  { cmd: "ls ~/works", out: ["<span class='hlb'>📖 实践手记</span>  <span class='hl'>🤖 AI实践</span>  <span class='hlb'>📚 书架</span>  <span class='hl'>🚀 项目</span>  <span class='hlb'>🎨 作品</span>"] },
+  { cmd: "./launch.sh --start" }
+];
+
+// 2) 收尾金句（随机显示一条）
+const FORTUNES = [
+  "“看见框架，然后真实地活。”",
+  "“边长新能力，边让他人看见。”",
+  "“AI 让边际成本趋近于零，个体第一次可以绕过组织直接触达人群。”",
+  "“热爱可抵岁月漫长。”"
+];
+
+// 3) 打字速度（毫秒/字符），想快一点就调小
+const TYPE_SPEED = 26;
+// ============================================================
+
+/* ---------- 终端打字动画 ---------- */
+const termBody = document.getElementById("termBody");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function typeLine(promptEl, cmd) {
+  if (reduceMotion) {
+    promptEl.innerHTML = cmd;
+    return;
+  }
+  for (let i = 0; i <= cmd.length; i++) {
+    promptEl.innerHTML = cmd.slice(0, i) + '<span class="cursor"></span>';
+    await sleep(TYPE_SPEED);
+  }
+}
+
+async function boot() {
+  if (reduceMotion) {
+    // 无障碍模式：直接全部显示
+    for (const line of BOOT_LINES) {
+      const div = document.createElement("div");
+      div.className = "term-line";
+      div.innerHTML = '<span class="prompt"></span><span class="cmd">' + line.cmd + "</span>";
+      termBody.appendChild(div);
+      if (line.out) {
+        for (const o of line.out) {
+          const od = document.createElement("div");
+          od.className = "term-line out";
+          od.innerHTML = o;
+          termBody.appendChild(od);
+        }
+      }
+    }
+  } else {
+    for (const line of BOOT_LINES) {
+      const div = document.createElement("div");
+      div.className = "term-line";
+      div.innerHTML = '<span class="prompt"></span><span class="cmd"></span>';
+      termBody.appendChild(div);
+      await typeLine(div.querySelector(".cmd"), line.cmd);
+      await sleep(180);
+      if (line.out) {
+        for (const o of line.out) {
+          const od = document.createElement("div");
+          od.className = "term-line out";
+          od.innerHTML = o;
+          termBody.appendChild(od);
+          await sleep(160);
+        }
+      }
+      await sleep(240);
+    }
+  }
+
+  // 启动提示
+  const launch = document.createElement("div");
+  launch.className = "launch-line";
+  launch.id = "launchLine";
+  launch.innerHTML = "Press Enter to Launch ⏎";
+  launch.tabIndex = 0;
+  launch.addEventListener("click", launchSite);
+  launch.addEventListener("keydown", e => { if (e.key === "Enter") launchSite(); });
+  termBody.appendChild(launch);
+}
+
+/* ---------- 启动进入主页 ---------- */
+function launchSite() {
+  const hero = document.querySelector(".hero");
+  if (hero.classList.contains("launched")) return;
+  hero.classList.add("launched");
+  setTimeout(() => {
+    document.getElementById("about").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+  }, 480);
+}
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Enter" && document.getElementById("launchLine")) launchSite();
+});
+
+/* ---------- 滚动显现 ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* ---------- 卡片光斑跟随鼠标 ---------- */
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100) + "%");
+    card.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100) + "%");
+  });
+});
+
+/* ---------- 随机金句 ---------- */
+document.getElementById("fortune").textContent = FORTUNES[Math.floor(Math.random() * FORTUNES.length)];
+
+boot();
+</script>
+</body>
+</html>

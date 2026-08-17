@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>家装CRM管理系统 · AI探索者</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="path"><b>~/AI探索者</b>/works/crm</span>
+    <a class="back" href="works.html">← 返回作品集</a>
+  </div>
+</div>
+
+<main class="page">
+  <div class="container">
+    <div class="cmd-head">cat projects/crm.md</div>
+    <h1 class="title">家装 CRM 管理系统</h1>
+    <p class="sub">为家装销售场景自研的客户管理系统——一个人 + AI 从零搭起来。</p>
+
+    <div class="sec">
+      <div class="sec-tag">背景</div>
+      <p class="body-text">做家装销售，客户跟进靠脑子记、微信翻记录，量房、定金、签约这些关键节点全靠人肉盯。这个系统就是为解决这个问题而生的：把客户从"脑子里"搬进"系统里"。</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-tag">功能</div>
+      <ul class="list">
+        <li><div><b>客户档案管理</b><span>增删改查 + 客户来源，一个客户一份完整档案。</span></div></li>
+        <li><div><b>家装关键节点跟踪</b><span>量房时间 / 到店 / 定金 / 签约时间，里程碑一目了然。</span></div></li>
+        <li><div><b>预计签约金额</b><span>每个客户能签多少，心里有数。</span></div></li>
+        <li><div><b>时间多条件筛选</b><span>按创建、量房、到店、定金、签约任意组合筛选，比如"本月量房未签约"。</span></div></li>
+        <li><div><b>跟进记录</b><span>每次跟进留痕，不靠记忆。</span></div></li>
+        <li><div><b>角色权限</b><span>管理员看全部，销售只看自己的客户。</span></div></li>
+        <li><div><b>老板数据看板</b><span>客户、节点、金额聚合，一屏看全局。</span></div></li>
+        <li><div><b>数据库自动备份 + 无损迁移</b><span>升级加字段不丢数据，启动前自动备份。</span></div></li>
+      </ul>
+    </div>
+
+    <div class="sec">
+      <div class="sec-tag">技术栈</div>
+      <div class="term-quote">Python · Flask · SQLite · 原生前端单页
+> 架构：models.py（建表/迁移/备份）→ app.py（API/看板）→ static/index.html（单页前端）</div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-tag">本地运行</div>
+      <div class="term-quote">$ python app.py
+> 浏览器打开 http://127.0.0.1:5000/
+> 管理员 admin / 销售 sales</div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-tag">下一步</div>
+      <p class="body-text dim">【可选：这个项目接下来的计划，比如多端、移动端、更多报表。】</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 长野 · <a href="index.html">返回主页</a></p>
+</footer>
+
+</body>
+</html>
