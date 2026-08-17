@@ -157,12 +157,12 @@ a { text-decoration: none; }
 .desk-icons {
   position: absolute;
   top: 56px;
-  right: 14px;
+  left: 14px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  direction: rtl;
-  align-content: flex-end;
+  direction: ltr;
+  align-content: flex-start;
   gap: 6px;
   height: calc(100vh - 175px);
 }
@@ -202,7 +202,7 @@ a { text-decoration: none; }
 /* 桌面便签（随机金句） */
 .sticky-note {
   position: absolute;
-  top: 24px; left: 26px;
+  top: 24px; right: 26px;
   background: rgba(255, 243, 205, .92);
   backdrop-filter: blur(4px);
   border-radius: 6px;
@@ -327,13 +327,13 @@ a { text-decoration: none; }
 
 /* 响应式 */
 @media (max-width: 900px) {
-  .desk-icons { right: 12px; gap: 5px; }
+  .desk-icons { left: 12px; gap: 5px; }
   .dicon-img { width: 50px; height: 50px; font-size: 1.5rem; }
   .sticky-note { display: none; }
   .mb-menu { display: none; }
 }
 @media (max-width: 600px) {
-  .desk-icons { right: 8px; top: 50px; gap: 4px; }
+  .desk-icons { left: 8px; top: 50px; gap: 4px; }
   .dicon-img { width: 44px; height: 44px; font-size: 1.3rem; }
   .dicon-label { font-size: .66rem; padding: 2px 5px; max-width: 92px; }
   .dock-item { width: 44px; height: 44px; font-size: 1.3rem; }
