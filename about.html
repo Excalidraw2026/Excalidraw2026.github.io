@@ -1,158 +1,68 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>关于我 · 长野</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <style>
-    /* ===== 长野设计系统 ===== */
-    :root {
-      --blue:#7C93C7; --blue-deep:#6279B8; --purple:#B09CC7; --purple-soft:#ECE9F3;
-      --yellow:#F2C063; --yellow-soft:#FBF0DC; --cream:#F6F3EC; --cream-dark:#ECE7DB;
-      --ink:#2A2A3A; --ink-light:#4A4A5A; --ink-faint:#8A8A9A; --dark-a:#3A4487; --dark-b:#5A4F9E;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;font-size:16px;line-height:1.7;color:var(--ink);background:var(--cream);}
-    ::selection{background:var(--yellow);color:var(--ink);}
-    .container{max-width:1100px;margin:0 auto;padding:0 2rem;}
-    .label-caps{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.18em;font-weight:500;color:var(--ink-faint);display:block;margin-bottom:0.75rem;}
-    a{color:var(--blue);text-decoration:none;}
-    a:hover{background:var(--yellow-soft);}
-
-    /* top nav */
-    .topbar{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid rgba(42,42,58,0.08);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;}
-    .topbar .path{font-family:'Noto Serif SC',serif;font-weight:700;color:var(--ink);}
-    .topbar .path b{color:var(--blue);}
-    .topbar .back{font-size:0.85rem;color:var(--blue);}
-
-    /* hero */
-    .hero{padding:clamp(4rem,10vh,7rem) 0 clamp(3rem,5vh,4rem);position:relative;overflow:hidden;}
-    .hero::before{content:'';position:absolute;right:-6%;top:-10%;width:320px;height:320px;border:2.5px dashed var(--yellow);border-radius:50%;opacity:.5;}
-    .hero h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(2.4rem,6vw,4rem);line-height:1.1;}
-    .hero .sub{font-size:1.1rem;color:var(--ink-light);margin-top:1rem;max-width:560px;}
-    .hero .role{font-family:'Caveat',cursive;font-size:clamp(1.5rem,3.5vw,2.2rem);color:var(--purple);margin-top:1.4rem;}
-
-    /* section */
-    .section{padding:clamp(60px,9vh,110px) 0;}
-    .section--alt{background:var(--cream-dark);}
-    .sec-header{margin-bottom:clamp(30px,4vw,50px);}
-    .sec-tag{font-family:'Caveat',cursive;font-size:1.6rem;color:var(--purple);display:inline-block;background:var(--purple-soft);padding:4px 18px;border-radius:100px;margin-bottom:20px;}
-    .sec-title{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);}
-
-    /* whoami 双栏 */
-    .who{display:grid;grid-template-columns:0.8fr 1fr;gap:48px;align-items:center;}
-    .who .big{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.25;}
-    .who .big .hl{color:var(--blue);}
-    .who .txt p{font-size:1.05rem;color:var(--ink-light);}
-
-    /* 相信区 */
-    .belief{background:linear-gradient(135deg,var(--dark-a),var(--dark-b));color:#f0ecff;border-radius:20px;padding:clamp(32px,5vw,56px);position:relative;overflow:hidden;}
-    .belief .q{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(1.3rem,3vw,1.9rem);color:#fff;line-height:1.7;}
-    .belief .q span{color:var(--yellow);}
-
-    /* 列表 */
-    .list{list-style:none;}
-    .itm{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid rgba(138,138,154,0.2);}
-    .itm .dot{width:12px;height:12px;border-radius:50%;margin-top:10px;flex-shrink:0;}
-    .itm b{font-size:1.1rem;}
-    .itm p{font-size:0.95rem;color:var(--ink-light);margin-top:4px;}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-
-    footer{text-align:center;padding:clamp(40px,6vh,60px) 0;background:var(--cream-dark);}
-    footer p{font-size:0.85rem;color:var(--ink-faint);}
-
-    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
-    .reveal.visible{opacity:1;transform:none;}
-    .reveal-d1{transition-delay:.1s;}.reveal-d2{transition-delay:.2s;}.reveal-d3{transition-delay:.3s;}
-    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
-    @media(max-width:900px){.who,.grid2{grid-template-columns:1fr;}.topbar{padding:0 1rem;}}
-    @media(max-width:600px){body{font-size:15px;}.container{padding:0 1.25rem;}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于我 · AI探索者</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
 
-  <!-- 顶部导航 -->
-  <div class="topbar">
-    <span class="path"><b>长野</b>/about</span>
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="path"><b>~/AI探索者</b>/about</span>
     <a class="back" href="index.html?direct=1">← 返回主页</a>
   </div>
+</div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <span class="label-caps">Changye · AI Explorer</span>
-      <h1>关于我</h1>
-      <p class="sub">长野 · 在 AI 时代认真生活的男生 · 相信 AI 和物理世界的结合</p>
-      <span class="role">→ in the physical world, and reborn by AI</span>
-    </div>
-  </section>
+<main class="page">
+  <div class="container">
+    <div class="cmd-head">cat about.md</div>
+    <h1 class="title">关于我</h1>
+    <p class="sub">长野 · 在 AI 时代认真生活的男生 · 相信 AI 和物理世界的结合</p>
 
-  <!-- whoami -->
-  <section class="section">
-    <div class="container">
-      <div class="who">
-        <div class="reveal">
-          <span class="label-caps">whoami</span>
-          <div class="big">在物理世界里<br>认真生活，<br>也用 AI <span class="hl">重新长出自己</span></div>
-        </div>
-        <div class="txt reveal reveal-d1">
-          <p>AI 不是悬浮在云上的概念，它应该落进真实的生活里——落进每一天的工作、思考和选择。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <section class="sec reveal">
+      <div class="sec-tag">whoami</div>
+      <p class="body-text" style="font-size:1.15rem;line-height:1.8;">在物理世界里认真生活，也用 <b style="color:var(--blue)">AI 重新长出自己</b>。<br>AI 不是悬浮在云上的概念，它应该落进真实的生活里——落进每一天的工作、思考和选择。</p>
+    </section>
 
-  <!-- 我的相信 -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="sec-header reveal"><span class="sec-tag">我的相信</span></div>
-      <div class="belief reveal">
-        <div class="q">
-          "看见框架，然后真实地活。<br>
-          必须边长新能力，边让他人看见。<br>
-          AI 让边际成本趋近于零，<span>个体第一次可以绕过组织直接触达人群。</span>"
-        </div>
-      </div>
-    </div>
-  </section>
+    <section class="sec reveal">
+      <div class="sec-tag">beliefs</div>
+      <div class="term-quote">> 看见框架，然后真实地活。<br>> 必须边长新能力，边让他人看见。<br>> AI 让边际成本趋近于零，<span class="a">个体第一次可以绕过组织直接触达人群。</span></div>
+    </section>
 
-  <!-- 我的系统 -->
-  <section class="section">
-    <div class="container">
-      <div class="sec-header reveal"><span class="sec-tag">我的系统</span><h2 class="sec-title">让思考有处安放</h2></div>
+    <section class="sec reveal">
+      <div class="sec-tag">system</div>
       <ul class="list">
-        <li class="itm reveal"><span class="dot" style="background:var(--blue);"></span><div><b>Obsidian 记忆库</b><p>所有思考、项目、决策沉淀成可检索的系统，任何信息 5 秒内定位。</p></div></li>
-        <li class="itm reveal reveal-d1"><span class="dot" style="background:var(--purple);"></span><div><b>每日复盘</b><p>凌晨 1 点自动生成复盘模板，让每一天都有记录。</p></div></li>
-        <li class="itm reveal reveal-d2"><span class="dot" style="background:var(--yellow);"></span><div><b>编号体系</b><p>PLAN / PROJ / DEC，像经营一家公司一样经营自己。</p></div></li>
-        <li class="itm reveal reveal-d3"><span class="dot" style="background:var(--blue-deep);"></span><div><b>这个站</b><p>一个人 + AI 搭出来的纯静态主页，用来"让他人看见"。</p></div></li>
+        <li><div><b>Obsidian 记忆库</b><span>所有思考、项目、决策沉淀成可检索的系统，任何信息 5 秒内定位。</span></div></li>
+        <li><div><b>每日复盘</b><span>凌晨 1 点自动生成复盘模板，让每一天都有记录。</span></div></li>
+        <li><div><b>编号体系</b><span>PLAN / PROJ / DEC，像经营一家公司一样经营自己。</span></div></li>
+        <li><div><b>这个站</b><span>一个人 + AI 搭出来的纯静态主页，用来"让他人看见"。</span></div></li>
       </ul>
-    </div>
-  </section>
+    </section>
 
-  <!-- 目前在做 -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="sec-header reveal"><span class="sec-tag">目前在做</span><h2 class="sec-title">正在推进的事</h2></div>
-      <div class="grid2">
-        <div class="itm reveal" style="border:2.5px dashed var(--blue);border-radius:16px;padding:28px;"><span class="dot" style="background:var(--blue);"></span><div><b>在物理世界的一线</b><p>把 AI 用进真实业务——客户跟进、内容输出、工具系统。</p></div></div>
-        <div class="itm reveal reveal-d1" style="border:2.5px dashed var(--blue);border-radius:16px;padding:28px;"><span class="dot" style="background:var(--purple);"></span><div><b>维护个人知识系统</b><p>Obsidian 记忆库、每日复盘、项目档案，让思考有处安放。</p></div></div>
-        <div class="itm reveal reveal-d2" style="border:2.5px dashed var(--blue);border-radius:16px;padding:28px;grid-column:1/-1;"><span class="dot" style="background:var(--yellow);"></span><div><b>搭建这个网站</b><p>实践"边长新能力，边让他人看见"——这就是成果之一。</p></div></div>
-      </div>
-    </div>
-  </section>
+    <section class="sec reveal">
+      <div class="sec-tag">now</div>
+      <p class="body-text">正在推进的事：</p>
+      <ul class="list">
+        <li><div><b>在物理世界的一线</b><span>把 AI 用进真实业务——客户跟进、内容输出、工具系统。</span></div></li>
+        <li><div><b>维护个人知识系统</b><span>Obsidian 记忆库、每日复盘、项目档案，让思考有处安放。</span></div></li>
+        <li><div><b>搭建这个网站</b><span>实践"边长新能力，边让他人看见"——这就是成果之一。</span></div></li>
+      </ul>
+    </section>
+  </div>
+</main>
 
-  <footer>
-    <p>© 2026 长野 · <a href="index.html?direct=1">返回主页</a></p>
-  </footer>
+<footer>
+  <p>© 2026 长野 · <a href="index.html?direct=1">返回主页</a></p>
+</footer>
 
-  <script>
-    const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');o.unobserve(x.target);}});},{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
-  </script>
-  <section style="position:absolute;left:-9999px;font-size:0;line-height:0;opacity:0;height:0;overflow:hidden;">changye-design-system</section>
+<script>
+  const o = new IntersectionObserver(e => {
+    e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); o.unobserve(x.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => o.observe(el));
+</script>
 </body>
 </html>
