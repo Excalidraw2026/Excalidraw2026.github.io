@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>长野 · 用 AI 帮你做点事 · 独立接单</title>
+<meta name="description" content="长野 —— 用 AI 帮个人和中小生意做网站、表情包、自动化工具、内容创作。按需接单，快速交付。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fraunces:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   长野 · 官方网站（接单导向）v1
+   与个人桌面站独立：专业、可信、案例驱动
+   品牌：浅蓝 #7C93C7 / 浅紫 #B09CC7 / 暖黄 #F2C063
+   ============================================================ */
+:root {
+  --blue:#7C93C7; --blue-deep:#6279B8; --purple:#B09CC7;
+  --yellow:#F2C063; --cream:#F6F3EC; --ink:#1A1A2E;
+  --ink-soft:#4A4A5A; --ink-faint:#8A8A9A; --card:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--cream);color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:var(--blue-deep);}
+::selection{background:var(--yellow);color:var(--ink);}
+
+/* ---------- 顶部导航 ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(246,243,236,.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,26,46,.07);
+}
+.nav-inner{max-width:1060px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Noto Serif SC',serif;font-weight:900;font-size:1.15rem;color:var(--ink);}
+.nav-brand span{color:var(--blue);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{color:var(--ink-soft);font-size:.92rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--blue-deep);}
+.nav-cta{background:var(--blue);color:#fff!important;padding:9px 20px;border-radius:30px;font-weight:600;}
+.nav-cta:hover{background:var(--blue-deep);}
+
+/* ---------- Hero ---------- */
+.hero{padding:clamp(64px,10vh,100px) 24px 56px;text-align:center;}
+.hero .kicker{display:inline-block;font-size:.82rem;letter-spacing:3px;color:var(--blue);text-transform:uppercase;margin-bottom:20px;font-weight:600;}
+.hero h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(2rem,5.5vw,3.2rem);line-height:1.25;max-width:840px;margin:0 auto;}
+.hero h1 .hl{color:var(--blue);}
+.hero .sub{font-size:1.1rem;color:var(--ink-soft);max-width:640px;margin:22px auto 0;line-height:1.9;}
+.hero-btns{display:flex;gap:16px;justify-content:center;margin-top:36px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:12px;font-weight:600;font-size:.98rem;transition:transform .2s,box-shadow .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{box-shadow:0 10px 26px rgba(124,147,199,.35);}
+.btn-ghost{border:1.5px solid rgba(26,26,46,.18);color:var(--ink);}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+.hero-trust{display:flex;gap:24px;justify-content:center;margin-top:44px;flex-wrap:wrap;color:var(--ink-faint);font-size:.85rem;}
+.hero-trust span::before{content:"✓ ";color:var(--blue);font-weight:700;}
+
+/* ---------- 通用 section ---------- */
+section{padding:clamp(56px,8vh,84px) 24px;}
+.section-head{text-align:center;margin-bottom:44px;}
+.section-head .tag{font-size:.82rem;letter-spacing:3px;color:var(--purple);font-weight:600;text-transform:uppercase;}
+.section-head h2{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(1.6rem,4vw,2.2rem);margin-top:10px;}
+.section-head p{color:var(--ink-soft);max-width:580px;margin:12px auto 0;font-size:.98rem;}
+.container{max-width:1060px;margin:0 auto;}
+
+/* ---------- 服务卡片 ---------- */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.service-card{
+  background:var(--card);border:1px solid rgba(26,26,46,.06);border-radius:16px;padding:28px;
+  box-shadow:0 2px 12px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s;border-top:4px solid var(--blue);
+}
+.service-card:nth-child(4n+2){border-top-color:var(--purple);}
+.service-card:nth-child(4n+3){border-top-color:var(--yellow);}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,.08);}
+.service-card .icon{font-size:1.9rem;margin-bottom:14px;}
+.service-card h3{font-family:'Noto Serif SC',serif;font-size:1.15rem;font-weight:900;margin-bottom:8px;}
+.service-card .desc{font-size:.88rem;color:var(--ink-soft);}
+.service-card ul{list-style:none;margin-top:12px;}
+.service-card ul li{font-size:.82rem;color:var(--ink-soft);padding:3px 0;position:relative;padding-left:16px;}
+.service-card ul li::before{content:"›";position:absolute;left:0;color:var(--blue);font-weight:700;}
+
+/* ---------- 案例 ---------- */
+.case-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+.case{
+  background:var(--card);border:1px solid rgba(26,26,46,.06);border-radius:16px;padding:30px;
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,.04);
+}
+.case .badge{background:var(--yellow);color:var(--ink);font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:30px;letter-spacing:1px;display:inline-block;margin-bottom:10px;}
+.case h3{font-family:'Noto Serif SC',serif;font-size:1.25rem;font-weight:900;margin-bottom:8px;}
+.case p{font-size:.92rem;color:var(--ink-soft);}
+.case .tags{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.case .tags span{font-size:.75rem;color:var(--blue-deep);background:rgba(124,147,199,.1);padding:3px 10px;border-radius:20px;}
+.case .outcome{text-align:center;padding:6px 0 6px 24px;border-left:1px dashed rgba(26,26,46,.12);}
+.case .outcome .num{font-family:'Noto Serif SC',serif;font-size:1.5rem;font-weight:900;color:var(--blue);}
+.case .outcome .lbl{font-size:.78rem;color:var(--ink-faint);}
+
+/* ---------- 流程 ---------- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;counter-reset:step;}
+.step{background:var(--card);border:1px solid rgba(26,26,46,.06);border-radius:14px;padding:24px;position:relative;}
+.step::before{counter-increment:step;content:counter(step);position:absolute;top:-14px;left:20px;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700;font-family:'Fraunces',serif;}
+.step h4{font-size:1rem;font-weight:700;margin-bottom:6px;margin-top:6px;}
+.step p{font-size:.84rem;color:var(--ink-soft);}
+
+/* ---------- 关于/信任 ---------- */
+.about{background:var(--card);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.about .big{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(1.4rem,3vw,1.9rem);line-height:1.5;}
+.about .big .hl{color:var(--blue);}
+.about ul{list-style:none;margin-top:18px;}
+.about ul li{padding:8px 0;color:var(--ink-soft);font-size:.96rem;border-bottom:1px dashed rgba(26,26,46,.1);}
+.about ul li b{color:var(--ink);}
+
+/* ---------- 联系 CTA ---------- */
+.contact{text-align:center;}
+.contact-card{
+  background:linear-gradient(135deg,#7C93C7,#B09CC7);border-radius:20px;padding:clamp(36px,6vw,56px);
+  color:#fff;max-width:760px;margin:0 auto;box-shadow:0 18px 44px rgba(124,147,199,.3);
+}
+.contact-card h2{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(1.5rem,3.5vw,2rem);}
+.contact-card p{opacity:.95;margin:12px 0 26px;font-size:.98rem;}
+.contact-card a{color:#fff;font-weight:700;}
+.contact-methods{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:24px;}
+.method{background:rgba(255,255,255,.16);padding:14px 24px;border-radius:14px;font-size:.95rem;backdrop-filter:blur(4px);}
+
+/* ---------- 页脚 ---------- */
+footer{border-top:1px solid rgba(26,26,46,.07);padding:36px 24px 44px;text-align:center;color:var(--ink-faint);font-size:.82rem;}
+footer a{color:var(--ink-faint);}
+footer a:hover{color:var(--blue);}
+
+@media(max-width:760px){
+  .nav-links{display:none;}
+  .case{grid-template-columns:1fr;}
+  .case .outcome{border-left:none;border-top:1px dashed rgba(26,26,46,.12);padding:16px 0 0;text-align:left;}
+  .about-grid{grid-template-columns:1fr;}
+}
+
+/* ---------- 滚动显现 ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);}
+.reveal.visible{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="./">长野<span>·</span>独立开发</a>
+    <div class="nav-links">
+      <a href="#services">能做什么</a>
+      <a href="#cases">案例</a>
+      <a href="#process">怎么合作</a>
+      <a href="#about">关于</a>
+      <a href="#contact" class="nav-cta">找我聊聊</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <span class="kicker">Changye · Independent Maker</span>
+    <h1>用 AI，帮你把想法做成 <span class="hl">看得见的东西</span></h1>
+    <p class="sub">不管是网站、表情包，还是工具、自动化——你提需求，我用 AI 帮你从零做出来，快速交付，简单直接。</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#contact">👋 告诉我你想做什么</a>
+      <a class="btn btn-ghost" href="#services">看看我能做什么 ↓</a>
+    </div>
+    <div class="hero-trust">
+      <span>按需接单</span>
+      <span>AI 加速交付</span>
+      <span>个人项目也能做</span>
+      <span>沟通直接</span>
+    </div>
+  </div>
+</header>
+
+<!-- 服务 -->
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">What I Can Do</span>
+      <h2>我能帮你做什么</h2>
+      <p>个人、小生意、传统行业——这些我都可以用 AI 独立帮你想办法、搭起来。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="icon">🌐</div>
+        <h3>网站 / 线上页面</h3>
+        <p class="desc">个人主页、作品展示、落地页、工具型小应用。静态或带功能都行。</p>
+        <ul>
+          <li>个人网站 / 品牌主页</li>
+          <li>活动落地页 / 宣传页</li>
+          <li>小工具 / 管理后台（如 CRM）</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="icon">🎨</div>
+        <h3>表情包 / 设计素材</h3>
+        <p class="desc">表情包、头像、封面、海报、配图——给你能直接用的成品。</p>
+        <ul>
+          <li>微信表情包 / 头像</li>
+          <li>文章封面 / 公众号配图</li>
+          <li>Logo / 名片 / 海报</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="icon">🤖</div>
+        <h3>AI 自动化 / 工具</h3>
+        <p class="desc">把重复的事交给程序，AI 帮你把流程跑起来。</p>
+        <ul>
+          <li>个人知识库 / 复盘系统</li>
+          <li>数据整理 / 可视化报表</li>
+          <li>内容自动化（脚本/文案/方案）</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="icon">📦</div>
+        <h3>其他你能想到的</h3>
+        <p class="desc">ChatGPT、AI 绘图、AI 视频……想不到的都来聊聊，说不定我能做。</p>
+        <ul>
+          <li>短视频脚本 / 分镜</li>
+          <li>PPT / 幻灯片</li>
+          <li>AI 答疑 / 客服机器人</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 案例 -->
+<section id="cases" style="background:#EFEBE2;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">Recent Work</span>
+      <h2>一个真实的例子</h2>
+      <p>我亲手为家装销售场景从零搭的一套客户管理系统。</p>
+    </div>
+    <div class="case-grid">
+      <div class="case reveal">
+        <div>
+          <span class="badge">真实交付</span>
+          <h3>家装 CRM 客户管理系统</h3>
+          <p>原来客户跟进修靠脑子记、翻微信记录，量房、定金、签约全靠人肉盯。我用 AI 从零搭了一套系统，把客户从"脑子里"搬进"系统里"。</p>
+          <div class="tags">
+            <span>客户档案</span>
+            <span>关键节点跟踪</span>
+            <span>销售看板</span>
+            <span>角色权限</span>
+            <span>自动备份</span>
+          </div>
+        </div>
+        <div class="outcome">
+          <div class="num">从 0 到 1</div>
+          <div class="lbl">一个人 + AI 搭出</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 流程 -->
+<section id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">How It Works</span>
+      <h2>怎么合作</h2>
+      <p>不复杂，三步走。</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h4>说出需求</h4><p>微信/邮箱告诉我你想做啥，越具体越好。</p></div>
+      <div class="step reveal"><h4>报价 & 确认</h4><p>我评估工作量，给你一个明确报价和交付时间。</p></div>
+      <div class="step reveal"><h4>交付 & 调整</h4><p>做出来给你看，按你的意见微调，直到满意。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 关于 -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-head" style="text-align:left;margin-bottom:20px;">
+          <span class="tag">About</span>
+          <h2>关于我</h2>
+        </div>
+        <div class="big">在物理世界认真生活，<br>也用 AI <span class="hl">重新长出解决问题的能力</span>。</div>
+      </div>
+      <div class="reveal">
+        <ul>
+          <li><b>AI 时代的能力派</b> —— 不是空谈概念，是能把想法做成成品的人</li>
+          <li><b>AI × 真实业务</b> —— 亲手做家装 CRM，懂传统行业怎么落地</li>
+          <li><b>一个人 = 一个团队</b> —— 需求、设计、开发、交付全流程独立完成</li>
+          <li><b>沟通直接</b> —— 说人话、不绕弯、尽快给你东西</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 联系 -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-card reveal">
+      <h2>有想法？聊聊看</h2>
+      <p>不管做不做得成，先聊聊总不亏——告诉我你想做什么，我给个实在的答复。</p>
+      <div class="contact-methods">
+        <span class="method">📧 邮箱：<a href="mailto:2564786746@qq.com">2564786746@qq.com</a></span>
+        <span class="method">💬 微信：<b>w33v55</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 长野 · <a href="../index.html?direct=1">回到我的个人主页 →</a></p>
+</footer>
+
+<script>
+  const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');o.unobserve(x.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+</script>
+</body>
+</html>
