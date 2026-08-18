@@ -4,15 +4,15 @@
    参考 esther-design-system (CC BY-NC-SA 4.0)
    ============================================================ */
 :root {
-  /* esther 品牌三色 */
-  --blue: #4E7A5C;
-  --blue-deep: #3D6048;
-  --yellow: #E3B341;
-  --yellow-soft: #FFF3CD;
-  --red: #C4624D;
-  /* 暖色底 + 墨色文字（主背景参考站酷设计周暖米灰 #E3DED0） */
-  --cream: #E3DED0;
-  --cream-dark: #D8D1C0;
+  /* 品牌三色：浅蓝主 / 浅紫次 / 暖黄点缀 */
+  --blue: #7C93C7;
+  --blue-deep: #6279B8;
+  --yellow: #F2C063;
+  --yellow-soft: #FBF0DC;
+  --red: #B09CC7;
+  /* 前景淡底 + 墨色文字（配浅蓝/浅紫/暖黄：用亮米白避免吃掉浅色明度） */
+  --cream: #F6F3EC;
+  --cream-dark: #ECE7DB;
   --ink: #1A1A2E;
   --ink-light: #4A4A5A;
   --ink-faint: #8A8A9A;
@@ -59,7 +59,7 @@ a:hover { color: var(--blue-deep); }
 /* ---------- 顶部导航（亮色毛玻璃） ---------- */
 .topbar {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(227, 222, 208, .85);
+  background: rgba(246, 243, 236, .85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(26, 26, 46, .07);
@@ -75,7 +75,7 @@ a:hover { color: var(--blue-deep); }
 .topbar .back {
   color: var(--ink-light);
   padding: 5px 14px;
-  border: 1px solid rgba(78, 122, 92, .25);
+  border: 1.5px solid rgba(124, 147, 199, .35);
   border-radius: 20px;
   transition: background .2s, color .2s, border-color .2s;
 }
