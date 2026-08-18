@@ -214,6 +214,34 @@ ul.list li span { color: var(--ink-light); font-size: .88rem; display: block; ma
 .tl-item .date { font-family: var(--mono); font-size: .75rem; color: var(--blue); font-weight: 600; }
 .tl-item h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 900; margin: 4px 0 6px; }
 .tl-item p { color: var(--ink-light); font-size: .9rem; }
+.tl-tag {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--blue);
+  background: rgba(43, 127, 216, .08);
+  border: 1px solid rgba(43, 127, 216, .25);
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+
+/* 旅程总览横幅（超宽幅长卷） */
+.journey-fig { margin: 6px 0 34px; }
+.journey-fig img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 12px 34px rgba(26, 26, 46, .16);
+  display: block;
+}
+.journey-fig figcaption {
+  font-family: var(--mono);
+  font-size: .76rem;
+  color: var(--ink-faint);
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
 
 /* 建设中 */
 .coming {
