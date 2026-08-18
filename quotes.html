@@ -9,7 +9,7 @@
 /* ============================================================
    抄录页 v2 —— Kindle 纸书风格（参考 kindle-knowledge-card 配色体系）
    外背景 #e8e0d5 / 纸面 #f5f0eb / 页眉 #3c3a37 / 强调 #b8a088
-   点缀：暖黄 #F2C063
+   哑光新中纸书感（暖纸米色，气质与长野新中式一致）
    ============================================================ */
 :root {
   --paper-out: #e8e0d5;
@@ -164,12 +164,23 @@ body {
   color: var(--text-faint);
 }
 </style>
+<link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
 
 <div class="kindle-bar">
-  <div class="kindle-bar-inner">
+  .kindle-bar .brand {
+  display: inline-flex; align-items: center;
+  margin-right: 12px; vertical-align: middle;
+}
+.kindle-bar .brand img {
+  width: 30px; height: 30px; border-radius: 50%;
+  object-fit: cover; display: block;
+  box-shadow: 0 0 0 2px rgba(240,235,228,.4);
+}
+<div class="kindle-bar-inner">
     <div>
+      <a class="brand" href="index.html?direct=1"><img src="assets/images/logo-256.png" alt="长野 · 阿浩"></a>
       <div class="k-tag">QUOTES · NO.001</div>
       <div class="k-title">抄录 · 遥远的救世主</div>
       <div class="k-en">REMOTE SAVIOR — SELECTED PASSAGES</div>

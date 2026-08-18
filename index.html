@@ -12,18 +12,22 @@
 <style>
 /* ============================================================
    AI探索者 · 主页 v3 —— 终端开机 + 手绘桌面
-   品牌三色：浅蓝主 #7C93C7 / 浅紫次 #B09CC7 / 暖黄点缀 #F2C063
+   品牌三色：泥青 #108B96 / 奶黄 #F2D791 / 朱砂红 #C0392B（哑光新中式）
    ============================================================ */
 :root {
-  --green: #7C93C7;
-  --green-deep: #6279B8;
-  --gold: #F2C063;
-  --terracotta: #B09CC7;
-  --cream: #F6F3EC;
-  --ink: #1A1A2E;
-  --dark-panel: #151821;
-  --dark-border: #2a2f3a;
-  --term-green: #4ade80;
+  --green: #C0392B;        /* 朱砂红：点睛、强调（唯一高饱和） */
+  --green-deep: #A32A1F;   /* 朱砂红深 */
+  --gold: #F2D791;         /* 奶黄：暖色强调、重点 */
+  --terracotta: #108B96;   /* 泥青：主强调、功能色 */
+  --cream: #F5F1E7;        /* 米白 */
+  --ink: #3A3028;          /* 文字主（暖褐） */
+  --dark-panel: #24334B;   /* 藏蓝深面板（弃纯黑影） */
+  --dark-border: #3A4A66;
+  --term-green: #4E7A5C;   /* 苔藓绿 */
+  --moss: #4E7A5C;
+  --navy: #2E3A5C;
+  --milk-yellow: #F2D791;
+  --teal: #108B96;
   --mono: "Fira Code", ui-monospace, "Cascadia Code", Consolas, "Courier New", monospace;
   --serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
   --sans: "Noto Sans SC", -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -69,7 +73,7 @@ a { text-decoration: none; }
 .term-bar {
   display: flex; align-items: center; gap: 8px;
   padding: 12px 16px;
-  background: #1c2130;
+  background: #28364F;
   border-bottom: 1px solid var(--dark-border);
   font-family: var(--mono); font-size: .8rem; color: #94a3b8;
 }
@@ -92,7 +96,7 @@ a { text-decoration: none; }
 .out { color: #94a3b8; }
 .out .hl { color: var(--gold); }
 .out .hlg { color: var(--term-green); }
-.out .hlb { color: #7aa2f7; }
+.out .hlb { color: #9C8FE0; }
 .out .hlp { color: #f87171; }
 .cursor {
   display: inline-block; width: .6em; height: 1.05em;
@@ -237,7 +241,7 @@ a { text-decoration: none; }
   bottom: 130px;
   left: 50%;
   transform: translateX(-50%) rotate(2.2deg);
-  background: rgba(255, 243, 205, .92);
+  background: rgba(242, 215, 145, .92);
   backdrop-filter: blur(4px);
   border-radius: 6px;
   padding: 18px 20px 14px;
@@ -253,7 +257,7 @@ a { text-decoration: none; }
   content: ""; position: absolute; top: -10px; left: 50%;
   transform: translateX(-50%);
   width: 60px; height: 18px;
-  background: rgba(255, 243, 205, .95);
+  background: rgba(242, 215, 145, .95);
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(0,0,0,.08);
 }
@@ -295,7 +299,7 @@ a { text-decoration: none; }
   transform: translate(-50%, -50%) scale(.96);
   width: min(560px, 92vw);
   max-height: 72vh;
-  background: rgba(255,255,255,.96);
+  background: rgba(245,241,231,.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 14px;
@@ -310,22 +314,22 @@ a { text-decoration: none; }
 .frag-bar {
   display: flex; align-items: center; gap: 8px;
   padding: 12px 16px;
-  background: #f2ede2;
+  background: #EDE4CE;
   border-bottom: 1px solid rgba(26,26,46,.08);
   flex-shrink: 0;
 }
 .frag-title { flex: 1; font-size: .85rem; font-weight: 600; color: var(--ink); margin-left: 6px; }
-.frag-close { cursor: pointer; color: #8a8a9a; font-size: .9rem; padding: 2px 6px; border-radius: 6px; }
+.frag-close { cursor: pointer; color: #8C8378; font-size: .9rem; padding: 2px 6px; border-radius: 6px; }
 .frag-close:hover { background: rgba(26,26,46,.08); color: var(--ink); }
 .frag-body { padding: 22px 24px; overflow-y: auto; color: var(--ink); }
 .frag-lock { text-align: center; padding: 20px 0 10px; }
 .frag-lock-icon { font-size: 2.6rem; margin-bottom: 10px; }
-.frag-tip { font-size: .9rem; color: #4A4A5A; margin-bottom: 16px; line-height: 1.7; }
+.frag-tip { font-size: .9rem; color: #5C524A; margin-bottom: 16px; line-height: 1.7; }
 .frag-input {
   width: 100%; padding: 10px 14px; border-radius: 10px;
   border: 1.5px solid rgba(26,26,46,.15); font-size: .95rem;
   font-family: var(--sans); outline: none; margin-bottom: 10px;
-  background: #fff; color: var(--ink);
+  background: #FBF7EE; color: var(--ink);
 }
 .frag-input:focus { border-color: var(--terracotta); }
 .frag-btn {
@@ -339,7 +343,7 @@ a { text-decoration: none; }
 .frag-item {
   display: flex; gap: 12px; align-items: flex-start;
   padding: 12px 14px; margin-bottom: 10px;
-  background: #faf6eb; border-radius: 10px;
+  background: #FBF6EA; border-radius: 10px;
   border-left: 3px solid var(--gold);
 }
 .frag-item-text { flex: 1; font-size: .92rem; line-height: 1.6; word-break: break-word; white-space: pre-wrap; }
@@ -402,7 +406,9 @@ a { text-decoration: none; }
   <div class="menubar">
     <div class="menubar-left">
       <span class="mb-apple">🌱</span>
-      <span class="mb-brand">AI探索者</span>
+      <a class="mb-brand" href="#desktop" style="display:inline-flex;align-items:center;gap:8px">
+        <img src="assets/images/logo-256.png" alt="长野 · 阿浩" style="width:26px;height:26px;border-radius:7px;object-fit:cover">
+        长野 · 阿浩</a>
       <div class="mb-menu">
         <a href="about.html">关于</a>
         <a href="works.html">作品</a>
@@ -422,28 +428,28 @@ a { text-decoration: none; }
     <!-- 左侧书架 -->
     <div class="shelf">
       <div class="shelf-row">
-        <a class="dicon" style="--g:#7C93C7" href="about.html"><span class="dicon-img">🌱</span><span class="dicon-label">关于我</span></a>
-        <a class="dicon" style="--g:#B09CC7" href="blog.html"><span class="dicon-img">📖</span><span class="dicon-label">博客 / 随笔</span></a>
+        <a class="dicon" style="--g:#108B96" href="about.html"><span class="dicon-img">🌱</span><span class="dicon-label">关于我</span></a>
+        <a class="dicon" style="--g:#9C8FE0" href="blog.html"><span class="dicon-img">📖</span><span class="dicon-label">博客 / 随笔</span></a>
       </div>
       <div class="shelf-row">
-        <a class="dicon" style="--g:#F2C063" href="works.html"><span class="dicon-img">🎨</span><span class="dicon-label">作品集</span></a>
-        <a class="dicon" style="--g:#7C93C7" href="shelf.html"><span class="dicon-img">📚</span><span class="dicon-label">书架</span></a>
+        <a class="dicon" style="--g:#F2D791" href="works.html"><span class="dicon-img">🎨</span><span class="dicon-label">作品集</span></a>
+        <a class="dicon" style="--g:#108B96" href="shelf.html"><span class="dicon-img">📚</span><span class="dicon-label">书架</span></a>
       </div>
       <div class="shelf-row">
-        <a class="dicon" style="--g:#B09CC7" href="projects.html"><span class="dicon-img">🚀</span><span class="dicon-label">正在折腾的项目</span></a>
-        <a class="dicon" style="--g:#F2C063" href="timeline.html"><span class="dicon-img">🗺️</span><span class="dicon-label">我的成长路径</span></a>
+        <a class="dicon" style="--g:#9C8FE0" href="projects.html"><span class="dicon-img">🚀</span><span class="dicon-label">正在折腾的项目</span></a>
+        <a class="dicon" style="--g:#F2D791" href="timeline.html"><span class="dicon-img">🗺️</span><span class="dicon-label">我的成长路径</span></a>
       </div>
       <div class="shelf-row">
-        <a class="dicon" style="--g:#7C93C7" href="contact.html"><span class="dicon-img">📮</span><span class="dicon-label">订阅 / 关注我</span></a>
-        <a class="dicon" style="--g:#F2C063" href="recommends.html"><span class="dicon-img">⭐</span><span class="dicon-label">推荐清单</span></a>
+        <a class="dicon" style="--g:#108B96" href="contact.html"><span class="dicon-img">📮</span><span class="dicon-label">订阅 / 关注我</span></a>
+        <a class="dicon" style="--g:#F2D791" href="recommends.html"><span class="dicon-img">⭐</span><span class="dicon-label">推荐清单</span></a>
       </div>
     </div>
     <!-- 右侧软木板 -->
     <div class="corkboard">
-      <a class="dicon" style="--g:#B09CC7" href="javascript:void(0)" role="button" tabindex="0" onclick="openFrags()" onkeydown="if(event.key==='Enter')openFrags()"><span class="dicon-img">💡</span><span class="dicon-label">灵感碎片</span></a>
-      <a class="dicon" style="--g:#F2C063" href="quotes.html"><span class="dicon-img">📝</span><span class="dicon-label">抄录</span></a>
-      <a class="dicon" style="--g:#7C93C7" href="contact.html"><span class="dicon-img">✉️</span><span class="dicon-label">联系我</span></a>
-      <a class="dicon" style="--g:#B09CC7" href="about-site.html"><span class="dicon-img">🧱</span><span class="dicon-label">这个站是怎么做的</span></a>
+      <a class="dicon" style="--g:#9C8FE0" href="javascript:void(0)" role="button" tabindex="0" onclick="openFrags()" onkeydown="if(event.key==='Enter')openFrags()"><span class="dicon-img">💡</span><span class="dicon-label">灵感碎片</span></a>
+      <a class="dicon" style="--g:#F2D791" href="quotes.html"><span class="dicon-img">📝</span><span class="dicon-label">抄录</span></a>
+      <a class="dicon" style="--g:#108B96" href="contact.html"><span class="dicon-img">✉️</span><span class="dicon-label">联系我</span></a>
+      <a class="dicon" style="--g:#9C8FE0" href="about-site.html"><span class="dicon-img">🧱</span><span class="dicon-label">这个站是怎么做的</span></a>
     </div>
     <!-- 便签 -->
     <div class="sticky-note" id="sticky">看见框架，然后真实地活。</div>
