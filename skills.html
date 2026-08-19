@@ -6,6 +6,18 @@
 <title>长野技能 · AI探索者</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  /* 技能页专用: 卡片内图文排版 (复用 style.css 变量, 不破坏整站) */
+  .skill .thumb { width:100%; border-radius:12px; box-shadow:var(--paper-shadow); display:block; margin-bottom:14px; }
+  .skill .usage {
+    margin-top:14px; padding:12px 14px; border:1px dashed var(--teal);
+    border-radius:10px; background:rgba(16,139,150,.06); font-size:.86rem;
+    font-family:var(--mono); color:var(--ink-light); line-height:1.6;
+  }
+  .skill .usage b { color:var(--teal); }
+  .skill h3 { margin-top:2px; }
+  .skill .hl { color:var(--teal); }
+</style>
 </head>
 <body>
 
@@ -20,44 +32,62 @@
   <div class="container">
     <div class="cmd-head">ls ~/.cola/skills</div>
     <h1 class="title">长野技能</h1>
-    <p class="sub">一个人 + AI 攒出来的配图与发布技能，喂一句话就出东西。</p>
+    <p class="sub">一个人 + AI 攒出来的配图与发布技能，喂一句话就出东西。每张都配了实际生成的示例图。</p>
 
     <div class="sec">
 
-      <a class="article" href="https://github.com/Excalidraw2026/changye-ip-spec" target="_blank" rel="noopener">
+      <!-- 1. IP 规范 -->
+      <a class="article skill" href="https://github.com/Excalidraw2026/changye-ip-spec" target="_blank" rel="noopener">
         <span class="date">🧭 核心规范 · 2026-08</span>
         <h3>changye-ip-spec · 长野设计系统</h3>
+        <img class="thumb" src="assets/images/skill-ip-sheet.png" alt="长野 IP 形象表" loading="lazy">
         <p>长野 IP 的唯一权威规范：修长版形象、三色规范、三视图、表情、动作、应用场景与 QA。所有生图/发布技能校准形象与调性的基准。</p>
+        <div class="usage"><b>用法</b> · 要画任何长野图前，先读它校准<br>喂：<span class="hl">“生成长野标准形象图”</span> → 出：符合三色 / 形象 / 调性的 IP 图</div>
       </a>
 
-      <a class="article" href="https://github.com/Excalidraw2026/changye-illustrations" target="_blank" rel="noopener">
+      <!-- 2. 正文配图 -->
+      <a class="article skill" href="https://github.com/Excalidraw2026/changye-illustrations" target="_blank" rel="noopener">
         <span class="date">🎨 生图 · 1.0</span>
         <h3>changye-illustrations · 正文配图</h3>
+        <img class="thumb" src="assets/images/skill-illustrations-cover.png" alt="把想法画成画·封面配图" loading="lazy">
         <p>长野 1.0 手绘风中文正文配图：为文章、帖子、工作流文档、方法论生成"长野怪诞手绘"配图。喂内容即出图。</p>
+        <div class="usage"><b>用法</b> · 文章配图<br>喂：<span class="hl">“给这篇《把想法画成画》配封面”</span> → 出：16:9 长野手绘封面</div>
       </a>
 
-      <a class="article" href="https://github.com/Excalidraw2026/changye-scenes" target="_blank" rel="noopener">
+      <!-- 3. 场景图 -->
+      <a class="article skill" href="https://github.com/Excalidraw2026/changye-scenes" target="_blank" rel="noopener">
         <span class="date">🎨 生图 · 2.0</span>
         <h3>changye-scenes · 场景图</h3>
+        <img class="thumb" src="assets/images/skill-scenes-frame.png" alt="长野场景·物件装框" loading="lazy">
         <p>长野 + 真实物件 + 物理动作 + 留白叙事。默认 16:9 正文配图，另有彩蛋模式 / 长卷故事图。互联网打工人共鸣图的首选。</p>
+        <div class="usage"><b>用法</b> · 场景/共鸣图<br>喂：<span class="hl">“画一张打工人加班的场景”</span> → 出：长野 + 办公桌 + 物件的 16:9 图</div>
       </a>
 
-      <a class="article" href="https://github.com/Excalidraw2026/changye-daily" target="_blank" rel="noopener">
+      <!-- 4. 每日小画 -->
+      <a class="article skill" href="https://github.com/Excalidraw2026/changye-daily" target="_blank" rel="noopener">
         <span class="date">🌅 生图 · 每日</span>
         <h3>changye-daily · 每日小画</h3>
+        <img class="thumb" src="assets/images/skill-daily-calendar.png" alt="长野每日小画·日历贴画" loading="lazy">
         <p>把"每天"画成一幅治愈的日系手绘小插画——一眼看完就想起"今天很棒、大致干了什么"。长野 Q 版 IP + 三色规范。</p>
+        <div class="usage"><b>用法</b> · 每日一画<br>喂：<span class="hl">“今天画一张，记录今天的好”</span> → 出：治愈日系小画</div>
       </a>
 
-      <a class="article" href="https://github.com/Excalidraw2026/changye-design-system" target="_blank" rel="noopener">
+      <!-- 5. 设计系统 -->
+      <a class="article skill" href="https://github.com/Excalidraw2026/changye-design-system" target="_blank" rel="noopener">
         <span class="date">🖌 设计系统</span>
         <h3>changye-design-system · HTML/卡片系统</h3>
+        <img class="thumb" src="assets/images/skill-design-palette.png" alt="长野三色调色板" loading="lazy">
         <p>长野排版设计系统：HTML 模板、公众号图文卡片、小红书卡片、落地页。与 ip-spec 配合，做长野风格的视觉呈现。</p>
+        <div class="usage"><b>用法</b> · 视觉呈现<br>喂：<span class="hl">“做一张长野风格的小红书卡片”</span> → 出：3:4 卡片 HTML → 截图成图</div>
       </a>
 
-      <a class="article" href="https://github.com/Excalidraw2026/changye-post-multi" target="_blank" rel="noopener">
+      <!-- 6. 多平台发布 -->
+      <a class="article skill" href="https://github.com/Excalidraw2026/changye-post-multi" target="_blank" rel="noopener">
         <span class="date">🚀 发布 · 总调度</span>
         <h3>changye-post-multi · 多平台发布</h3>
+        <img class="thumb" src="assets/images/skill-post-xhs-card.png" alt="长野小红书发布卡片" loading="lazy">
         <p>把长野配图发到公众号 / 微博 / 小红书 / 抖音。总调度器 + 每平台独立模块，说一句"发小红书"就调度对应模块自动发布。</p>
+        <div class="usage"><b>用法</b> · 发平台<br>喂：<span class="hl">“把这篇发小红书 + 抖音”</span> → 调度模块 → 自动生成对应形态并发布</div>
       </a>
 
     </div>
