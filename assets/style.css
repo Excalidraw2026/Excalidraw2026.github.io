@@ -31,6 +31,10 @@
   --sans: "Noto Sans SC", -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   --fancy: "Fraunces", Georgia, serif;
   --hand: "Caveat", cursive;
+
+  /* 纸感材质（哑光新中式 · 同步设计系统） */
+  --paper-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.035 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+  --paper-shadow: 0 2px 3px rgba(58,48,40,.06), 0 10px 30px rgba(58,48,40,.10);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,7 +42,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--cream);
+  background: var(--paper-noise), var(--cream);
+  background-color: var(--cream);
   color: var(--ink);
   font-family: var(--sans);
   line-height: 1.8;
@@ -57,7 +62,7 @@ a:hover { color: var(--teal-deep); }
   display: block;
   width: 100%;
   border-radius: 16px;
-  box-shadow: 0 12px 32px rgba(58,48,40,.14);
+  box-shadow: var(--paper-shadow);
   margin: 8px 0 28px;
 }
 
@@ -134,7 +139,8 @@ p.body-text.dim { color: var(--ink-light); }
 /* 终端风格引用块（深色面板，页面点缀，一页最多1-2个） */
 .term-quote {
   font-family: var(--mono);
-  background: var(--dark-panel);
+  background: var(--paper-noise), var(--dark-panel);
+  background-color: var(--dark-panel);
   border: 1px solid var(--dark-border);
   border-left: 3px solid var(--term-green);
   border-radius: 10px;
@@ -154,7 +160,7 @@ p.body-text.dim { color: var(--ink-light); }
 .article-fig img {
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(58, 48, 40, .14);
+  box-shadow: var(--paper-shadow);
   display: block;
 }
 .article-fig figcaption {
@@ -175,8 +181,13 @@ ul.list li {
   border-radius: 14px;
   margin-bottom: 12px;
   display: flex; gap: 14px; align-items: flex-start;
-  box-shadow: 0 2px 10px rgba(0,0,0,.03);
+  box-shadow: var(--paper-shadow);
+  position: relative; overflow: hidden; isolation: isolate;
   transition: transform .2s, box-shadow .2s;
+}
+ul.list li::before {
+  content: ""; position: absolute; inset: 0; border-radius: 14px;
+  background: var(--paper-noise); opacity: .5; pointer-events: none; z-index: -1;
 }
 ul.list li:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.06); }
 ul.list li::before {
@@ -196,7 +207,12 @@ ul.list li span { color: var(--ink-light); font-size: .88rem; display: block; ma
   margin-bottom: 14px;
   transition: transform .2s, box-shadow .2s, border-color .2s;
   color: var(--ink);
-  box-shadow: 0 2px 10px rgba(0,0,0,.03);
+  box-shadow: var(--paper-shadow);
+  position: relative; overflow: hidden; isolation: isolate;
+}
+.article::before {
+  content: ""; position: absolute; inset: 0; border-radius: 14px;
+  background: var(--paper-noise); opacity: .5; pointer-events: none; z-index: -1;
 }
 .article:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.07); border-color: var(--milk-yellow); text-decoration: none; }
 .article .date { font-family: var(--mono); font-size: .72rem; color: var(--ink-faint); }
@@ -213,7 +229,7 @@ ul.list li span { color: var(--ink-light); font-size: .88rem; display: block; ma
   font-family: var(--sans);
 }
 .btn:hover { transform: translateY(-2px); text-decoration: none; }
-.btn-green { background: var(--teal); color: #FBF7EE; }
+.btn-green { background: var(--teal); color: #FBF7EE; box-shadow: var(--paper-shadow); }
 .btn-green:hover { box-shadow: 0 8px 24px rgba(16,139,150,.3); }
 .btn-ghost { border: 1.5px solid rgba(58,48,40,.18); color: var(--ink); background: transparent; }
 .btn-ghost:hover { border-color: var(--teal); color: var(--teal); box-shadow: 0 8px 20px rgba(0,0,0,.05); }
@@ -247,7 +263,7 @@ ul.list li span { color: var(--ink-light); font-size: .88rem; display: block; ma
 .journey-fig img {
   width: 100%;
   border-radius: 14px;
-  box-shadow: 0 12px 34px rgba(58, 48, 40, .14);
+  box-shadow: var(--paper-shadow);
   display: block;
 }
 .journey-fig figcaption {
