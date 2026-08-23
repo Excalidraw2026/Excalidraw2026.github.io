@@ -641,11 +641,31 @@ a { text-decoration: none; }
   .app-topbar { padding: 0 18px; }
   .app-links { gap: 12px; }
   .app-link { font-size: 12px; }
+  .world { overflow-y: auto; overflow-x: hidden; }
   .card-name, .card-role { display: none; }
-  .card-bio, .card-skills { width: 46%; }
+  .character-wrap { width: 180px; top: 40%; }
+  .ring-1 { width: 230px; height: 230px; }
+  .ring-2 { width: 300px; height: 300px; }
+  .card-bio, .card-skills {
+    top: 57%; bottom: auto; width: calc(50% - 20px);
+    padding: 12px 13px; box-sizing: border-box; min-width: 0;
+  }
+  .card-bio { left: 5%; }
+  .card-skills { right: 5%; }
+  .card-title-md { font-size: 14px; }
+  .card-desc { font-size: 11px; line-height: 1.55; }
+  .chips { gap: 5px; min-width: 0; }
+  .chip { height: 25px; min-width: 0; padding: 0 5px; font-size: 9px; white-space: nowrap; }
+  .term-bar {
+    top: 76%; bottom: auto; width: 90%; height: 40px;
+    font-size: 11px;
+  }
   .scroll-hint { display: none; }
-  .term-bar { bottom: 22%; }
-  .world-links { bottom: 16px; }
+  .world-links {
+    top: 84%; bottom: auto; width: 94%;
+    gap: 6px; padding-bottom: 18px;
+  }
+  .wl-chip { height: 30px; padding: 0 10px; font-size: 11px; }
 }
 </style>
 </head>
