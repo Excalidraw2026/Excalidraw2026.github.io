@@ -3,9 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>灵感碎片 · AI探索者</title>
+<title>灵感收集 · AI探索者</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+.mag-card.quote-card { justify-content: center; }
+.mag-card.quote-card .idx { color: var(--cinnabar,#C0392B); }
+.quote-text {
+  font-family: var(--serif);
+  font-size: 1.05rem; font-weight: 600; line-height: 1.8;
+  color: var(--ink);
+  white-space: pre-line;
+  margin: 4px 0;
+}
+.quote-source { margin-top: 16px; font-size: .85rem; color: var(--ink-light); }
+.mag-card .tag-inline {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: .78rem; color: var(--teal);
+}
+.mag-card .tag-inline.red { color: var(--cinnabar,#C0392B); }
+</style>
 </head>
 <body>
 
@@ -17,47 +34,74 @@
 </div>
 
 <main class="page">
-  <div class="container">
-    <div class="cmd-head">cat notes.md</div>
-    <h1 class="title">灵感碎片</h1>
-    <p class="sub">随手记下的想法、意象和金句。</p>
-
-    <div class="sec">
-      <div class="sec-tag">看见框架</div>
-      <div class="term-quote">"每一个环境都是楚门的世界——城市、家庭、公司、行业。
-只有看到，才能建立起自己的自我意识。"</div>
+  <div class="container mag-page">
+    <div class="mag-head">
+      <p class="mag-kicker">灵感 · NOTES</p>
+      <h1 class="mag-title">随手记下的<br>想法与意象。</h1>
+      <p class="mag-lede">图片、金句、链接——所有让我心里「咯噔一下」的东西。32 条，慢慢长。</p>
     </div>
 
-    <div class="sec">
-      <div class="sec-tag">樱桃盘</div>
-      <div class="term-quote">"一盘樱桃相当于你所在的群体，单个樱桃相当于你。
-突破之后，有时会无处安放——那是真空期。
-孤独的背面，是新技能还没成熟。"</div>
+    <div class="mag-sec-head">
+      <span class="no">01</span>
+      <h2>灵感收集</h2>
+      <span class="en"><em>图片 18 · 文字 9 · 链接 5</em></span>
     </div>
 
-    <div class="sec">
-      <div class="sec-tag">失眠的线索</div>
-      <div class="term-quote">"人一旦不上班就睡不着。
-失去外部节奏锚点后，夜晚静下来，真空期的声音就变大了。
-失眠的背面，是听见自己还没安放好。"</div>
+    <div class="mag-grid">
+      <div class="mag-card">
+        <span class="top-strip"></span>
+        <span class="idx">壹</span>
+        <span class="mag-card-title">雨夜霓虹 · 街拍光影</span>
+        <p class="mag-card-desc">雨天玻璃后的霓虹招牌，色彩被水痕晕开——适合短剧开场镜头参考。</p>
+        <span class="tag-inline">$ img --tag moodboard</span>
+      </div>
+
+      <div class="mag-card quote-card accent-red">
+        <span class="idx">贰</span>
+        <div class="quote-text">" 每一个环境都是楚门的世界——
+城市、家庭、公司、行业。
+只有看到，才能建立起自己的自我意识。 "</div>
+        <p class="quote-source">—— 看见框架</p>
+        <span class="tag-inline red">$ cat quotes.txt</span>
+      </div>
+
+      <div class="mag-card">
+        <span class="top-strip"></span>
+        <span class="idx">叁</span>
+        <span class="mag-card-title">Motion 动效灵感画廊</span>
+        <p class="mag-card-desc">开源动效案例库，滚动触发与文字编排的范例，很适合个人网站的加载过渡。</p>
+        <span class="tag-inline">motion.dev/gallery</span>
+      </div>
+
+      <div class="mag-card">
+        <span class="top-strip red"></span>
+        <span class="idx">肆</span>
+        <span class="mag-card-title">废墟晨雾 · 空镜氛围</span>
+        <p class="mag-card-desc">废墟里的第一缕雾，留白比废墟本身更响——空镜氛围参考。</p>
+        <span class="tag-inline">$ img --tag moodboard</span>
+      </div>
+
+      <div class="mag-card quote-card accent-red">
+        <span class="idx">伍</span>
+        <div class="quote-text">" 必须边长新能力，边让他人看见。
+长新能力时让别人看见，
+新环境的人才能找到你。 "</div>
+        <p class="quote-source">—— 生长的法则</p>
+        <span class="tag-inline red">$ cat quotes.txt</span>
+      </div>
+
+      <div class="mag-card">
+        <span class="top-strip"></span>
+        <span class="idx">陆</span>
+        <span class="mag-card-title">中文衬线字体搭配指南</span>
+        <p class="mag-card-desc">宋体标题与黑体正文的混排比例参考，正好可用于短剧字幕排版。</p>
+        <span class="tag-inline">typeblog.bundes.com</span>
+      </div>
     </div>
 
-    <div class="sec">
-      <div class="sec-tag">生长的法则</div>
-      <div class="term-quote">"必须边长新能力，边让他人看见。
-长新能力时让别人看见，新环境的人才能找到你。"</div>
-    </div>
-
-    <div class="sec">
-      <div class="sec-tag">点线面体</div>
-      <div class="term-quote">"点连成线，线组成面，面组成体。
-一个体解决一个大的场景，也就是一群人。"</div>
-    </div>
-
-    <div class="sec">
-      <div class="sec-tag">AI 时代</div>
-      <div class="term-quote">"AI 让边际成本趋近于零，
-个体第一次可以绕过组织直接触达人群。"</div>
+    <div class="mag-colophon">
+      <span class="mark">思</span>
+      <span class="line">看见框架，然后真实地活。</span>
     </div>
   </div>
 </main>

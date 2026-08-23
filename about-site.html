@@ -16,40 +16,69 @@
   </div>
 </div>
 
-<main class="page">
-  <div class="container">
-    <div class="cmd-head">cat readme.md</div>
-    <h1 class="title">这个站是怎么做的</h1>
-    <p class="sub">一个人 + AI = 一个团队。</p>
+<main>
+  <div class="container mag-page">
 
-    <div class="sec">
-      <div class="sec-tag">为什么建站</div>
-      <p class="body-text">因为一句话："必须边长新能力，边让他人看见。"做了东西，就要有一个地方让别人看见。于是有了这个站。</p>
-    </div>
+    <header class="mag-head">
+      <div class="mag-kicker">Who Does This Site&nbsp;·&nbsp;一个人与 AI 的团队</div>
+      <h1 class="mag-title">这个站是怎么做的</h1>
+      <p class="mag-lede">一个人 + AI = 一个团队。从想法到上线，全程和 AI 搭档。</p>
+    </header>
 
-    <div class="sec">
-      <div class="sec-tag">技术方案</div>
-      <ul class="list">
-        <li><div><b>纯静态</b><span>HTML + CSS + JS，零依赖、零后端，双击就能打开，任何免费托管都能跑。</span></div></li>
-        <li><div><b>终端开场</b><span>whoami / cat about.md / ls —— 用命令行讲自我介绍，是整站的签名。</span></div></li>
-        <li><div><b>门户结构</b><span>主页是入口，每张卡片一个子页面：作品、文章、灵感、联系。</span></div></li>
-        <li><div><b>设计规范</b><span>基于长野自有设计系统（changye-design-system）：奶黄+泥青对分、朱砂红点睛、哑光纸感。归长野 · 阿浩所有，可自由商用。</span></div></li>
-      </ul>
-    </div>
+    <section>
+      <div class="mag-sec-head"><span class="no">壹</span><h2>为什么建站</h2><span class="en">Why</span></div>
+      <p class="body-text">因为一句话：<b>"必须边长新能力，边让他人看见。"</b>做了东西，就要有一个地方让别人看见。于是有了这个站。</p>
+    </section>
 
-    <div class="sec">
-      <div class="sec-tag">过程</div>
+    <section>
+      <div class="mag-sec-head"><span class="no">贰</span><h2>技术方案</h2><span class="en">Stack</span></div>
+      <div class="mag-grid">
+        <div class="mag-card">
+          <div class="idx">技術ノ一</div>
+          <div class="mag-card-title">纯静态</div>
+          <div class="mag-card-desc">HTML + CSS + JS，零依赖、零后端，双击就能打开，任何免费托管都能跑。</div>
+          <div class="mag-card-meta">HTML · CSS · JS</div>
+        </div>
+        <div class="mag-card">
+          <div class="idx">技術ノ二</div>
+          <div class="mag-card-title">终端开场</div>
+          <div class="mag-card-desc">whoami / cat about.md / ls —— 用命令行讲自我介绍，是整站的签名。</div>
+          <div class="mag-card-meta">whoami · cat · ls</div>
+        </div>
+        <div class="mag-card">
+          <div class="idx">技術ノ三</div>
+          <div class="mag-card-title">门户结构</div>
+          <div class="mag-card-desc">主页是入口，每张卡片一个子页面：作品、文章、灵感、联系。</div>
+          <div class="mag-card-meta">主页 → 子页面</div>
+        </div>
+        <div class="mag-card accent-red">
+          <div class="idx">技術ノ四</div>
+          <div class="mag-card-title">设计规范</div>
+          <div class="mag-card-desc">基于长野自有设计系统（changye-design-system）：奶黄+泥青对分、朱砂红点睛、哑光纸感。归长野 · 阿浩所有，可自由商用。</div>
+          <div class="mag-card-meta">changye-design-system</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="mag-sec-head"><span class="no">叁</span><h2>过程</h2><span class="en">Process</span></div>
       <div class="term-quote">$ whoami        → 我是谁
 $ cat about.md  → 我信什么
 $ ls ~/works    → 我做过什么
 $ ./launch.sh   → 上线，让别人看见</div>
       <p class="body-text">从提需求到成型，全程和 AI 搭档：我定方向、给素材，AI 写代码、调样式、跑验证。一天之内，从想法变成了能打开的站。</p>
+    </section>
+
+    <section>
+      <div class="mag-sec-head"><span class="no">肆</span><h2>成本</h2><span class="en">Cost</span></div>
+      <p class="body-text dim">域名 0 元（GitHub Pages 免费托管），服务器 0 元，工具 0 元。唯一投入的是认真。</p>
+    </section>
+
+    <div class="mag-colophon">
+      <span class="mark">終</span>
+      <div class="line">一个人 + AI = 一个团队 · <em>编于 2026 · 长野 · 阿浩</em></div>
     </div>
 
-    <div class="sec">
-      <div class="sec-tag">成本</div>
-      <p class="body-text dim">域名 0 元（GitHub Pages 免费托管），服务器 0 元，工具 0 元。唯一投入的是认真。</p>
-    </div>
   </div>
 </main>
 

@@ -309,3 +309,148 @@ footer a:hover { color: var(--teal); text-decoration: none; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   文人杂志式 · 统一风格层（方向 A）
+   长野设计系统：米白 / 泥青 / 奶黄 / 朱砂红（克制点缀）
+   用法：页面容器套 .container 后加 .mag-page；
+   刊头 .mag-head；数据格 .mag-stat-row；
+   卡片 .mag-grid > .mag-card；落款 .mag-colophon。
+   ============================================================ */
+.mag-page { padding: clamp(30px, 5vh, 54px) 0 clamp(60px, 9vh, 100px); }
+
+/* —— 刊头 —— */
+.mag-head { margin: 8px 0 6px; }
+.mag-kicker {
+  font-family: var(--mono); font-size: .74rem; letter-spacing: .25em;
+  color: var(--cinnabar, #C0392B); margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.mag-title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.14;
+  color: var(--ink);
+  letter-spacing: .01em;
+}
+.mag-lede {
+  margin-top: 26px;
+  max-width: 36em;
+  font-size: 1.04rem;
+  line-height: 1.9;
+  color: var(--ink-light);
+}
+
+/* —— 数据格 —— */
+.mag-stat-row {
+  margin-top: clamp(44px, 7vh, 72px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(58,48,40,.16);
+}
+.mag-stat {
+  padding: 26px 24px 10px 0;
+  border-right: 1px solid rgba(58,48,40,.10);
+}
+.mag-stat:last-child { border-right: 0; }
+.mag-stat .lbl {
+  font-family: var(--mono); font-size: .72rem; letter-spacing: .16em;
+  color: var(--ink-faint); margin-bottom: 10px;
+}
+.mag-stat .num {
+  font-family: var(--serif); font-size: 2rem; font-weight: 700;
+  color: var(--ink); line-height: 1;
+}
+.mag-stat .num em { font-style: normal; font-size: .92rem; color: var(--teal); font-family: var(--sans); }
+.mag-stat .note { font-size: .72rem; color: var(--ink-faint); margin-top: 8px; font-family: var(--mono); }
+
+/* —— 栏目头 —— */
+.mag-sec-head {
+  display: flex; align-items: baseline; gap: 16px;
+  margin: clamp(56px, 8vh, 92px) 0 clamp(22px, 3vh, 34px);
+}
+.mag-sec-head .no {
+  font-family: var(--mono); font-size: .8rem; color: var(--cinnabar, #C0392B);
+}
+.mag-sec-head h2 {
+  font-family: var(--serif); font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  font-weight: 900; color: var(--ink); flex: 1;
+}
+.mag-sec-head .en {
+  font-family: var(--fancy); font-style: italic; color: var(--ink-faint);
+  font-size: 1rem; letter-spacing: .02em;
+}
+
+/* —— 卡片网格 —— */
+.mag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px;
+}
+.mag-card {
+  position: relative;
+  display: flex; flex-direction: column;
+  background: rgba(251, 248, 240, .6);
+  border: 1px solid rgba(58, 48, 40, .10);
+  border-radius: 16px;
+  padding: 24px 24px 22px;
+  text-decoration: none;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.mag-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(58,48,40,.12);
+  border-color: rgba(16,139,150,.4);
+}
+.mag-card:hover .mag-card-title { color: var(--teal); }
+.mag-card .idx {
+  font-family: var(--serif); font-size: 1.05rem; font-weight: 700;
+  color: var(--ink-faint); margin-bottom: 14px;
+}
+.mag-card .mag-card-title {
+  font-family: var(--serif); font-size: 1.28rem; font-weight: 700;
+  color: var(--ink); line-height: 1.35; transition: color .2s;
+}
+.mag-card .mag-card-desc {
+  margin-top: 12px;
+  flex: 1;
+  font-size: .93rem; line-height: 1.75; color: var(--ink-light);
+}
+.mag-card .mag-card-meta {
+  margin-top: 18px; padding-top: 14px;
+  border-top: 1px solid rgba(58,48,40,.08);
+  font-family: var(--mono); font-size: .78rem; color: var(--teal);
+}
+.mag-card.accent-red .idx { color: var(--cinnabar, #C0392B); }
+.mag-card .top-strip {
+  height: 4px; border-radius: 2px;
+  background: linear-gradient(to right, var(--teal), var(--milk-yellow));
+  margin-bottom: 16px;
+}
+.mag-card .top-strip.red { background: linear-gradient(to right, var(--cinnabar,#C0392B), var(--milk-yellow)); }
+
+/* —— 落款 —— */
+.mag-colophon {
+  margin-top: clamp(48px, 7vh, 80px);
+  border-top: 2px solid var(--ink);
+  padding-top: 24px;
+  display: flex; align-items: baseline; gap: 16px;
+}
+.mag-colophon .mark {
+  font-size: 1.7rem; font-weight: 700; color: var(--ink); line-height: 1;
+  font-family: var(--serif);
+}
+.mag-colophon .line {
+  font-family: var(--mono); font-size: .88rem; color: var(--ink);
+}
+.mag-colophon .line em { font-style: normal; color: var(--teal); }
+
+/* 响应式 */
+@media (max-width: 760px) {
+  .mag-stat-row { grid-template-columns: repeat(2, 1fr); row-gap: 18px; }
+  .mag-stat:nth-child(2) { border-right: 0; }
+  .mag-sec-head .en { display: none; }
+  .mag-grid { grid-template-columns: 1fr; }
+}
+

@@ -6,6 +6,17 @@
 <title>正在折腾的项目 · AI探索者</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+/* 项目状态标签（叠加在文人卡片上） */
+.mag-card .state {
+  position: absolute; right: 20px; top: 20px;
+  font-family: var(--mono); font-size: .72rem;
+  padding: 4px 12px; border-radius: 999px;
+}
+.state-done  { background: var(--teal); color: #F5F1E7; }
+.state-doing { background: var(--milk-yellow, #F2D791); color: var(--ink); }
+.state-plan  { background: var(--paper, #FBF8F0); border: 1px solid rgba(140,128,112,.6); color: var(--ink-light); }
+</style>
 </head>
 <body>
 
@@ -17,37 +28,69 @@
 </div>
 
 <main class="page">
-  <div class="container">
-    <div class="cmd-head">git status</div>
-    <h1 class="title">正在折腾的项目</h1>
-    <p class="sub">有些做完了，有些还在长。</p>
+  <div class="container mag-page">
+    <div class="mag-head">
+      <p class="mag-kicker">项目 · PROJECTS</p>
+      <h1 class="mag-title">正在折腾的事。</h1>
+      <p class="mag-lede">有些做完了，有些还在长。就像种子发芽——先有根，才有枝叶，最后才有人看见。</p>
+    </div>
 
-    <div class="sec">
-      <a class="article" href="crm.html">
-        <span class="date">✅ 已完成 · 2026</span>
-        <h3>家装 CRM 管理系统</h3>
-        <p>为家装销售自研的客户管理系统：客户档案、量房/定金/签约节点跟踪、销售看板。</p>
+    <div class="mag-sec-head">
+      <span class="no">01</span>
+      <h2>项目清单</h2>
+      <span class="en">Work in Progress</span>
+    </div>
+
+    <div class="mag-grid">
+      <a class="mag-card" href="crm.html">
+        <span class="state state-done">已完成</span>
+        <span class="top-strip"></span>
+        <span class="idx">壹</span>
+        <span class="mag-card-title">家装 CRM 管理系统</span>
+        <p class="mag-card-desc">为家装销售自研的客户管理系统：客户档案、量房/定金/签约节点跟踪、销售看板。</p>
+        <span class="mag-card-meta">2026</span>
       </a>
-      <a class="article" href="https://github.com/Excalidraw2026/changye-scenes" target="_blank" rel="noopener">
-        <span class="date">✅ 已完成 · 2026-08</span>
-        <h3>changye-scenes：长野实物场景图技能</h3>
-        <p>个人 IP 配图技能：长野 + 真实物件 + 物理动作 + 留白叙事。喂一篇文章，出 16:9 正文配图与彩蛋长卷故事图。仓库已开源（私有）。</p>
+
+      <a class="mag-card accent-red" href="https://github.com/Excalidraw2026/changye-scenes" target="_blank" rel="noopener">
+        <span class="state state-done">已完成</span>
+        <span class="top-strip red"></span>
+        <span class="idx">贰</span>
+        <span class="mag-card-title">changye-scenes · 长野实物场景图技能</span>
+        <p class="mag-card-desc">个人 IP 配图技能：长野 + 真实物件 + 物理动作 + 留白叙事。喂一篇文章，出 16:9 正文配图与彩蛋长卷故事图。</p>
+        <span class="mag-card-meta">2026-08 · 仓库已开源</span>
       </a>
-      <a class="article" href="#">
-        <span class="date">🔄 进行中 · 2026-08</span>
-        <h3>个人知识管理系统</h3>
-        <p>Obsidian 记忆库 + PLAN/PROJ/DEC 编号体系 + 每日复盘自动化。目标：任何信息 5 秒内定位。</p>
+
+      <div class="mag-card">
+        <span class="state state-doing">进行中</span>
+        <span class="top-strip"></span>
+        <span class="idx">叁</span>
+        <span class="mag-card-title">个人知识管理系统</span>
+        <p class="mag-card-desc">Obsidian 记忆库 + PLAN/PROJ/DEC 编号体系 + 每日复盘自动化。目标：任何信息 5 秒内定位。</p>
+        <span class="mag-card-meta">2026-08</span>
+      </div>
+
+      <a class="mag-card" href="index.html?direct=1">
+        <span class="state state-doing">进行中</span>
+        <span class="top-strip"></span>
+        <span class="idx">肆</span>
+        <span class="mag-card-title">这个网站</span>
+        <p class="mag-card-desc">一个人 + AI 搭出来的个人门户。实践「边长新能力，边让他人看见」。</p>
+        <span class="mag-card-meta">2026-08</span>
       </a>
-      <a class="article" href="index.html?direct=1">
-        <span class="date">🔄 进行中 · 2026-08</span>
-        <h3>这个网站</h3>
-        <p>一个人 + AI 搭出来的个人门户。实践"边长新能力，边让他人看见"。</p>
-      </a>
-      <a class="article" href="#">
-        <span class="date">🌱 计划中</span>
-        <h3>【下一个想做的事】</h3>
-        <p>【比如：把 CRM 做成多端、写一套家装 AI 助手、或任何你想折腾的事。】</p>
-      </a>
+
+      <div class="mag-card">
+        <span class="state state-plan">计划中</span>
+        <span class="top-strip"></span>
+        <span class="idx">伍</span>
+        <span class="mag-card-title">下一个想做的事</span>
+        <p class="mag-card-desc">把 CRM 做成多端、写一套家装 AI 助手，或任何想折腾的事。</p>
+        <span class="mag-card-meta">planning</span>
+      </div>
+    </div>
+
+    <div class="mag-colophon">
+      <span class="mark">活</span>
+      <span class="line">一个人 + AI，慢慢把想法都做出来。</span>
     </div>
   </div>
 </main>

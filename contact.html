@@ -6,6 +6,30 @@
 <title>联系我 · AI探索者</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+.mag-card .way { margin-top: 4px; }
+.mag-card .way .way-label {
+  display: block; font-family: var(--serif); font-size: 1.02rem; font-weight: 700; color: var(--ink);
+}
+.mag-card .way .way-value {
+  display: block; margin-top: 8px;
+  font-family: var(--mono); font-size: .9rem; color: var(--teal);
+}
+.mag-card .way .way-note { display: block; margin-top: 6px; font-size: .84rem; color: var(--ink-light); }
+.cta-btns { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+.cta-btns .btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border-radius: 999px;
+  font-size: .9rem; text-decoration: none; transition: transform .2s, filter .2s;
+}
+.cta-btns .btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+.btn-green { background: var(--teal); color: #F5F1E7; }
+.btn-ghost { background: rgba(251,248,240,.8); border: 1.5px solid rgba(16,139,150,.4); color: var(--teal); }
+.reply-quote {
+  font-family: var(--serif); font-size: 1.05rem; line-height: 1.9; color: var(--ink);
+  white-space: pre-line;
+}
+</style>
 </head>
 <body>
 
@@ -17,30 +41,66 @@
 </div>
 
 <main class="page">
-  <div class="container">
-    <div class="cmd-head">cat contact.md</div>
-    <h1 class="title">联系我</h1>
-    <p class="sub">无论是想聊 AI、想交流，还是随便打个招呼，都欢迎。</p>
+  <div class="container mag-page">
+    <div class="mag-head">
+      <p class="mag-kicker">联系 · CONTACT</p>
+      <h1 class="mag-title">聊聊 AI，<br>或打个招呼。</h1>
+      <p class="mag-lede">无论是想聊 AI、想交流，还是随便打个招呼，都欢迎。每条留言我都会认真看、认真回。</p>
+    </div>
 
-    <div class="sec">
-      <div class="sec-tag">找到我</div>
-      <ul class="list">
-        <li><div><b>邮箱</b><span>2564786746@qq.com</span></div></li>
-        <li><div><b>微信</b><span>w33v55（备注“网站来的”更快通过）</span></div></li>
-        <li><div><b>公众号</b><span>第一性原理生活（文章和更新发在这里）</span></div></li>
-      </ul>
+    <div class="mag-sec-head">
+      <span class="no">01</span>
+      <h2>找到我</h2>
+      <span class="en">Find Me</span>
+    </div>
 
-      <div class="cta-btns">
-        <a class="btn btn-green" href="mailto:2564786746@qq.com">📮 发邮件</a>
-        <a class="btn btn-ghost" href="#">💬 微信：w33v55</a>
-        <a class="btn btn-ghost" href="#">📢 公众号：第一性原理生活</a>
+    <div class="mag-grid">
+      <a class="mag-card" href="mailto:2564786746@qq.com">
+        <span class="top-strip"></span>
+        <span class="idx">壹</span>
+        <div class="way">
+          <span class="way-label">📮 邮箱</span>
+          <span class="way-value">2564786746@qq.com</span>
+          <span class="way-note">最正式的联系方式，适合详细交流。</span>
+        </div>
+      </a>
+
+      <div class="mag-card accent-red">
+        <span class="top-strip red"></span>
+        <span class="idx">贰</span>
+        <div class="way">
+          <span class="way-label">💬 微信</span>
+          <span class="way-value">w33v55</span>
+          <span class="way-note">备注「网站来的」更快通过。</span>
+        </div>
+      </div>
+
+      <div class="mag-card">
+        <span class="top-strip"></span>
+        <span class="idx">叁</span>
+        <div class="way">
+          <span class="way-label">📢 公众号</span>
+          <span class="way-value">第一性原理生活</span>
+          <span class="way-note">文章和更新发在这里，欢迎关注。</span>
+        </div>
       </div>
     </div>
 
-    <div class="sec">
-      <div class="sec-tag">回应时间</div>
-      <div class="term-quote">> 邮件一般 24 小时内回。
-> 微信可能慢一点——我尽量少看手机，认真生活。</div>
+    <div class="mag-sec-head">
+      <span class="no">02</span>
+      <h2>回应时间</h2>
+      <span class="en">Response</span>
+    </div>
+    <div class="mag-grid">
+      <div class="mag-card quote-card accent-red">
+        <span class="idx">壹</span>
+        <div class="reply-quote">> 邮件一般 24 小时内回。<br>> 微信可能慢一点——我尽量少看手机，认真生活。</div>
+      </div>
+    </div>
+
+    <div class="mag-colophon">
+      <span class="mark">诚</span>
+      <span class="line">认真生活的人，值得被认真对待。</span>
     </div>
   </div>
 </main>

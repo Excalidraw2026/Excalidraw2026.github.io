@@ -16,54 +16,90 @@
   </div>
 </div>
 
-<main class="page">
-  <div class="container">
-    <div class="cmd-head">ls ~/recommends</div>
-    <h1 class="title">推荐清单</h1>
-    <p class="sub">我用过、正在用、觉得值得分享的书、工具和资源。</p>
+<main>
+  <div class="container mag-page">
 
-    <section class="sec">
-      <div class="sec-tag">📚 书</div>
-      <a class="article" href="https://book.douban.com/subject/1084211/" target="_blank" rel="noopener">
-        <span class="date">豆豆 · 小说</span>
-        <h3>遥远的救世主</h3>
-        <p>电视剧《天道》原著。没有救世主，只有文化属性这面镜子——强者文化造强者，弱者文化期待救主。神是道，道是规律，规律如来的东西不容思议。</p>
-      </a>
-    </section>
+    <div class="mag-head">
+      <p class="mag-kicker">Recommended · 推荐清单</p>
+      <h1 class="mag-title">推荐清单</h1>
+      <p class="mag-lede">我用过、正在用、觉得值得分享的书、工具和资源。</p>
+    </div>
 
-    <section class="sec">
-      <div class="sec-tag">🛠️ 工具</div>
-      <a class="article" href="https://obsidian.md/" target="_blank" rel="noopener">
-        <span class="date">日常 · 主线</span>
-        <h3>Obsidian · 个人记忆库</h3>
-        <p>我的整座知识库都长在里面——编号体系（PLAN / PROJ / DEC）、每日复盘自动化、任何信息 5 秒内定位。像经营公司一样经营自己。</p>
+    <div class="mag-sec-head">
+      <span class="no">01</span>
+      <h2>书</h2>
+      <span class="en">Books</span>
+    </div>
+    <div class="mag-grid">
+      <a class="mag-card accent-red" href="https://book.douban.com/subject/1084211/" target="_blank" rel="noopener">
+        <span class="top-strip red"></span>
+        <span class="idx">一</span>
+        <span class="mag-card-title">遥远的救世主</span>
+        <p class="mag-card-desc">电视剧《天道》原著。没有救世主，只有文化属性这面镜子——强者文化造强者，弱者文化期待救主。神是道，道是规律，规律如来的东西不容思议。</p>
+        <span class="mag-card-meta">豆豆 · 小说</span>
       </a>
-      <a class="article" href="https://github.com/" target="_blank" rel="noopener">
-        <span class="date">日常 · 部署</span>
-        <h3>GitHub Pages · 免费托管</h3>
-        <p>这个网站就住在这里，零成本、纯静态、GitHub Actions 二十秒自动发布。个人网站的绝佳起点。</p>
-      </a>
-    </section>
+    </div>
 
-    <section class="sec">
-      <div class="sec-tag">🤖 AI</div>
-      <a class="article" href="#" rel="noopener">
-        <span class="date">核心 · 工作流</span>
-        <h3>AI 对话助手（Claude / ChatGPT）</h3>
-        <p>一个人的团队：我定方向、给素材，AI 写代码、调样式、跑验证。这个站、CRM、配图技能全是这么搭出来的。</p>
+    <div class="mag-sec-head">
+      <span class="no">02</span>
+      <h2>工具</h2>
+      <span class="en">Tools</span>
+    </div>
+    <div class="mag-grid">
+      <a class="mag-card" href="https://obsidian.md/" target="_blank" rel="noopener">
+        <span class="top-strip"></span>
+        <span class="idx">一</span>
+        <span class="mag-card-title">Obsidian · 个人记忆库</span>
+        <p class="mag-card-desc">我的整座知识库都长在里面——编号体系（PLAN / PROJ / DEC）、每日复盘自动化、任何信息 5 秒内定位。像经营公司一样经营自己。</p>
+        <span class="mag-card-meta">日常 · 主线</span>
       </a>
-    </section>
 
-    <section class="sec">
-      <div class="sec-tag">🎨 长野自己造的</div>
-      <a class="article" href="https://github.com/Excalidraw2026/changye-scenes" target="_blank" rel="noopener">
-        <span class="date">原创 · 开源（私有）</span>
-        <h3>changye-scenes · 长野场景配图技能</h3>
-        <p>个人 IP 配图工作流：长野 + 真实物件 + 物理动作 + 留白叙事。一篇短文 → 5 张 16:9 正文配图 + 彩蛋长图。</p>
+      <a class="mag-card" href="https://github.com/" target="_blank" rel="noopener">
+        <span class="top-strip red"></span>
+        <span class="idx">二</span>
+        <span class="mag-card-title">GitHub Pages · 免费托管</span>
+        <p class="mag-card-desc">这个网站就住在这里，零成本、纯静态、GitHub Actions 二十秒自动发布。个人网站的绝佳起点。</p>
+        <span class="mag-card-meta">日常 · 部署</span>
       </a>
-    </section>
+    </div>
 
-    <p class="body-text dim" style="margin-top:12px">清单持续更新——用过的、踩过坑的、值得安利的，都往这儿放。</p>
+    <div class="mag-sec-head">
+      <span class="no">03</span>
+      <h2>AI</h2>
+      <span class="en">AI</span>
+    </div>
+    <div class="mag-grid">
+      <a class="mag-card" href="#" rel="noopener">
+        <span class="top-strip"></span>
+        <span class="idx">一</span>
+        <span class="mag-card-title">AI 对话助手（Claude / ChatGPT）</span>
+        <p class="mag-card-desc">一个人的团队：我定方向、给素材，AI 写代码、调样式、跑验证。这个站、CRM、配图技能全是这么搭出来的。</p>
+        <span class="mag-card-meta">核心 · 工作流</span>
+      </a>
+    </div>
+
+    <div class="mag-sec-head">
+      <span class="no">04</span>
+      <h2>长野自己造的</h2>
+      <span class="en">Handmade</span>
+    </div>
+    <div class="mag-grid">
+      <a class="mag-card" href="https://github.com/Excalidraw2026/changye-scenes" target="_blank" rel="noopener">
+        <span class="top-strip red"></span>
+        <span class="idx">一</span>
+        <span class="mag-card-title">changye-scenes · 长野场景配图技能</span>
+        <p class="mag-card-desc">个人 IP 配图工作流：长野 + 真实物件 + 物理动作 + 留白叙事。一篇短文 → 5 张 16:9 正文配图 + 彩蛋长图。</p>
+        <span class="mag-card-meta">原创 · 开源（私有）</span>
+      </a>
+    </div>
+
+    <p class="body-text dim" style="margin-top:24px">清单持续更新——用过的、踩过坑的、值得安利的，都往这儿放。</p>
+
+    <div class="mag-colophon">
+      <span class="mark">荐</span>
+      <span class="line">用过才敢安利，踩过才知深浅——《推荐清单》持续更新。</span>
+    </div>
+
   </div>
 </main>
 

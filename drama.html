@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 短剧 · AI探索者</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+/* ============================================================
+   AI 短剧页 —— 文人杂志式 · 书册式剧目卡
+   保留 App「3D世界」DramaPage 的色块封面 + 播放按钮，套用杂志排版
+   配色：长野设计系统（泥青/奶黄/米白/朱砂红）
+   ============================================================ */
+/* 书册式剧目卡：封面满出血 + 内文区 */
+.drama-card {
+  position: relative;
+  display: flex; flex-direction: column;
+  background: rgba(251, 248, 240, .6);
+  border: 1px solid rgba(58, 48, 40, .10);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.drama-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(58,48,40,.12);
+  border-color: rgba(16,139,150,.4);
+}
+.drama-cover {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  flex-shrink: 0;
+}
+.drama-card-body { padding: 20px 22px 22px; flex: 1; }
+.cover-deep-teal  { background: linear-gradient(135deg, #0A4A52, #3DAAB4); }
+.cover-red-yellow { background: linear-gradient(135deg, #C0392B, #F2D791); }
+.cover-navy-yellow{ background: linear-gradient(135deg, #24334B, #F2D791); }
+.cover-yellow-teal{ background: linear-gradient(135deg, #F2D791, #3DAAB4); }
+.play-btn {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: rgba(251,248,240,.92);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,.22);
+  transition: transform .2s;
+}
+.play-btn:hover { transform: scale(1.1); }
+.play-icon { font-size: 15px; }
+.play-red { color: #C0392B; }
+.play-teal { color: #108B96; }
+.drama-meta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.drama-no {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-faint);
+  letter-spacing: 1.5px;
+  text-align: right;
+  padding-top: 3px;
+}
+.drama-name {
+  font-family: var(--serif);
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin: 0;
+}
+.drama-desc {
+  margin-top: 8px;
+  font-size: .86rem; line-height: 1.72;
+  color: var(--ink-light);
+}
+.drama-tags {
+  margin-top: 12px;
+  display: flex; gap: 18px;
+  font-family: var(--mono); font-size: 11px;
+}
+.tag-teal { color: #108B96; }
+.tag-dim { color: #8C8378; }
+@media (max-width: 600px) {
+  .drama-kicker { font-size: .9rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html?direct=1"><img src="assets/images/logo-256.png" alt="长野 · 阿浩"><span>长野 · 阿浩</span></a><span class="path">/drama</span>
+    <a class="back" href="index.html?direct=1">← 返回主页</a>
+  </div>
+</div>
+
+<main class="page">
+  <div class="container">
+    <div class="mag-head">
+      <p class="mag-kicker">影像实验 · 系列</p>
+      <h1 class="mag-title">AI 短剧<br>四部影像纪事</h1>
+      <p class="mag-lede">用 AI 生成的影像实验——在夜航、山野、废墟与瓷光之间，探索叙事、角色与视觉氛围的另一种可能。</p>
+    </div>
+
+    <div class="mag-grid">
+      <article class="drama-card">
+        <div class="drama-cover cover-deep-teal">
+          <span class="play-btn"><span class="play-icon play-red">▶</span></span>
+        </div>
+        <div class="drama-card-body">
+          <div class="drama-meta">
+            <div><h3 class="drama-name">夜航 · 赛博公路</h3></div>
+            <span class="drama-no">壹 · DRAMA 01</span>
+          </div>
+          <p class="drama-desc">深夜货车上，AI 司机与失踪乘客的公路对话。</p>
+          <p class="drama-tags"><span class="tag-teal">#AIGC</span><span class="tag-dim">#公路片</span><span class="tag-dim">#Sora</span></p>
+        </div>
+      </article>
+
+      <article class="drama-card">
+        <div class="drama-cover cover-red-yellow">
+          <span class="play-btn"><span class="play-icon play-teal">▶</span></span>
+        </div>
+        <div class="drama-card-body">
+          <div class="drama-meta">
+            <div><h3 class="drama-name">山中客 · 新中式志怪</h3></div>
+            <span class="drama-no">贰 · DRAMA 02</span>
+          </div>
+          <p class="drama-desc">落魄书生误入山中古宅，与纸人少女共饮一杯春。</p>
+          <p class="drama-tags"><span class="tag-teal">#AIGC</span><span class="tag-dim">#志怪</span><span class="tag-dim">#Runway</span></p>
+        </div>
+      </article>
+
+      <article class="drama-card">
+        <div class="drama-cover cover-navy-yellow">
+          <span class="play-btn"><span class="play-icon play-red">▶</span></span>
+        </div>
+        <div class="drama-card-body">
+          <div class="drama-meta">
+            <div><h3 class="drama-name">尘埃 · 后人类记忆</h3></div>
+            <span class="drama-no">叁 · DRAMA 03</span>
+          </div>
+          <p class="drama-desc">意识备份员在废墟服务器里，读取一段未被删除的爱情记忆。</p>
+          <p class="drama-tags"><span class="tag-teal">#AIGC</span><span class="tag-dim">#科幻</span><span class="tag-dim">#Pika</span></p>
+        </div>
+      </article>
+
+      <article class="drama-card">
+        <div class="drama-cover cover-yellow-teal">
+          <span class="play-btn"><span class="play-icon play-teal">▶</span></span>
+        </div>
+        <div class="drama-card-body">
+          <div class="drama-meta">
+            <div><h3 class="drama-name">釉下 · 瓷语</h3></div>
+            <span class="drama-no">肆 · DRAMA 04</span>
+          </div>
+          <p class="drama-desc">一只破损的宋代瓷碗，在 AI 修复师手中重新开口讲述往事。</p>
+          <p class="drama-tags"><span class="tag-teal">#AIGC</span><span class="tag-dim">#新中式</span><span class="tag-dim">#Midjourney</span></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="mag-colophon">
+      <span class="mark">映</span>
+      <span class="line">屏幕之外，故事仍在继续。</span>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 长野 · 阿浩 · <a href="index.html?direct=1">返回主页</a></p>
+</footer>
+
+</body>
+</html>

@@ -6,6 +6,18 @@
 <title>关于我 · AI探索者</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+.about-quote {
+  font-family: var(--serif);
+  font-size: 1.2rem; font-weight: 600; line-height: 1.7;
+  color: var(--ink);
+  white-space: pre-line;
+}
+.about-quote .a { color: var(--teal); }
+.mag-card .pair { margin-top: 4px; }
+.mag-card .pair b { display: block; font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+.mag-card .pair span { display: block; margin-top: 4px; font-size: .88rem; line-height: 1.7; color: var(--ink-light); }
+</style>
 </head>
 <body>
 
@@ -17,40 +29,102 @@
 </div>
 
 <main class="page">
-  <div class="container">
-    <div class="cmd-head">cat about.md</div>
-    <h1 class="title">关于我</h1>
-    <p class="sub">长野 · 在 AI 时代认真生活的男生 · 相信 AI 和物理世界的结合</p>
+  <div class="container mag-page">
+    <div class="mag-head">
+      <p class="mag-kicker">关于 · ABOUT</p>
+      <h1 class="mag-title">认真生活，<br>也用 AI 长出自己。</h1>
+      <p class="mag-lede">长野 · 在 AI 时代认真生活的男生。相信 AI 和物理世界不是两回事——认真生活，就是最好的落地。</p>
+    </div>
 
-    <section class="sec reveal">
-      <div class="sec-tag">whoami</div>
-      <p class="body-text" style="font-size:1.15rem;line-height:1.8;">在物理世界里认真生活，也用 <b style="color:var(--teal)">AI 重新长出自己</b>。<br>AI 不是悬浮在云上的概念，它应该落进真实的生活里——落进每一天的工作、思考和选择。</p>
-    </section>
+    <div class="mag-sec-head">
+      <span class="no">01</span>
+      <h2>我是谁</h2>
+      <span class="en">whoami</span>
+    </div>
+    <div class="mag-grid">
+      <div class="mag-card">
+        <span class="top-strip"></span>
+        <span class="idx">壹</span>
+        <span class="mag-card-title">身份</span>
+        <p class="mag-card-desc">AI 探索者 · 在物理世界认真生活的男生。AI 不是悬浮在云上的概念，它应该落进真实的生活里——落进每一天的工作、思考和选择。</p>
+      </div>
+    </div>
 
-    <section class="sec reveal">
-      <div class="sec-tag">beliefs</div>
-      <div class="term-quote">> 看见框架，然后真实地活。<br>> 必须边长新能力，边让他人看见。<br>> AI 让边际成本趋近于零，<span class="a">个体第一次可以绕过组织直接触达人群。</span></div>
-    </section>
+    <div class="mag-sec-head">
+      <span class="no">02</span>
+      <h2>三条信念</h2>
+      <span class="en">Beliefs</span>
+    </div>
+    <div class="mag-grid">
+      <div class="mag-card quote-card accent-red">
+        <span class="idx">壹</span>
+        <div class="about-quote">> 看见框架，然后真实地活。</div>
+      </div>
+      <div class="mag-card quote-card accent-red">
+        <span class="idx">贰</span>
+        <div class="about-quote">> 必须边长新能力，边让他人看见。</div>
+      </div>
+      <div class="mag-card quote-card accent-red">
+        <span class="idx">叁</span>
+        <div class="about-quote">> AI 让边际成本趋近于零，<span class="a">个体第一次可以绕过组织直接触达人群。</span></div>
+      </div>
+    </div>
 
-    <section class="sec reveal">
-      <div class="sec-tag">system</div>
-      <ul class="list">
-        <li><div><b>Obsidian 记忆库</b><span>所有思考、项目、决策沉淀成可检索的系统，任何信息 5 秒内定位。</span></div></li>
-        <li><div><b>每日复盘</b><span>凌晨 1 点自动生成复盘模板，让每一天都有记录。</span></div></li>
-        <li><div><b>编号体系</b><span>PLAN / PROJ / DEC，像经营一家公司一样经营自己。</span></div></li>
-        <li><div><b>这个站</b><span>一个人 + AI 搭出来的纯静态主页，用来"让他人看见"。</span></div></li>
-      </ul>
-    </section>
+    <div class="mag-sec-head">
+      <span class="no">03</span>
+      <h2>我的系统</h2>
+      <span class="en">System</span>
+    </div>
+    <div class="mag-grid">
+      <div class="mag-card">
+        <span class="top-strip"></span>
+        <span class="idx">壹</span>
+        <div class="pair"><b>Obsidian 记忆库</b><span>所有思考、项目、决策沉淀成可检索的系统，任何信息 5 秒内定位。</span></div>
+      </div>
+      <div class="mag-card">
+        <span class="top-strip"></span>
+        <span class="idx">贰</span>
+        <div class="pair"><b>每日复盘</b><span>凌晨 1 点自动生成复盘模板，让每一天都有记录。</span></div>
+      </div>
+      <div class="mag-card">
+        <span class="top-strip"></span>
+        <span class="idx">叁</span>
+        <div class="pair"><b>编号体系</b><span>PLAN / PROJ / DEC，像经营一家公司一样经营自己。</span></div>
+      </div>
+      <div class="mag-card">
+        <span class="top-strip"></span>
+        <span class="idx">肆</span>
+        <div class="pair"><b>这个站</b><span>一个人 + AI 搭出来的纯静态主页，用来「让他人看见」。</span></div>
+      </div>
+    </div>
 
-    <section class="sec reveal">
-      <div class="sec-tag">now</div>
-      <p class="body-text">正在推进的事：</p>
-      <ul class="list">
-        <li><div><b>在物理世界的一线</b><span>把 AI 用进真实业务——客户跟进、内容输出、工具系统。</span></div></li>
-        <li><div><b>维护个人知识系统</b><span>Obsidian 记忆库、每日复盘、项目档案，让思考有处安放。</span></div></li>
-        <li><div><b>搭建这个网站</b><span>实践"边长新能力，边让他人看见"——这就是成果之一。</span></div></li>
-      </ul>
-    </section>
+    <div class="mag-sec-head">
+      <span class="no">04</span>
+      <h2>正在做的事</h2>
+      <span class="en">Now</span>
+    </div>
+    <div class="mag-grid">
+      <div class="mag-card">
+        <span class="top-strip red"></span>
+        <span class="idx">壹</span>
+        <div class="pair"><b>在物理世界的一线</b><span>把 AI 用进真实业务——客户跟进、内容输出、工具系统。</span></div>
+      </div>
+      <div class="mag-card">
+        <span class="top-strip red"></span>
+        <span class="idx">贰</span>
+        <div class="pair"><b>维护个人知识系统</b><span>Obsidian 记忆库、每日复盘、项目档案，让思考有处安放。</span></div>
+      </div>
+      <div class="mag-card">
+        <span class="top-strip red"></span>
+        <span class="idx">叁</span>
+        <div class="pair"><b>搭建这个网站</b><span>实践「边长新能力，边让他人看见」——这就是成果之一。</span></div>
+      </div>
+    </div>
+
+    <div class="mag-colophon">
+      <span class="mark">志</span>
+      <span class="line">在物理世界里认真生活，也用 AI 长出自己。</span>
+    </div>
   </div>
 </main>
 
@@ -58,11 +132,5 @@
   <p>© 2026 长野 · 阿浩 · <a href="index.html?direct=1">返回主页</a></p>
 </footer>
 
-<script>
-  const o = new IntersectionObserver(e => {
-    e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); o.unobserve(x.target); } });
-  }, { threshold: .12 });
-  document.querySelectorAll('.reveal').forEach(el => o.observe(el));
-</script>
 </body>
 </html>

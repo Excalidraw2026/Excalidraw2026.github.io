@@ -6,6 +6,42 @@
 <title>家装CRM管理系统 · AI探索者</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  /* 在线体验区：可交互演示，纸感卡片 + 相框式衬底 */
+  .demo-shell {
+    margin: 0 0 16px;
+    padding: 10px;
+    background: #F2EDDD;
+    border: 1px solid rgba(58,48,40,.12);
+    border-radius: 14px;
+    box-shadow: var(--paper-shadow);
+  }
+  .demo-shell .demo-bar {
+    font-family: var(--mono);
+    font-size: .76rem;
+    color: var(--ink-faint);
+    padding: 4px 6px 10px;
+    letter-spacing: .3px;
+  }
+  .demo-shell iframe.demo-frame {
+    width: 100%;
+    height: 640px;
+    border: 0;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  }
+  .demo-hint { font-size: .84rem; color: var(--ink-light); margin: 12px 2px 0; line-height: 1.7; }
+  .demo-hint b { color: var(--ink); font-family: var(--mono); font-weight: 600; }
+  .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+  .feature-list .feat {
+    background: rgba(251,248,240,.6); border: 1px solid rgba(58,48,40,.08);
+    border-radius: 12px; padding: 14px 16px; line-height: 1.6;
+  }
+  .feature-list .feat b { display: block; font-family: var(--serif); font-size: .98rem; color: var(--ink); margin-bottom: 4px; }
+  .feature-list .feat span { font-size: .84rem; color: var(--ink-light); }
+  @media (max-width: 640px) { .feature-list { grid-template-columns: 1fr; } .demo-frame { height: 480px; } }
+</style>
 </head>
 <body>
 
@@ -18,45 +54,67 @@
 
 <main class="page">
   <div class="container">
-    <div class="cmd-head">cat projects/crm.md</div>
-    <h1 class="title">家装 CRM 管理系统</h1>
-    <p class="sub">为家装销售场景自研的客户管理系统——一个人 + AI 从零搭起来。</p>
-
-    <div class="sec">
-      <div class="sec-tag">背景</div>
-      <p class="body-text">做家装销售，客户跟进靠脑子记、微信翻记录，量房、定金、签约这些关键节点全靠人肉盯。这个系统就是为解决这个问题而生的：把客户从"脑子里"搬进"系统里"。</p>
+    <div class="mag-head">
+      <p class="mag-kicker">作品 · 自研系统</p>
+      <h1 class="mag-title">家装 CRM<br>管理系统</h1>
+      <p class="mag-lede">为家装销售场景自研的客户管理系统——一个人 + AI 从零搭起来。把客户从「脑子里」搬进「系统里」。</p>
     </div>
 
-    <div class="sec">
-      <div class="sec-tag">功能</div>
-      <ul class="list">
-        <li><div><b>客户档案管理</b><span>增删改查 + 客户来源，一个客户一份完整档案。</span></div></li>
-        <li><div><b>家装关键节点跟踪</b><span>量房时间 / 到店 / 定金 / 签约时间，里程碑一目了然。</span></div></li>
-        <li><div><b>预计签约金额</b><span>每个客户能签多少，心里有数。</span></div></li>
-        <li><div><b>时间多条件筛选</b><span>按创建、量房、到店、定金、签约任意组合筛选，比如"本月量房未签约"。</span></div></li>
-        <li><div><b>跟进记录</b><span>每次跟进留痕，不靠记忆。</span></div></li>
-        <li><div><b>角色权限</b><span>管理员看全部，销售只看自己的客户。</span></div></li>
-        <li><div><b>老板数据看板</b><span>客户、节点、金额聚合，一屏看全局。</span></div></li>
-        <li><div><b>数据库自动备份 + 无损迁移</b><span>升级加字段不丢数据，启动前自动备份。</span></div></li>
-      </ul>
+    <div class="mag-sec-head">
+      <span class="no">01</span>
+      <h2>在线体验</h2>
+      <span class="en">Live Demo</span>
+    </div>
+    <div class="demo-shell">
+      <div class="demo-bar">▶ 静态演示版 · 内置演示数据 · 管理员 admin / 123456 · 销售 sales / 123456</div>
+      <iframe class="demo-frame" src="crm-demo.html" loading="lazy" title="家装CRM在线体验（静态演示版）"></iframe>
+    </div>
+    <p class="demo-hint">这是一个<b>纯前端静态演示版</b>：不用装 Python、不用数据库，双击即可打开体验完整界面与交互。数据为演示样例，不会真实保存。想跑真数据，见下方「本地运行」。</p>
+
+    <div class="mag-sec-head">
+      <span class="no">02</span>
+      <h2>功能</h2>
+      <span class="en">Features</span>
+    </div>
+    <div class="feature-list">
+      <div class="feat"><b>客户档案管理</b><span>增删改查 + 客户来源，一个客户一份完整档案。</span></div>
+      <div class="feat"><b>关键节点跟踪</b><span>量房 / 到店 / 定金 / 签约时间，里程碑一目了然。</span></div>
+      <div class="feat"><b>预计签约金额</b><span>每个客户能签多少，心里有数。</span></div>
+      <div class="feat"><b>多条件筛选</b><span>按创建、量房、到店、定金、签约组合筛选，如「本月量房未签约」。</span></div>
+      <div class="feat"><b>管道视图 / 客户池</b><span>客户分布一屏看清，公海客户待认领与再分配。</span></div>
+      <div class="feat"><b>跟进记录</b><span>每次跟进留痕，不靠记忆。</span></div>
+      <div class="feat"><b>角色权限</b><span>管理员看全部，销售只看自己的客户。</span></div>
+      <div class="feat"><b>老板数据看板</b><span>客户、节点、金额聚合，一屏看全局。</span></div>
+      <div class="feat"><b>自动备份 + 无损迁移</b><span>升级加字段不丢数据，启动前自动备份。</span></div>
     </div>
 
-    <div class="sec">
-      <div class="sec-tag">技术栈</div>
-      <div class="term-quote">Python · Flask · SQLite · 原生前端单页
+    <div class="mag-sec-head">
+      <span class="no">03</span>
+      <h2>技术栈</h2>
+      <span class="en">Stack</span>
+    </div>
+    <div class="term-quote">Python · Flask · SQLite · 原生前端单页
 > 架构：models.py（建表/迁移/备份）→ app.py（API/看板）→ static/index.html（单页前端）</div>
-    </div>
 
-    <div class="sec">
-      <div class="sec-tag">本地运行</div>
-      <div class="term-quote">$ python app.py
+    <div class="mag-sec-head">
+      <span class="no">04</span>
+      <h2>本地运行</h2>
+      <span class="en">Run</span>
+    </div>
+    <div class="term-quote">$ python app.py
 > 浏览器打开 http://127.0.0.1:5000/
 > 管理员 admin / 销售 sales</div>
-    </div>
 
-    <div class="sec">
-      <div class="sec-tag">下一步</div>
-      <p class="body-text dim">【可选：这个项目接下来的计划，比如多端、移动端、更多报表。】</p>
+    <div class="mag-sec-head">
+      <span class="no">05</span>
+      <h2>下一步</h2>
+      <span class="en">Next</span>
+    </div>
+    <p class="mag-lede">【可选：这个项目接下来的计划，比如多端、移动端、更多报表。】</p>
+
+    <div class="mag-colophon">
+      <span class="mark">做</span>
+      <span class="line">把真实业务的问题，用 AI 一个个解决掉。</span>
     </div>
   </div>
 </main>
