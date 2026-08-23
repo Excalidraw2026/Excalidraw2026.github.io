@@ -750,28 +750,17 @@ a { text-decoration: none; }
     </div>
   </div>
 
-  <!-- 灵感碎片弹窗（仅自己可见） -->
+  <!-- 灵感碎片弹窗 -->
   <div class="frag-window" id="fragWin" role="dialog" aria-label="灵感碎片">
     <div class="frag-bar">
       <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
-      <span class="frag-title">💡 灵感碎片 · 仅自己可见</span>
+      <span class="frag-title">💡 灵感碎片</span>
       <span class="frag-close" onclick="closeFrags()" title="关闭">✕</span>
     </div>
     <div class="frag-body">
-      <div id="fragLock">
-        <div class="frag-lock">
-          <div class="frag-lock-icon">🔒</div>
-          <p class="frag-tip">输入密码查看你的灵感碎片</p>
-          <input type="password" id="fragPass" class="frag-input" placeholder="密码" autocomplete="current-password">
-          <button class="frag-btn" onclick="unlockFrags()">解锁</button>
-          <p class="frag-err" id="fragErrUnlock"></p>
-        </div>
-      </div>
-      <div id="fragContent" style="display:none">
-        <ul class="frag-list" id="fragList"></ul>
-        <p class="frag-empty" id="fragEmpty">还没有碎片 ✨</p>
-        <p class="frag-note">🔒 碎片内容已加密，只有你能看到。</p>
-      </div>
+      <ul class="frag-list" id="fragList"></ul>
+      <p class="frag-empty" id="fragEmpty" style="display:none">还没有碎片 ✨</p>
+      <p class="frag-note">随手记下的念头，攒成了给自己的路标。</p>
     </div>
   </div>
 </div>
@@ -878,94 +867,41 @@ setInterval(tick, 30000);
    密码哈希 + 碎片密文均存在本机浏览器 localStorage：
    别人访问网站时根本不会有你的数据；同机偷看需密码。
    ============================================================ */
-const FRAG_PASS_HASH = "97be3896f4f12c061f8784d690253553b865cb50bf7a6e372e6bf0c35648126f";
-const FRAG_BUNDLE = "0npDy4d95bWhmzxj.HzFBOBNHxfbcxuSya5V7uHjCXGhI2p0lU3l2LixIN8E2wXzIARCq8KHBdQPUdI6Kig75bRFiWUvJO1s0rQa6d51m5FiVcqJttMhsz9BfxZCTfgTDrS28wpnXXCPVgURa82jTp/KlWEMNG/hGgtt/BUcrYLDbmTkLYGwY99j1IQWBHnwjrSElpTRr0qDUQB/lR3NVl6lOB0axRfkaqK6jHQNva0rQPhOdNqk/oBHgP9OD5zywtjkUj6cI0yFHJcmHCQKpy3R4VaYAVU20qYfjAN1RQ193qgtCm9j7ZXMsBc/iX92+zlic/HEDp5aPIIL7EVzhvka3eKF+TEz1Xz7Q1GVHhbZ+JiiKdGVt0G0sz2FH2yq9LNF+2Y21xDIUs+HxahZkyyqoMHrSiw+fn/wL+P4Prrb3/qNrYWeHECnWj1pYmMLtKJP8bfX3BgDuS9mxgyB2chBHfkrZ1Txiea0PgRc8qo8vpURfOGFEuYf3C9SOWSotie/PqPF8jneknc8KlB/Avu/mff+XUBML8RvJz5Pq36kQ++Jmtb6hVaSkKEGKAgFDkqrOIv7oT6K6Q/w+0nDNuXq8l7VeMRkN/IgF366o/ctzl4PLIPfnFaqVNBbIN/AnOVDhjK1Ie/iwpnn1zXJNNhUjbxhQJKqhWHhXEq2+LM6lkAgz9UsPlXkVMHz8a1CVLZvp8A3U3c0sKa1/nFtTDiEpJhnfqzEEz5DGILtUPvds8hCDYyqhG5eLLnGM2ZgK4I4CzDya9YpX3Rze3KyjNWKFKXV7H58tSKfS+ACurVbbKj6x8Ufy7DzIfrMHA1bymWKjGc2rBmwo5G5/NZbxm1PibMySms24vuP0BHPkl1CMS5xciIGsVCcafOEbFyLv3r5DW/utEzyNCa03QagLarcQrs1BU9ZlYO0gs8E4hrC3O0JH2X4lZH0FavcYRJOeIGYNcC/4XbmGHiE5ZdquNF7llCc3YV304kZraAng70UvJbKdr5lYbDmI+oy7wTQROLwLQHWXbT+rTAEGFahTZMC0RjF39ukzFN6lsQt3j7XirEqHDxLj1FxeW0sm7cIyxHzpp/uc/WOXyFO8LewHNOw1s5SXNg5KJz/cjB0pl1/8aKbyIodk7uTv/SV0D5iVRX7E2fYprBNkPuauTI7hiGiyPSzyN6E86RSVEPEtibD+hj70H5x5+WfwKsVZEcsyXyQjjYfFmuL5jm6ypRaSvOOZqqNVbV38OVHoHbpFBBjFPoaWZKCpBibaohFUT8xJTVg22Iy0YAoYLy0J+BEwrCLHvQFhvaZRl5/EgE1L1e42BaYpJ5o=";
-const FRAG_OPEN_KEY = "aiexplorer_frag_open_v1";
-const FRAG_SALT = new Uint8Array([0x4E,0x7A,0x5C,0xE3,0xB3,0x41,0xC4,0x62,0x4D,0x1A,0x1A,0x2E,0xE3,0xDE,0xD0,0x88]);
-
 const fragWin = document.getElementById("fragWin");
-function b64(u8) { let s = ""; for (const b of u8) s += String.fromCharCode(b); return btoa(s); }
-function unb64(s) { const bin = atob(s); const u8 = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i); return u8; }
-async function sha256hex(str) {
-  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, "0")).join("");
-}
-async function fragKey(pass) {
-  const km = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
-  return crypto.subtle.deriveKey(
-    { name: "PBKDF2", salt: FRAG_SALT, iterations: 120000, hash: "SHA-256" },
-    km, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
-}
-async function fragEncrypt(list, pass) {
-  const key = await fragKey(pass);
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(JSON.stringify(list)));
-  return b64(iv) + "." + b64(new Uint8Array(ct));
-}
-async function fragDecrypt(data, pass) {
-  const [ivS, ctS] = data.split(".");
-  const key = await fragKey(pass);
-  const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: unb64(ivS) }, key, unb64(ctS));
-  return JSON.parse(new TextDecoder().decode(pt));
-}
-
-let fragPass = "";
 let fragList = [];
+
+/* 灵感碎片 · 公开内容（原为本机加密保存，现改为直接展示） */
+const FRAG_LIST = [
+  { "tag": "看见框架", "text": "每一个环境都是楚门的世界——城市、家庭、公司、行业。只有看到，才能建立起自己的自我意识。" },
+  { "tag": "樱桃盘", "text": "一盘樱桃相当于你所在的群体，单个樱桃相当于你。突破之后，有时会无处安放——那是真空期。孤独的背面，是新技能还没成熟。" },
+  { "tag": "失眠的线索", "text": "人一旦不上班就睡不着。失去外部节奏锚点后，夜晚静下来，真空期的声音就变大了。失眠的背面，是听见自己还没安放好。" },
+  { "tag": "生长的法则", "text": "必须边长新能力，边让他人看见。长新能力时让别人看见，新环境的人才能找到你。" },
+  { "tag": "点线面体", "text": "点连成线，线组成面，面组成体。一个体解决一个大的场景，也就是一群人。" },
+  { "tag": "AI 时代", "text": "AI 让边际成本趋近于零，个体第一次可以绕过组织直接触达人群。" }
+];
 
 function openFrags() {
   fragWin.classList.add("show");
-  document.getElementById("fragErrUnlock").textContent = "";
-  if (sessionStorage.getItem(FRAG_OPEN_KEY)) { showFrags(); return; }
-  document.getElementById("fragLock").style.display = "block";
-  document.getElementById("fragContent").style.display = "none";
+  document.getElementById('fragEmpty').style.display = FRAG_LIST.length ? "none" : "block";
+  renderFrags();
 }
 function closeFrags() { fragWin.classList.remove("show"); }
 
-async function unlockFrags() {
-  const pass = document.getElementById("fragPass").value;
-  const err = document.getElementById("fragErrUnlock");
-  if (!pass) { err.textContent = "请输入密码"; return; }
-  if ((await sha256hex(pass)) !== FRAG_PASS_HASH) { err.textContent = "密码不对，再试试"; return; }
-  fragPass = pass;
-  sessionStorage.setItem(FRAG_OPEN_KEY, "1");
-  document.getElementById("fragPass").value = "";
-  await showFrags();
-}
-
-async function showFrags() {
-  try { fragList = await fragDecrypt(FRAG_BUNDLE, fragPass); }
-  catch (e) {
-    /* 密码丢失/无效（如刷新后）→ 回到锁界面重新解锁 */
-    sessionStorage.removeItem(FRAG_OPEN_KEY);
-    fragPass = "";
-    document.getElementById("fragLock").style.display = "block";
-    document.getElementById("fragContent").style.display = "none";
-    document.getElementById("fragErrUnlock").textContent = "会话已过期，请重新输入密码";
-    return;
-  }
-  document.getElementById("fragLock").style.display = "none";
-  document.getElementById("fragContent").style.display = "block";
-  renderFrags();
-}
 function renderFrags() {
   const ul = document.getElementById("fragList");
   const empty = document.getElementById("fragEmpty");
   ul.innerHTML = "";
-  if (!fragList.length) { empty.style.display = "block"; return; }
-  empty.style.display = "none";
-  fragList.forEach(item => {
+  if (!FRAG_LIST.length) return;
+  FRAG_LIST.forEach(item => {
     const li = document.createElement("li");
     li.className = "frag-item";
     li.innerHTML = (item.tag ? '<span class="frag-tag"></span>' : "") + '<span class="frag-item-text"></span>';
     if (item.tag) li.querySelector(".frag-tag").textContent = item.tag;
-    li.querySelector(".frag-item-text").textContent = item.text || item;
+    li.querySelector(".frag-item-text").textContent = item.text;
     ul.appendChild(li);
   });
 }
 
-document.getElementById("fragPass").addEventListener("keydown", e => {
-  if (e.key === "Enter") unlockFrags();
-});
 document.addEventListener("keydown", e => {
   if (e.key === "Escape" && fragWin.classList.contains("show")) closeFrags();
 });
