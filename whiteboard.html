@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>题字墙 · 长野书斋</title>
+<meta name="description" content="长野书斋的题字墙——来贴一张便签，留一句话再走。">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cinnabar: #C0392B;
+  --gold: #F2D791;
+  --teal: #108B96;
+  --teal-deep: #0C6F78;
+  --cream: #F5F1E7;
+  --paper: #FBF8F0;
+  --ink: #3A3028;
+  --ink-2: #5C524A;
+  --ink-3: #8C8378;
+  --moss: #4E7A5C;
+  --mono: "Fira Code", ui-monospace, Consolas, monospace;
+  --serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --hand: "Caveat", cursive;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+
+/* 顶部工具栏 */
+.wb-bar {
+  height: 48px;
+  display: flex; align-items: center; gap: 14px;
+  padding: 0 22px;
+  background: var(--paper);
+  border-bottom: 2px dashed rgba(16, 139, 150, 0.35);
+  position: relative;
+  z-index: 20;
+}
+.wb-logo {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 20px; font-weight: 900;
+  color: var(--cinnabar);
+  box-shadow: 0 3px 8px rgba(58, 48, 40, 0.18);
+  flex-shrink: 0;
+}
+.wb-title {
+  font-size: 18px; font-weight: 700;
+  color: var(--teal-deep);
+  margin-right: 20px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+.wb-tools { display: flex; align-items: center; gap: 12px; }
+.wb-btn {
+  display: flex; align-items: center; gap: 7px;
+  height: 34px;
+  padding: 0 16px;
+  border: 2px dashed rgba(16, 139, 150, 0.55);
+  border-radius: 10px;
+  font-size: 14px; font-weight: 700;
+  color: var(--teal-deep);
+  background: transparent;
+  transition: all .18s;
+  white-space: nowrap;
+}
+.wb-btn:hover { background: rgba(16, 139, 150, 0.08); border-color: var(--teal); }
+.wb-btn.primary {
+  background: rgba(242, 215, 145, 0.2);
+  border-color: rgba(242, 215, 145, 0.6);
+  color: var(--ink);
+}
+.wb-btn.primary:hover { background: rgba(242, 215, 145, 0.4); }
+.wb-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.wb-zoom-label {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--teal-deep);
+  min-width: 44px;
+  text-align: right;
+}
+.wb-icon-btn {
+  width: 34px; height: 34px;
+  border: 2px dashed rgba(16, 139, 150, 0.55);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700;
+  color: var(--teal-deep);
+  transition: all .18s;
+}
+.wb-icon-btn:hover { background: rgba(16, 139, 150, 0.08); }
+
+/* 主体 */
+.wb-main {
+  display: flex;
+  height: calc(100% - 48px);
+}
+.wb-list {
+  width: 218px;
+  flex-shrink: 0;
+  border-right: 2px dashed rgba(16, 139, 150, 0.35);
+  padding: 20px 14px;
+  overflow-y: auto;
+  background: var(--paper);
+  z-index: 10;
+}
+.wb-list-title {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 18px; font-weight: 700;
+  color: var(--teal-deep);
+  margin-bottom: 14px;
+  padding-left: 6px;
+}
+.wb-list-title .spark { color: var(--teal); }
+.card-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: default;
+  transition: background .15s;
+}
+.card-row:hover { background: rgba(16, 139, 150, 0.07); }
+.card-row .dot {
+  width: 11px; height: 11px; border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--teal);
+  flex-shrink: 0;
+}
+.card-row .ct {
+  flex: 1;
+  color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-row .au {
+  font-size: 13px;
+  color: var(--ink-3);
+  flex-shrink: 0;
+}
+
+/* 画布 */
+.wb-canvas-wrap {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background: radial-gradient(rgba(16, 139, 150, 0.22) 1.4px, transparent 1.5px);
+  background-size: 26px 26px;
+  background-color: var(--paper);
+}
+.wb-canvas {
+  position: relative;
+  width: 1500px;
+  height: 1100px;
+  transform-origin: 0 0;
+}
+.note {
+  position: absolute;
+  background: rgba(251, 248, 240, 0.92);
+  border: 2px dashed rgba(16, 139, 150, 0.5);
+  border-radius: 14px;
+  padding: 18px;
+}
+.note.empty-note {
+  left: 30px; top: 70px;
+  width: 240px; height: 230px;
+}
+.sticker {
+  position: absolute;
+  font-size: 60px;
+  user-select: none;
+  filter: drop-shadow(0 4px 8px rgba(58, 48, 40, 0.2));
+}
+.st-rocket { left: 660px; top: 70px; transform: rotate(-18deg); }
+.st-think  { left: 690px; top: 300px; font-size: 84px; transform: rotate(8deg); }
+
+/* 投票卡 */
+.vote-card {
+  position: absolute;
+  left: 300px; top: 50px;
+  width: 330px;
+  background: rgba(251, 248, 240, 0.95);
+  border: 2px dashed rgba(242, 215, 145, 0.9);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(58, 48, 40, 0.10);
+}
+.vote-head {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 22px; font-weight: 900;
+  font-family: var(--serif);
+  margin-bottom: 14px;
+}
+.vote-opt {
+  display: flex; align-items: center; gap: 10px;
+  border: 2px dashed rgba(16, 139, 150, 0.4);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  font-size: 15px; font-weight: 700;
+  background: rgba(245, 241, 231, 0.55);
+  transition: all .15s;
+  cursor: pointer;
+}
+.vote-opt:hover { background: rgba(242, 215, 145, 0.35); border-color: var(--gold); }
+.vote-opt.voted { background: rgba(242, 215, 145, 0.5); border-color: var(--gold); }
+.vote-opt .vc { flex: 1; }
+.vote-opt .vn { font-family: var(--mono); font-weight: 600; color: var(--ink-2); }
+.vote-foot {
+  text-align: right;
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 6px;
+}
+
+/* 名片卡 */
+.id-card {
+  position: absolute;
+  left: 300px; top: 410px;
+  width: 360px;
+  background: rgba(251, 248, 240, 0.95);
+  border: 2px dashed rgba(16, 139, 150, 0.5);
+  border-radius: 16px;
+  padding: 28px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(58, 48, 40, 0.10);
+}
+.id-avatar {
+  width: 92px; height: 92px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  object-fit: cover;
+  background: var(--cream);
+  margin-bottom: 12px;
+}
+.id-name {
+  font-size: 26px; font-weight: 900;
+  color: var(--teal-deep);
+  font-family: var(--serif);
+}
+.id-role { font-size: 15px; color: var(--ink-2); margin-top: 4px; }
+
+/* 欢迎卡 */
+.welcome-card {
+  position: absolute;
+  left: 30px; top: 360px;
+  width: 260px;
+  background: rgba(251, 248, 240, 0.95);
+  border: 2px dashed rgba(16, 139, 150, 0.5);
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 10px 30px rgba(58, 48, 40, 0.10);
+}
+.welcome-hand {
+  font-family: var(--hand);
+  font-size: 36px; font-weight: 700;
+  color: var(--teal-deep);
+  line-height: 1.15;
+}
+.welcome-quote {
+  border-left: 4px solid var(--gold);
+  padding-left: 14px;
+  margin: 14px 0 16px;
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.8;
+}
+.welcome-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.welcome-actions a, .welcome-actions button {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--cream);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: var(--ink);
+  transition: all .15s;
+}
+.welcome-actions a:hover, .welcome-actions button:hover {
+  background: var(--gold);
+}
+
+/* 用户留言便签 */
+.user-note {
+  background: var(--paper);
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  padding: 14px 16px;
+  width: 200px;
+  min-height: 90px;
+  box-shadow: 0 6px 18px rgba(58, 48, 40, 0.12);
+}
+.user-note .un-text {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.7;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.user-note .un-au {
+  margin-top: 8px;
+  text-align: right;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* 留言弹层 */
+.modal-mask {
+  position: fixed; inset: 0;
+  background: rgba(58, 48, 40, 0.35);
+  display: none;
+  align-items: center; justify-content: center;
+  z-index: 100;
+}
+.modal-mask.show { display: flex; }
+.modal {
+  width: min(440px, 92vw);
+  background: var(--paper);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 30px 60px rgba(58, 48, 40, 0.3);
+}
+.modal h3 {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 900;
+  color: var(--teal-deep);
+  margin-bottom: 16px;
+}
+.modal textarea {
+  width: 100%;
+  min-height: 110px;
+  resize: vertical;
+  border: 2px dashed rgba(16, 139, 150, 0.45);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--cream);
+  outline: none;
+}
+.modal textarea:focus { border-color: var(--teal); }
+.modal input {
+  width: 100%;
+  margin-top: 10px;
+  border: 2px dashed rgba(16, 139, 150, 0.45);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--cream);
+  outline: none;
+}
+.modal input:focus { border-color: var(--teal); }
+.modal-actions {
+  display: flex; justify-content: flex-end; gap: 10px;
+  margin-top: 18px;
+}
+.modal-actions button {
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 14px; font-weight: 700;
+}
+.m-cancel { color: var(--ink-2); }
+.m-submit { background: var(--teal); color: var(--cream); }
+.m-submit:hover { background: var(--teal-deep); }
+
+/* 移动端 */
+@media (max-width: 760px) {
+  .wb-bar { height: 48px; padding: 0 12px; gap: 8px; }
+  .wb-logo { width: 38px; height: 38px; font-size: 20px; }
+  .wb-title { font-size: 17px; margin-right: 8px; letter-spacing: 1px; }
+  .wb-btn { height: 38px; padding: 0 14px; font-size: 13px; gap: 4px; }
+  .wb-btn .wb-btn-text { display: none; }
+  .wb-btn:not(.primary) { display: none; }
+  .wb-zoom-label { display: none; }
+  .wb-icon-btn { width: 38px; height: 38px; }
+  .wb-list { width: 210px; padding: 16px 10px; }
+  .wb-list-title { font-size: 18px; }
+  .card-row { font-size: 13px; padding: 8px 6px; }
+  .wb-main { height: calc(100% - 48px); }
+  .note.empty-note { left: 10px; top: 70px; width: 170px; height: 170px; }
+  .vote-card { left: 195px; top: 60px; width: 250px; padding: 16px; right: auto; }
+  .vote-head { font-size: 18px; }
+  .st-rocket { left: 465px; top: 80px; }
+  .st-think { display: none; }
+  .id-card { left: 10px; top: 380px; width: 300px; }
+  .welcome-card { left: 10px; top: 640px; width: 300px; }
+}
+</style>
+</head>
+<body>
+
+<header class="wb-bar">
+  <span class="wb-logo">长</span>
+  <span class="wb-title">题字墙</span>
+  <div class="wb-tools">
+    <button class="wb-btn primary" id="btnMsg">✍️ <span class="wb-btn-text">留墨</span></button>
+    <button class="wb-btn" id="btnNote">＋ <span class="wb-btn-text">贴一张</span></button>
+    <button class="wb-btn" id="btnDraw">🖌 <span class="wb-btn-text">涂鸦</span></button>
+  </div>
+  <div class="wb-right">
+    <span class="wb-zoom-label" id="zoomLabel">100%</span>
+    <button class="wb-icon-btn" id="zoomOut" title="缩小">−</button>
+    <button class="wb-icon-btn" id="zoomIn" title="放大">＋</button>
+    <button class="wb-icon-btn" id="zoomReset" title="复位">田</button>
+  </div>
+</header>
+
+<div class="wb-main">
+  <aside class="wb-list">
+    <div class="wb-list-title"><span class="spark">✦</span>卡片列表</div>
+    <div id="cardList"></div>
+  </aside>
+
+  <div class="wb-canvas-wrap" id="canvasWrap">
+    <div class="wb-canvas" id="canvas">
+      <div class="note empty-note"></div>
+      <span class="sticker st-rocket">🚀</span>
+      <span class="sticker st-think">🤔</span>
+
+      <div class="vote-card">
+        <div class="vote-head">🕵️ 你是谁派来的？</div>
+        <div id="voteOpts"></div>
+        <div class="vote-foot" id="voteFoot"></div>
+      </div>
+
+      <div class="id-card">
+        <img class="id-avatar" src="assets/images/character.png" alt="长野">
+        <div class="id-name">长野 · 阿浩</div>
+        <div class="id-role">在 AI 时代认真生活的男生</div>
+      </div>
+
+      <div class="welcome-card">
+        <div class="welcome-hand">欢迎来长野的书斋</div>
+        <div class="welcome-quote">
+          来我的题字墙留一句话吧。<br>
+          一张便签，就是一次路过的证据。
+        </div>
+        <div class="welcome-actions">
+          <button id="btnMsg2">✍️ 写一句贴上墙</button>
+          <a href="mailto:2564786746@qq.com">📮 发邮件</a>
+          <a href="index.html">← 回书斋</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="modalMask">
+  <div class="modal">
+    <h3>✍️ 留一句话在题字墙上</h3>
+    <textarea id="msgText" placeholder="写点什么……一句感想、一个脚印、或者一句“到此一游”都行。"></textarea>
+    <input id="msgName" type="text" placeholder="署名（不填就叫「访客」）" maxlength="12">
+    <div class="modal-actions">
+      <button class="m-cancel" id="msgCancel">取消</button>
+      <button class="m-submit" id="msgSubmit">贴上墙</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SEED_CARDS = [
+  { emoji: "👋", text: "题字墙开张，欢迎路过的人", author: "长野" },
+  { emoji: "✨", text: "一个人，活成一支队伍", author: "访客" },
+  { emoji: "🚀", text: "打卡！AI 时代认真生活", author: "访客" },
+  { emoji: "📖", text: "金句不是收藏，是路标", author: "访客" }
+];
+const VOTE_OPTS = [
+  { key: "xhs",  emoji: "📕", label: "小红书观光团" },
+  { key: "friend", emoji: "💜", label: "朋友按头安利" },
+  { key: "web",  emoji: "🌀", label: "互联网迷路误入" },
+  { key: "ai",   emoji: "🤖", label: "我是 AI，来视察的" }
+];
+const STORE_MSG = "changye_wb_msgs_v1";
+const STORE_VOTE = "changye_wb_vote_v1";
+const $ = id => document.getElementById(id);
+
+function loadMsgs() {
+  try { return JSON.parse(localStorage.getItem(STORE_MSG)) || []; }
+  catch (e) { return []; }
+}
+function saveMsgs(arr) { localStorage.setItem(STORE_MSG, JSON.stringify(arr)); }
+
+function renderMsgs() {
+  const list = $("cardList");
+  const canvas = $("canvas");
+  list.querySelectorAll(".card-row.dyn").forEach(n => n.remove());
+  canvas.querySelectorAll(".user-note").forEach(n => n.remove());
+  const all = SEED_CARDS.concat(loadMsgs());
+  all.forEach((m) => {
+    const row = document.createElement("div");
+    row.className = "card-row dyn";
+    row.innerHTML = '<span class="dot"></span><span class="ct">' +
+      (m.emoji ? m.emoji + " " : "📝 ") + escapeHtml(m.text) +
+      '</span><span class="au">' + escapeHtml(m.author || "访客") + "</span>";
+    list.appendChild(row);
+  });
+  loadMsgs().forEach((m, i) => {
+    const note = document.createElement("div");
+    note.className = "user-note";
+    note.style.left = (30 + (i % 4) * 230) + "px";
+    note.style.top = (700 + Math.floor(i / 4) * 170) + "px";
+    note.style.transform = "rotate(" + ((i % 2 ? 1 : -1) * (1 + (i % 3))) + "deg)";
+    note.innerHTML = '<div class="un-text">' + (m.emoji ? m.emoji + " " : "") + escapeHtml(m.text) +
+      '</div><div class="un-au">—— ' + escapeHtml(m.author || "访客") + "</div>";
+    canvas.appendChild(note);
+  });
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function openModal() { $("modalMask").classList.add("show"); $("msgText").focus(); }
+function closeModal() {
+  $("modalMask").classList.remove("show");
+  $("msgText").value = ""; $("msgName").value = "";
+}
+$("btnMsg").addEventListener("click", openModal);
+$("btnNote").addEventListener("click", openModal);
+$("btnMsg2").addEventListener("click", openModal);
+$("msgCancel").addEventListener("click", closeModal);
+$("modalMask").addEventListener("click", e => { if (e.target === $("modalMask")) closeModal(); });
+$("msgSubmit").addEventListener("click", () => {
+  const text = $("msgText").value.trim();
+  if (!text) { $("msgText").focus(); return; }
+  const author = $("msgName").value.trim() || "访客";
+  const msgs = loadMsgs();
+  msgs.push({ text: text.slice(0, 80), author: author.slice(0, 12) });
+  saveMsgs(msgs);
+  renderMsgs();
+  closeModal();
+});
+
+function loadVote() {
+  try { return JSON.parse(localStorage.getItem(STORE_VOTE)) || { counts: { xhs: 10, friend: 0, web: 2, ai: 4 }, mine: null }; }
+  catch (e) { return { counts: { xhs: 10, friend: 0, web: 2, ai: 4 }, mine: null }; }
+}
+function saveVote(v) { localStorage.setItem(STORE_VOTE, JSON.stringify(v)); }
+function renderVote() {
+  const v = loadVote();
+  const box = $("voteOpts");
+  box.innerHTML = "";
+  VOTE_OPTS.forEach(o => {
+    const btn = document.createElement("button");
+    btn.className = "vote-opt" + (v.mine === o.key ? " voted" : "");
+    btn.innerHTML = '<span>' + o.emoji + '</span><span class="vc">' + o.label +
+      '</span><span class="vn">' + (v.counts[o.key] || 0) + "</span>";
+    btn.addEventListener("click", () => {
+      const cur = loadVote();
+      if (cur.mine === o.key) return;
+      if (cur.mine) cur.counts[cur.mine] = Math.max(0, (cur.counts[cur.mine] || 1) - 1);
+      cur.mine = o.key;
+      cur.counts[o.key] = (cur.counts[o.key] || 0) + 1;
+      saveVote(cur);
+      renderVote();
+    });
+    box.appendChild(btn);
+  });
+  const total = VOTE_OPTS.reduce((s, o) => s + (v.counts[o.key] || 0), 0);
+  $("voteFoot").textContent = total + " 人投过 · 点选项投票";
+}
+
+let zoom = 1;
+function setZoom(z) {
+  zoom = Math.min(1.3, Math.max(0.7, z));
+  $("canvas").style.transform = "scale(" + zoom + ")";
+  $("zoomLabel").textContent = Math.round(zoom * 100) + "%";
+}
+$("zoomIn").addEventListener("click", () => setZoom(zoom + 0.1));
+$("zoomOut").addEventListener("click", () => setZoom(zoom - 0.1));
+$("zoomReset").addEventListener("click", () => setZoom(1));
+
+$("btnDraw").addEventListener("click", () => {
+  alert("涂鸦功能正在研墨，下回就能画了 🖌");
+});
+
+function resetScroll() {
+  const w = $("canvasWrap");
+  w.scrollLeft = 0;
+  w.scrollTop = 0;
+}
+renderMsgs();
+renderVote();
+resetScroll();
+requestAnimationFrame(resetScroll);
+setTimeout(resetScroll, 120);
+window.addEventListener("pageshow", resetScroll);
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(agent-browser)",
+      "Skill(agent-browser:*)",
+      "PowerShell(agent-browser screenshot --full-page --output hiesther_full.png)",
+      "PowerShell(agent-browser snapshot --output hiesther_snapshot.txt)",
+      "PowerShell(agent-browser screenshot --output hiesther_screenshot.png)",
+      "PowerShell(agent-browser screenshot -h)",
+      "PowerShell(agent-browser screenshot --full .\\\\hiesther_full.png)",
+      "PowerShell(agent-browser screenshot .\\\\hiesther_viewport.png)"
+    ]
+  }
+}
