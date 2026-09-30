@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亿和装饰 · 获客渠道现状与拓展建议</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23108B96'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle' fill='%23F2D791' font-family='serif'%3E亿%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Fraunces:ital,wght@1,400;1,600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+/* ===== 长野设计系统 · 品牌变量 ===== */
+:root{
+  --cream:#F2D791;      /* 奶黄 · 地 */
+  --teal:#108B96;       /* 泥青 · 骨 */
+  --red:#C0392B;        /* 朱砂红 · 点睛 */
+  --milk:#F5F1E7;       /* 米白底 */
+  --green:#4E7A5C;
+  --ink:#3A3028;        /* 暖褐主字 */
+  --ink-2:#5C524A;      /* 次字 */
+  --ink-3:#8C8378;      /* 淡字 */
+  --deep:#2E3A5C;       /* 深面板 */
+  --line:rgba(58,48,40,.12);
+  --soft:rgba(16,139,150,.10);
+  --red-soft:rgba(192,57,43,.10);
+  --radius:16px;
+  --maxw:1240px;
+  --paper-noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  --paper-shadow:0 2px 3px rgba(58,48,40,.06),0 12px 32px rgba(58,48,40,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--milk);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.serif{font-family:"Noto Serif SC",serif}
+.fraunces{font-family:"Fraunces",serif;font-style:italic}
+::selection{background:var(--cream);color:var(--ink)}
+img{max-width:100%;display:block}
+a{color:var(--teal)}
+/* 纸感噪点统一叠加 */
+.paper,.card,.panel{position:relative;background-image:var(--paper-noise)}
+/* ===== 顶部导航 ===== */
+.topnav{position:sticky;top:0;z-index:100;background:var(--milk);border-bottom:1px solid var(--line)}
+.topnav-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:24px;padding:12px 24px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Noto Serif SC",serif;font-weight:700;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand .logo{width:30px;height:30px;border-radius:9px;background:var(--teal);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.nav-links a{text-decoration:none;color:var(--ink-2);font-size:14px;padding:6px 12px;border-radius:20px;transition:all .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--teal);background:var(--soft)}
+/* ===== Hero ===== */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;background:linear-gradient(135deg,#10243a 0%,#0f4d57 60%,#0e6a6f 100%)}
+.hero::before{content:"";position:absolute;inset:0;background-image:var(--paper-noise);opacity:.4}
+.hero-bg{position:absolute;inset:0;opacity:.35;background-size:cover;background-position:center;filter:saturate(.85)}
+.hero-inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:72px 24px;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.hero-eyebrow{display:inline-block;font-size:13px;letter-spacing:3px;color:var(--cream);margin-bottom:20px;font-weight:600;text-transform:uppercase}
+.hero h1{font-size:clamp(2.6rem,5.4vw,4.2rem);line-height:1.16;font-weight:900;color:#FDFBF4;letter-spacing:1px;margin-bottom:20px}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.15rem);color:rgba(242,215,145,.9);max-width:540px;margin-bottom:30px}
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+.hero-tag{font-size:13px;padding:6px 14px;border-radius:20px;background:rgba(242,215,145,.13);border:1px solid rgba(242,215,145,.4);color:var(--cream)}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:var(--cream);color:var(--ink);border-radius:12px;text-decoration:none;font-weight:600;font-size:1rem;transition:transform .2s,box-shadow .2s}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(244,215,88,.3)}
+.hero-figure{width:100%;transform:rotate(1.5deg)}
+.hero-figure img{width:100%;height:auto;border-radius:20px;box-shadow:0 30px 70px rgba(0,0,0,.45);border:1px solid rgba(242,215,145,.3)}
+.hero-deco{position:absolute;right:4%;bottom:6%;font-size:clamp(3rem,10vw,7rem);color:var(--cream);opacity:.14;font-family:"Fraunces",serif;font-style:italic;pointer-events:none}
+/* ===== 章节容器 ===== */
+.section{max-width:var(--maxw);margin:0 auto;padding:clamp(56px,9vh,110px) 24px}
+.alt{background:linear-gradient(180deg,#EFE9D8,#EAE3CF)}
+.deep{background:linear-gradient(135deg,#10243a,#0f4d57);color:#FDFBF4}
+.section-head{margin-bottom:clamp(28px,4vh,44px)}
+.section-eyebrow{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-eyebrow::before{content:"";width:26px;height:2px;background:var(--red);display:inline-block}
+.section-title{font-size:clamp(1.6rem,3.4vw,2.5rem);font-weight:900;color:var(--ink);line-height:1.25;letter-spacing:.5px}
+.deep .section-title{color:#FDFBF4}
+.deep .section-eyebrow{color:var(--cream)}
+.section-desc{font-size:clamp(.95rem,1.5vw,1.05rem);color:var(--ink-2);margin-top:14px;max-width:720px}
+.deep .section-desc{color:rgba(253,251,244,.82)}
+/* 大装饰数字 */
+.big-num{position:absolute;right:0;top:-18px;font-family:"Fraunces",serif;font-style:italic;font-size:clamp(3rem,8vw,6.5rem);line-height:1;color:var(--teal);opacity:.10;pointer-events:none}
+/* ===== Key Insight 组件（#3 替代引用块） ===== */
+.insight{position:relative;margin-top:clamp(24px,3vh,34px);padding:18px 22px 18px 22px;background:var(--soft);border-radius:12px;font-size:clamp(.95rem,1.5vw,1.05rem);color:var(--ink);display:flex;gap:14px;align-items:flex-start}
+.insight .i-mark{flex:none;width:30px;height:30px;border-radius:8px;background:var(--red);color:#FDFBF4;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+.insight strong{color:var(--teal)}
+.deep .insight{background:rgba(242,215,145,.12);border:1px solid rgba(242,215,145,.3);color:#FDFBF4}
+.deep .insight .i-mark{background:var(--cream);color:var(--ink)}
+.deep .insight strong{color:var(--cream)}
+/* ===== 02 小区卡片 ===== */
+.sites{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,22px)}
+.site-card{background:var(--milk);border-radius:var(--radius);padding:26px;box-shadow:var(--paper-shadow);border:1px solid var(--line);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;background-image:var(--paper-noise)}
+.site-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(58,48,40,.16)}
+.site-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--teal)}
+.site-card .s-idx{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(2.4rem,5vw,3.4rem);color:var(--teal);opacity:.16;position:absolute;right:14px;top:6px}
+.site-name{font-size:clamp(1.15rem,1.9vw,1.4rem);font-weight:800;margin-bottom:12px;color:var(--ink)}
+.site-stat{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
+.site-stat b{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(1.8rem,3.6vw,2.5rem);color:var(--teal);font-weight:600}
+.site-stat span{font-size:14px;color:var(--ink-2)}
+.site-meta{font-size:14px;color:var(--ink-2);margin-top:10px;line-height:1.7}
+.site-tag{display:inline-block;font-size:12px;padding:3px 10px;border-radius:12px;margin-top:12px;font-weight:600}
+.tag-now{background:var(--red-soft);color:var(--red)}
+.tag-future{background:var(--soft);color:var(--teal)}
+.total-bar{margin-top:clamp(24px,3vh,30px);background:var(--milk);border:1px solid var(--line);border-radius:var(--radius);padding:20px 26px;display:flex;align-items:baseline;gap:16px;box-shadow:var(--paper-shadow);background-image:var(--paper-noise)}
+.total-bar b{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(1.9rem,3.6vw,2.6rem);color:var(--red);font-weight:600}
+/* ===== 03 缺陷 ===== */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.def-card{background:var(--milk);border-radius:var(--radius);padding:28px;border:1px solid var(--line);box-shadow:var(--paper-shadow);position:relative;background-image:var(--paper-noise)}
+.def-card h3{font-size:clamp(1.1rem,1.8vw,1.3rem);font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.def-card h3 .num{width:30px;height:30px;border-radius:9px;background:var(--red);color:#FDFBF4;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;font-weight:800}
+.def-card.d2 h3 .num{background:var(--teal)}
+.def-card p{font-size:clamp(.92rem,1.4vw,1rem);color:var(--ink-2);line-height:1.85}
+.def-card p strong{color:var(--ink)}
+/* ===== 04 打法 ===== */
+.flow{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.flow-card{background:var(--milk);border-radius:var(--radius);padding:28px;border:1px solid var(--line);box-shadow:var(--paper-shadow);position:relative;background-image:var(--paper-noise)}
+.flow-card::after{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--cream)}
+.flow-card.pm::after{background:var(--teal)}
+.flow-card h3{font-size:clamp(1.15rem,1.9vw,1.35rem);font-weight:800;margin-bottom:16px}
+.flow-card .f-zone{display:inline-block;font-family:"Caveat",cursive;font-size:clamp(1.4rem,2.4vw,1.8rem);color:var(--red);margin-bottom:6px}
+.flow-card ul{list-style:none}
+.flow-card li{font-size:clamp(.92rem,1.4vw,1rem);color:var(--ink-2);padding:9px 0 9px 26px;position:relative;line-height:1.75}
+.flow-card li::before{content:"";position:absolute;left:6px;top:20px;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.flow-card li b{color:var(--ink)}
+/* ===== 05 渠道 ===== */
+.channels{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,22px)}
+.channel-card{background:var(--milk);border-radius:var(--radius);padding:26px 22px;border:1px solid var(--line);box-shadow:var(--paper-shadow);text-align:center;position:relative;background-image:var(--paper-noise)}
+.channel-card .c-num{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--teal);opacity:.5;margin-bottom:6px}
+.channel-card h3{font-size:clamp(1.1rem,1.7vw,1.3rem);font-weight:800;margin-bottom:14px}
+.channel-card p{font-size:clamp(.9rem,1.3vw,.98rem);color:var(--ink-2);line-height:1.75}
+.channel-card .bad{display:inline-block;margin-top:16px;font-size:12px;padding:4px 12px;border-radius:12px;background:var(--red-soft);color:var(--red)}
+/* ===== 06 拓展 ===== */
+.extend-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.extend-card{background:var(--milk);border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:var(--paper-shadow);border-top:4px solid var(--teal);position:relative;background-image:var(--paper-noise)}
+.extend-card h3{font-size:clamp(1.2rem,2vw,1.5rem);font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.extend-card .d-arrow{color:var(--red);font-size:1.4rem}
+.extend-card p{font-size:clamp(.95rem,1.4vw,1.05rem);color:var(--ink-2);line-height:1.85;margin-bottom:8px}
+.extend-card p b{color:var(--ink)}
+/* ===== 07 / 09 三列细节 ===== */
+.detail-col{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,20px)}
+.detail-item{background:var(--milk);border:1px solid var(--line);border-radius:12px;padding:20px;position:relative;background-image:var(--paper-noise);box-shadow:var(--paper-shadow)}
+.detail-item .di-idx{font-family:"Fraunces",serif;font-style:italic;font-size:1.9rem;color:var(--cream);font-weight:600;opacity:.9}
+.detail-item h4{font-size:clamp(1rem,1.5vw,1.15rem);font-weight:700;color:var(--teal);margin-bottom:8px}
+.detail-item p{font-size:clamp(.9rem,1.3vw,.98rem);color:var(--ink-2);line-height:1.7}
+/* ===== 08 驻点成本横条 ===== */
+.cost-strip{margin-top:clamp(22px,3vh,30px);display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.cost-item{background:var(--milk);border:1px solid var(--line);border-radius:12px;padding:18px 20px;background-image:var(--paper-noise);box-shadow:var(--paper-shadow)}
+.cost-item h4{font-size:13px;font-weight:700;color:var(--red);letter-spacing:1px;margin-bottom:6px}
+.cost-item p{font-size:clamp(.92rem,1.4vw,1rem);color:var(--ink);line-height:1.7}
+.cost-item p b{color:var(--teal)}
+/* ===== 10 小结 ===== */
+.final-ol{display:grid;gap:14px;margin:0 auto 34px;max-width:800px}
+.final-item{display:flex;gap:16px;align-items:flex-start;background:rgba(253,251,244,.05);border:1px solid rgba(242,215,145,.28);border-radius:14px;padding:16px 20px;background-image:var(--paper-noise)}
+.final-item .fi-num{width:30px;height:30px;border-radius:9px;background:var(--cream);color:var(--ink);font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;font-size:15px}
+.final-item p{font-size:clamp(.95rem,1.4vw,1.05rem);color:rgba(253,251,244,.9);line-height:1.75}
+.final-item p b{color:var(--cream)}
+.final-next{max-width:800px;margin:0 auto;text-align:center;background:rgba(242,215,145,.12);border:1px solid rgba(242,215,145,.45);border-radius:16px;padding:clamp(24px,4vh,32px);background-image:var(--paper-noise)}
+.final-next .tag{font-size:13px;color:var(--cream);letter-spacing:3px;margin-bottom:8px;font-weight:700}
+.final-next p{font-size:clamp(1.05rem,1.8vw,1.3rem);color:#FDFBF4;font-weight:600;line-height:1.6}
+.final-next p span{color:var(--cream)}
+/* ===== 页脚 ===== */
+.footer{background:#0d1a2b;color:var(--ink-3);padding:clamp(24px,4vh,32px) 24px;text-align:center;font-size:13px}
+.footer b{color:var(--cream);font-weight:600}
+/* ===== 动效：Scroll Reveal 层叠 ===== */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.6,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal-d1{transition-delay:.05s}.reveal-d2{transition-delay:.15s}.reveal-d3{transition-delay:.25s}
+.reveal-d4{transition-delay:.35s}.reveal-d5{transition-delay:.45s}
+/* ===== 动效：手绘高亮（#50 简化） ===== */
+.hl{position:relative;white-space:nowrap;font-weight:700}
+.hl svg{position:absolute;left:-3%;top:55%;width:106%;height:42%;z-index:-1;pointer-events:none}
+.hl svg path{stroke:var(--cream);stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:220;stroke-dashoffset:220}
+.hl.in svg path{animation:hlDraw 1.1s .3s ease forwards}
+@keyframes hlDraw{to{stroke-dashoffset:0}}
+/* ===== 响应式 ===== */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;padding:64px 20px 56px;gap:30px}
+  .hero{min-height:auto}
+  .sites,.channels,.detail-col{grid-template-columns:1fr 1fr}
+  .two-col,.flow,.extend-grid{grid-template-columns:1fr}
+  .cost-strip{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero-deco{display:none}
+}
+@media(max-width:600px){
+  .sites,.channels,.detail-col{grid-template-columns:1fr}
+  .section{padding:52px 18px}
+  .total-bar{flex-wrap:wrap;flex-direction:column;align-items:flex-start;gap:6px}
+  .hero-figure{transform:none}
+}
+/* 尊重系统减弱动效偏好 */
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hl svg path{stroke-dashoffset:0}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 顶部导航 ===== -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand"><span class="logo">亿</span>亿和装饰 · 事业一部</div>
+    <div class="nav-links">
+      <a href="#sites">小区现状</a>
+      <a href="#defects">渠道瓶颈</a>
+      <a href="#flow">日常打法</a>
+      <a href="#channels">现有渠道</a>
+      <a href="#extend">拓展方向</a>
+      <a href="#summary">小结</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== 封面 ===== -->
+<header class="hero" id="top">
+  <div class="hero-bg" style="background-image:url('assets/cover.png')"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">事业一部 · 获客渠道分析 · 2026年9月</div>
+      <h1>获客渠道现状<br><span class="hl" data-highlight>与拓展建议<svg viewBox="0 0 220 40" preserveAspectRatio="none"><path d="M8 30 Q60 12 112 26 Q164 38 214 16"/></svg></span></h1>
+      <p class="hero-sub">三个主力小区的电话获客打法与渠道拓展方向，现状分析与拓展建议。</p>
+      <div class="hero-tags">
+        <span class="hero-tag">电话获客</span>
+        <span class="hero-tag">期房 / 现房打法</span>
+        <span class="hero-tag">自媒体 + 小区驻点</span>
+      </div>
+      <a class="hero-cta" href="#overview">查看现状与建议</a>
+    </div>
+    <div class="hero-figure">
+      <img src="assets/cover.png" alt="长野插画 · 获客渠道主题封面">
+    </div>
+  </div>
+  <div class="hero-deco">2028</div>
+</header>
+
+<!-- ===== 01 总览 ===== -->
+<section class="section" id="overview">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">01 · 总览</div>
+    <div class="section-title">三个主力小区 + 电话渠道遇瓶颈，需要拓展新渠道</div>
+  </div>
+  <div class="insight reveal">
+    <span class="i-mark">核</span>
+    <div>核心判断：<strong>电话获客仍是主力</strong>，但单靠电话效率在下降，需在细打现有小区的同时，布局可复制的新渠道。</div>
+  </div>
+</section>
+
+<!-- ===== 02 市场现状 ===== -->
+<section class="section alt" id="sites">
+  <div class="big-num reveal">2028</div>
+  <div class="section-head reveal">
+    <div class="section-eyebrow">02 · 市场现状</div>
+    <div class="section-title">三个主力小区，交付节点各不相同</div>
+    <div class="section-desc">三个小区总量约 2028 户，是事业一部电话获客的主要目标市场。</div>
+  </div>
+  <div class="sites">
+    <div class="site-card reveal reveal-d1">
+      <span class="s-idx">01</span>
+      <div class="site-name">佛堂印象</div>
+      <div class="site-stat"><b data-count="836">0</b><span>户</span></div>
+      <div class="site-meta">交付节点：2026年10月<br>近期交付</div>
+      <span class="site-tag tag-now">现房打法</span>
+    </div>
+    <div class="site-card reveal reveal-d2">
+      <span class="s-idx">02</span>
+      <div class="site-name">御景双江</div>
+      <div class="site-stat"><b data-count="605">0</b><span>户</span></div>
+      <div class="site-meta">交付节点：2026年9月底<br>正在交付</div>
+      <span class="site-tag tag-now">现房打法</span>
+    </div>
+    <div class="site-card reveal reveal-d3">
+      <span class="s-idx">03</span>
+      <div class="site-name">秦塘名邸</div>
+      <div class="site-stat"><b data-count="587">0</b><span>户</span></div>
+      <div class="site-meta">交付节点：2026年12月底<br>半年内交付</div>
+      <span class="site-tag tag-future">期房打法</span>
+    </div>
+  </div>
+  <div class="total-bar reveal reveal-d4">
+    <b data-count="2028">0</b><span>户 · 三个小区电话获客主要目标市场</span>
+  </div>
+</section>
+
+<!-- ===== 03 现状痛点 ===== -->
+<section class="section" id="defects">
+  <div class="big-num reveal">40–50%</div>
+  <div class="section-head reveal">
+    <div class="section-eyebrow">03 · 现状痛点</div>
+    <div class="section-title">电话获客的两大缺陷：高比例已定 + 剩余观望</div>
+  </div>
+  <div class="two-col">
+    <div class="def-card reveal reveal-d1">
+      <h3><span class="num">1</span>约 4–5 成业主已定装</h3>
+      <p>业主在拿房之前，大多已通过网上咨询、提前比较，<strong>提前签了装修合同</strong>。我们打电话打过去时，这批业主已经定了装修公司。</p>
+    </div>
+    <div class="def-card d2 reveal reveal-d2">
+      <h3><span class="num">2</span>剩余业主暂缓不装</h3>
+      <p><strong>着急想装</strong>的客户，往往要观望、比价再定；<strong>预算紧张</strong>的客户，还要再等一等、缓一缓。这两类客户都需要时间，短期难以成交。</p>
+    </div>
+  </div>
+  <div class="insight reveal reveal-d3">
+    <span class="i-mark">结</span>
+    <div>结论：<strong>单纯打电话，接触到的有效新客在减少，必须提前在业主决策前介入。</strong></div>
+  </div>
+</section>
+
+<!-- ===== 04 日常工作打法 ===== -->
+<section class="section alt" id="flow">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">04 · 日常工作打法</div>
+    <div class="section-title">建议：上午打期房，下午打现房</div>
+  </div>
+  <div class="flow">
+    <div class="flow-card reveal reveal-d1">
+      <div class="f-zone">早上 · AM</div>
+      <h3>期房 · 早上打</h3>
+      <ul>
+        <li><b>对象</b>：半年到一年内快交房的期房小区（如秦塘名邸）。</li>
+        <li><b>时点</b>：每天早上集中打。</li>
+        <li><b>逻辑</b>：在业主决策前更早介入，抢在签单之前建立联系。</li>
+      </ul>
+    </div>
+    <div class="flow-card pm reveal reveal-d2">
+      <div class="f-zone">下午 · PM</div>
+      <h3>现房 · 下午打</h3>
+      <ul>
+        <li><b>对象</b>：上下三个月内交付的现房小区（如佛堂印象、御景双江）。</li>
+        <li><b>时点</b>：每天下午集中打。</li>
+        <li><b>逻辑</b>：已交 / 临近交付业主需求更急，下午沟通更易促成进店。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="insight reveal reveal-d3">
+    <span class="i-mark">法</span>
+    <div>按交付节点把电话时段分开，<strong>期房抢早、现房抓急</strong>，让每天的精力用在最可能成交的客户上。</div>
+  </div>
+</section>
+
+<!-- ===== 05 现有渠道盘点 ===== -->
+<section class="section" id="channels">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">05 · 现有渠道盘点</div>
+    <div class="section-title">现有渠道只有三个：电话、跑小区、第三方</div>
+  </div>
+  <div class="channels">
+    <div class="channel-card reveal reveal-d1">
+      <div class="c-num">01</div>
+      <h3>电话</h3>
+      <p>当前主力渠道<br>对期房 / 现房分时段拨打</p>
+      <span class="bad">缺点：有效新客在减少</span>
+    </div>
+    <div class="channel-card reveal reveal-d2">
+      <div class="c-num">02</div>
+      <h3>跑小区</h3>
+      <p>实地触达在装修业主<br>覆盖已交房小区</p>
+      <span class="bad">缺点：人力覆盖有限</span>
+    </div>
+    <div class="channel-card reveal reveal-d3">
+      <div class="c-num">03</div>
+      <h3>第三方</h3>
+      <p>借助平台 / 中介资源<br>补充线索来源</p>
+      <span class="bad">缺点：依赖性强、成本偏高</span>
+    </div>
+  </div>
+  <div class="insight reveal reveal-d4">
+    <span class="i-mark">判</span>
+    <div>三条渠道都偏被动、偏依赖现有资源，<strong>缺少能主动、可复制、成本可控的新渠道。</strong></div>
+  </div>
+</section>
+
+<!-- ===== 06 拓展方向 ===== -->
+<section class="section alt" id="extend">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">06 · 拓展方向</div>
+    <div class="section-title">可拓展两个方向：自媒体 + 小区驻点</div>
+  </div>
+  <div class="extend-grid">
+    <div class="extend-card reveal reveal-d1">
+      <h3><span class="d-arrow">一</span>自媒体</h3>
+      <p>在业主上网决策之前，用内容先建立认知。</p>
+      <p>可学习公司运营部的做法，或外请老师培训，把内容获客做起来。</p>
+    </div>
+    <div class="extend-card reveal reveal-d2">
+      <h3><span class="d-arrow">二</span>小区驻点</h3>
+      <p>在即将交房的小区提前驻点，把服务送到业主家门口。</p>
+      <p>提前一个月进场，让业主收房前就接触我们。</p>
+    </div>
+  </div>
+  <div class="insight reveal reveal-d3">
+    <span class="i-mark">补</span>
+    <div>两条线都能<strong>在业主做决策前主动触达</strong>，补上电话渠道的短板。</div>
+  </div>
+</section>
+
+<!-- ===== 07 自媒体 ===== -->
+<section class="section" id="selfmedia">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">07 · 拓展方向 · 自媒体</div>
+    <div class="section-title">自媒体：在业主决策前用内容先建立认知</div>
+  </div>
+  <div class="detail-col">
+    <div class="detail-item reveal reveal-d1">
+      <div class="di-idx">a.</div>
+      <h4>价值</h4>
+      <p>在业主上网选装修时先被看到，不等电话打过去才认识我们。</p>
+    </div>
+    <div class="detail-item reveal reveal-d2">
+      <div class="di-idx">b.</div>
+      <h4>落地方式</h4>
+      <p>学习运营部做法 · 公司内部培训 · 或请外部老师带教。</p>
+    </div>
+    <div class="detail-item reveal reveal-d3">
+      <div class="di-idx">c.</div>
+      <h4>内容方向</h4>
+      <p>装修知识科普 · 小区户型 / 报价内容 · 工地实拍与案例。</p>
+    </div>
+  </div>
+  <div class="insight reveal reveal-d4">
+    <span class="i-mark">转</span>
+    <div>自媒体把获客从<strong>"打电话找业主"</strong>变成<strong>"业主自己找上门"</strong>，是能长期复用的内容资产。</div>
+  </div>
+</section>
+
+<!-- ===== 08 小区驻点 ===== -->
+<section class="section alt" id="station">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">08 · 拓展方向 · 小区驻点</div>
+    <div class="section-title">小区驻点：提前一个月进场，把服务送到家门口</div>
+  </div>
+  <div class="two-col">
+    <div class="def-card reveal reveal-d1">
+      <h3><span class="num">1</span>怎么驻</h3>
+      <p><strong>选择</strong>：半年内快交房、或 3 个月内要交房、或刚交房的小区。</p>
+      <p><strong>进场</strong>：刚交房小区<strong>提前一个月</strong>驻点。</p>
+      <p><strong>成本</strong>：在小区租房驻点，约<strong>两三千 / 月</strong>。</p>
+    </div>
+    <div class="def-card d2 reveal reveal-d2">
+      <h3><span class="num">2</span>谁去驻</h3>
+      <p><strong>设计师 + 业务员</strong>搭配。</p>
+      <p>设计师可安排两名业务配合。</p>
+      <p>整个部门可轮流到驻点支援。</p>
+    </div>
+  </div>
+  <div class="cost-strip reveal reveal-d3">
+    <div class="cost-item"><h4>成本</h4><p>租房驻点约 <b>两三千 / 月</b></p></div>
+    <div class="cost-item"><h4>人力</h4><p><b>设计师 + 业务</b> 搭配，可两名业务配合</p></div>
+    <div class="cost-item"><h4>时间</h4><p>刚交房小区 <b>提前一个月</b> 进场</p></div>
+  </div>
+  <div class="insight reveal reveal-d4">
+    <span class="i-mark">破</span>
+    <div>驻点成本可控、离业主最近，是<strong>把电话被动获客，变成家门口主动获客</strong>的关键一步。</div>
+  </div>
+</section>
+
+<!-- ===== 09 驻点配套 ===== -->
+<section class="section" id="kits">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">09 · 驻点配套</div>
+    <div class="section-title">驻点配套：资料 + 咨询礼品 + 到店礼品</div>
+  </div>
+  <div class="detail-col">
+    <div class="detail-item reveal reveal-d1">
+      <div class="di-idx">①</div>
+      <h4>资料准备</h4>
+      <p>方案 · 预算 · 效果图</p>
+    </div>
+    <div class="detail-item reveal reveal-d2">
+      <div class="di-idx">②</div>
+      <h4>咨询礼品</h4>
+      <p>选小区人群喜欢的小礼品，只要来咨询就有，用于留住上门客户。</p>
+    </div>
+    <div class="detail-item reveal reveal-d3">
+      <div class="di-idx">③</div>
+      <h4>到店礼品</h4>
+      <p>业主喜欢的礼品或当季流行的小礼品，鼓励业主进店参观。</p>
+    </div>
+  </div>
+  <div class="insight reveal reveal-d4">
+    <span class="i-mark">留</span>
+    <div>资料体现专业，礼品创造接触机会，<strong>让业主愿意停下来、愿意走进店。</strong></div>
+  </div>
+</section>
+
+<!-- ===== 10 小结 ===== -->
+<section class="section deep" id="summary">
+  <div class="section-head reveal" style="text-align:center;margin-bottom:32px">
+    <div class="section-eyebrow" style="justify-content:center">10 · 小结</div>
+    <div class="section-title" style="text-align:center">小结与建议</div>
+  </div>
+  <div class="final-ol">
+    <div class="final-item reveal reveal-d1"><span class="fi-num">1</span><p>三个主力小区（佛堂印象、御景双江、秦塘名邸）总量约 <b>2028</b> 户。</p></div>
+    <div class="final-item reveal reveal-d2"><span class="fi-num">2</span><p>电话渠道遇瓶颈：约 <b>4–5 成业主已定装</b>，剩余业主多暂缓观望。</p></div>
+    <div class="final-item reveal reveal-d3"><span class="fi-num">3</span><p>日常打法：<b>期房上午打、现房下午打</b>。</p></div>
+    <div class="final-item reveal reveal-d4"><span class="fi-num">4</span><p>建议拓展：<b>自媒体 + 小区驻点</b>（提前一个月进场）。</p></div>
+  </div>
+  <div class="final-next reveal reveal-d5">
+    <div class="tag">下一步</div>
+    <p>在细打现有电话的同时，<span>试点自媒体与小区驻点</span>，跑通后再复制到更多小区。</p>
+  </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  亿和装饰 · 事业一部 · 2026年9月 · <b>获客渠道现状与拓展建议</b>
+</footer>
+
+<script>
+/* ===== Scroll Reveal ===== */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){e.classList.add('in')});return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  },{threshold:0.15});
+  els.forEach(function(e){io.observe(e)});
+  /* 手绘高亮跟随 reveal 触发 */
+  var ioH = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in');ioH.unobserve(en.target)}
+    });
+  },{threshold:0.4});
+  document.querySelectorAll('.hl').forEach(function(h){ioH.observe(h)});
+})();
+/* ===== 数字递增 ===== */
+(function(){
+  function run(el){
+    var target = parseInt(el.getAttribute('data-count'),10);
+    var dur = 1100, t0 = null;
+    function tick(t){
+      if(!t0)t0=t;
+      var p = Math.min((t-t0)/dur,1);
+      p = 1-Math.pow(1-p,3); /* easeOutCubic */
+      el.textContent = Math.round(target*p).toLocaleString('zh-CN');
+      if(p<1)requestAnimationFrame(tick);
+      else el.textContent = target.toLocaleString('zh-CN');
+    }
+    requestAnimationFrame(tick);
+  }
+  var nums = document.querySelectorAll('[data-count]');
+  if(!('IntersectionObserver' in window)){
+    nums.forEach(run);return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){run(en.target);io.unobserve(en.target)}
+    });
+  },{threshold:0.5});
+  nums.forEach(function(n){io.observe(n)});
+})();
+</script>
+</body>
+</html>
