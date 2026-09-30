@@ -100,6 +100,10 @@ a{color:var(--teal)}
 .site-meta{font-size:14px;color:var(--ink-2);margin-top:10px;line-height:1.7}
 .site-tag{display:inline-block;font-size:12px;padding:3px 10px;border-radius:12px;margin-top:12px;font-weight:600}
 .tag-now{background:var(--red-soft);color:var(--red)}
+.tag-later{background:rgba(16,139,150,.12);color:var(--teal)}
+.future-head{display:flex;align-items:center;gap:10px;margin-top:clamp(30px,3.5vh,40px);font-size:clamp(1.02rem,1.6vw,1.18rem);color:var(--ink);font-weight:700;font-family:"Noto Serif SC",serif}
+.future-head .f-mark{flex:none;width:28px;height:28px;border-radius:8px;background:var(--teal);color:#FDFBF4;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.sites.future{grid-template-columns:repeat(2,1fr);margin-top:clamp(16px,2vw,22px)}
 .tag-future{background:var(--soft);color:var(--teal)}
 .total-bar{margin-top:clamp(24px,3vh,30px);background:var(--milk);border:1px solid var(--line);border-radius:var(--radius);padding:20px 26px;display:flex;align-items:baseline;gap:16px;box-shadow:var(--paper-shadow);background-image:var(--paper-noise)}
 .total-bar b{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(1.9rem,3.6vw,2.6rem);color:var(--red);font-weight:600}
@@ -252,8 +256,8 @@ a{color:var(--teal)}
   <div class="big-num reveal">2028</div>
   <div class="section-head reveal">
     <div class="section-eyebrow">02 · 市场现状</div>
-    <div class="section-title">三个主力小区，均已交付</div>
-    <div class="section-desc">三个小区总量约 2028 户，均已交付，是事业一部现房电话获客的主要目标市场。</div>
+    <div class="section-title">主力三盘已交付，期房在途</div>
+    <div class="section-desc">已交付三盘约 2028 户（现房电话获客主力），在途期房两盘约 1432 户（期房电话储备）。</div>
   </div>
   <div class="sites">
     <div class="site-card reveal reveal-d1">
@@ -281,9 +285,25 @@ a{color:var(--teal)}
   <div class="total-bar reveal reveal-d4">
     <b data-count="2028">0</b><span>户 · 三个小区电话获客主要目标市场（均已交付）</span>
   </div>
-  <div class="insight reveal reveal-d5">
-    <span class="i-mark">期</span>
-    <div>在途期房盘：<strong>方台悦府</strong>（2026年11月30交付）、<strong>溪畔云庐</strong>（2026年12月31交付）——是下一步期房打法的目标小区。</div>
+  <div class="future-head reveal reveal-d5"><span class="f-mark">期</span><div>在途期房 · 期房电话储备</div></div>
+  <div class="sites future reveal reveal-d6">
+    <div class="site-card reveal reveal-d1">
+      <span class="s-idx">01</span>
+      <div class="site-name">方台悦府</div>
+      <div class="site-stat"><b data-count="802">0</b><span>户</span></div>
+      <div class="site-meta">2026年11月30日交付<br>期房盘</div>
+      <span class="site-tag tag-later">期房打法</span>
+    </div>
+    <div class="site-card reveal reveal-d2">
+      <span class="s-idx">02</span>
+      <div class="site-name">溪畔云庐</div>
+      <div class="site-stat"><b data-count="630">0</b><span>户</span></div>
+      <div class="site-meta">2026年12月31日交付<br>期房盘</div>
+      <span class="site-tag tag-later">期房打法</span>
+    </div>
+  </div>
+  <div class="total-bar reveal reveal-d6">
+    <b data-count="1432">0</b><span>户 · 两盘期房电话储备目标</span>
   </div>
 </section>
 
